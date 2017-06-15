@@ -4,25 +4,8 @@
 
     
   <url>
-    <loc>http://wenace.github.io/2016/05/30/hexo%E5%BB%BA%E7%AB%99-%E9%83%A8%E7%BD%B2%E5%88%B0github/</loc>
-    <lastmod>2017-06-15T08:45:45.476Z</lastmod>
-    <data>
-        <display>
-        <title>hexo部署到github</title>
-        <pubTime>2016-05-30T01:58:33.439Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-  <url>
     <loc>http://wenace.github.io/2017/06/10/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2017-06-10T14:29:47.791Z</lastmod>
+    <lastmod>2017-06-15T11:40:11.691Z</lastmod>
     <data>
         <display>
         <title>位运算总结</title>
@@ -36,23 +19,8 @@
 
     
   <url>
-    <loc>http://wenace.github.io/2016/06/18/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2016-07-06T08:26:58.180Z</lastmod>
-    <data>
-        <display>
-        <title>前端开发总结(持续更新)</title>
-        <pubTime>2016-06-18T06:11:40.758Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://wenace.github.io/2016/06/11/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
-    <lastmod>2016-06-11T04:21:02.218Z</lastmod>
+    <lastmod>2017-06-15T11:39:40.740Z</lastmod>
     <data>
         <display>
         <title>常用正则收集</title>
@@ -67,7 +35,7 @@
     
   <url>
     <loc>http://wenace.github.io/2016/06/10/http%E7%9B%B8%E5%85%B3%E7%BC%93%E5%AD%98%E5%A4%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</loc>
-    <lastmod>2016-06-10T08:46:05.859Z</lastmod>
+    <lastmod>2017-06-15T11:35:10.201Z</lastmod>
     <data>
         <display>
         <title>http相关缓存头</title>
@@ -81,8 +49,23 @@
 
     
   <url>
+    <loc>http://wenace.github.io/2016/05/30/hexo%E5%BB%BA%E7%AB%99-%E9%83%A8%E7%BD%B2%E5%88%B0github/</loc>
+    <lastmod>2017-06-15T11:34:15.906Z</lastmod>
+    <data>
+        <display>
+        <title>hexo部署到github</title>
+        <pubTime>2016-05-30T01:58:33.439Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wenace.github.io/2016/06/10/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2016-06-10T02:48:50.218Z</lastmod>
+    <lastmod>2017-06-15T11:33:54.252Z</lastmod>
     <data>
         <display>
         <title>原生JavaScript编写ajax</title>
@@ -96,8 +79,23 @@
 
     
   <url>
+    <loc>http://wenace.github.io/2016/06/18/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-06-15T11:33:07.083Z</lastmod>
+    <data>
+        <display>
+        <title>前端开发总结(持续更新)</title>
+        <pubTime>2016-06-18T06:11:40.758Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wenace.github.io/2016/06/07/JavaScript%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/</loc>
-    <lastmod>2016-06-09T02:13:35.746Z</lastmod>
+    <lastmod>2017-06-15T11:29:14.212Z</lastmod>
     <data>
         <display>
         <title>常见的JavaScript遍历方式</title>
@@ -112,7 +110,7 @@
     
   <url>
     <loc>http://wenace.github.io/2016/05/29/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</loc>
-    <lastmod>2016-05-30T02:32:40.515Z</lastmod>
+    <lastmod>2017-06-15T11:29:14.106Z</lastmod>
     <data>
         <display>
         <title>Hexo本地搭建心得</title>
@@ -124,4 +122,6 @@
     </data>
     </url>
 
+    
+    
 </urlset>
