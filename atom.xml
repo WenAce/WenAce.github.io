@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2017-06-15T11:40:11.691Z</updated>
+  <updated>2017-06-15T12:18:24.909Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://wenace.github.io/2017/06/10/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
     <id>http://wenace.github.io/2017/06/10/CodeFight经典问题/</id>
     <published>2017-06-10T01:16:55.052Z</published>
-    <updated>2017-06-15T11:40:11.691Z</updated>
+    <updated>2017-06-15T12:18:24.909Z</updated>
     
     <content type="html"><![CDATA[<h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p>
 <p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>
@@ -32,6 +32,8 @@
     
     </summary>
     
+    
+      <category term="位运算" scheme="http://wenace.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
     
   </entry>
   
@@ -77,7 +79,7 @@
     <link href="http://wenace.github.io/2016/06/11/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     <id>http://wenace.github.io/2016/06/11/常用正则表达式/</id>
     <published>2016-06-11T03:43:59.438Z</published>
-    <updated>2017-06-15T11:39:40.740Z</updated>
+    <updated>2017-06-15T12:18:24.883Z</updated>
     
     <content type="html"><![CDATA[<p>一些常用的正则表达式<a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line">//正整数</div><div class="line">/^[0-9]*[1-9][0-9]*$/;</div><div class="line"></div><div class="line">//负整数</div><div class="line">/^-[0-9]*[1-9][0-9]*$/;</div><div class="line"></div><div class="line">//正浮点数</div><div class="line">/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;</div><div class="line"></div><div class="line">//负浮点数</div><div class="line">/^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;  </div><div class="line"></div><div class="line">//浮点数</div><div class="line">/^(-?\d+)(\.\d+)?$/;</div><div class="line"></div><div class="line">//email地址</div><div class="line">/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;</div><div class="line"></div><div class="line">//url地址</div><div class="line">/^[a-zA-z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\S*)?$/;</div><div class="line">或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\<span class="string">':+!]*([^&lt;&gt;\"\"])*$ </span></div><div class="line"></div><div class="line">//年/月/日（年-月-日、年.月.日）</div><div class="line">/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;</div><div class="line"></div><div class="line">//匹配中文字符</div><div class="line">/[\u4e00-\u9fa5]/;</div><div class="line"></div><div class="line">//匹配账号是否合法(字母开头，允许5-10字节，允许字母数字下划线)</div><div class="line">/^[a-zA-Z][a-zA-Z0-9_]&#123;4,9&#125;$/;</div><div class="line"></div><div class="line">//匹配空白行的正则表达式</div><div class="line">/\n\s*\r/;</div><div class="line"></div><div class="line">//匹配中国邮政编码</div><div class="line">/[1-9]\d&#123;5&#125;(?!\d)/;</div><div class="line"></div><div class="line">//匹配身份证</div><div class="line">/\d&#123;15&#125;|\d&#123;18&#125;/;</div><div class="line"></div><div class="line">//匹配国内电话号码</div><div class="line">/(\d&#123;3&#125;-|\d&#123;4&#125;-)?(\d&#123;8&#125;|\d&#123;7&#125;)?/;</div><div class="line"></div><div class="line">//匹配IP地址</div><div class="line">/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/;</div><div class="line"></div><div class="line">//匹配首尾空白字符</div><div class="line">/^\s*|\s*$/;</div><div class="line"></div><div class="line">//匹配HTML标记</div><div class="line">&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;;</div><div class="line"></div><div class="line">//提取信息中的网络链接</div><div class="line">(h|H)(r|R)(e|E)(f|F) *=*('|<span class="string">")?(\w|\\|\/|\.)+('|"</span>| *|&gt;)?</div><div class="line"></div><div class="line">//提取信息中的邮件地址</div><div class="line">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* </div><div class="line"></div><div class="line">//提取信息中的图片链接</div><div class="line">(s|S)(r|R)(c|C) *= *(<span class="string">'|")?(\w|\\|\/|\.)+('</span>|<span class="string">"| *|&gt;)? </span></div><div class="line"></div><div class="line">//提取信息中的 IP 地址</div><div class="line">(\d+)\.(\d+)\.(\d+)\.(\d+)</div><div class="line"></div><div class="line">//取信息中的中国手机号码</div><div class="line">(86)*0*13\d&#123;9&#125; </div><div class="line"></div><div class="line">//提取信息中的中国邮政编码</div><div class="line">[1-9]&#123;1&#125;(\d+)&#123;5&#125; </div><div class="line"></div><div class="line">//提取信息中的浮点数（即小数）</div><div class="line">(-?\d*)\.?\d+ </div><div class="line"></div><div class="line">//提取信息中的任何数字</div><div class="line">(-?\d*)(\.\d+)?</div><div class="line"></div><div class="line">//电话区号</div><div class="line">^0\d&#123;2,3&#125;$</div><div class="line"></div><div class="line">//腾讯 QQ 号</div><div class="line">^[1-9]*[1-9][0-9]*$ </div><div class="line"></div><div class="line">//帐号（字母开头，允许 5-16 字节，允许字母数字下划线）</div><div class="line">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$ </div><div class="line"></div><div class="line">//中文、英文、数字及下划线</div><div class="line">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</div></pre></td></tr></table></figure></p>
 <p>这里推荐一个<a href="http://www1.w3cfuns.com/tools.php?mod=regex" target="_blank" rel="external">正则表达式的调试工具</a><br>也可以看看<a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="external">正则的基本语法</a></p>
@@ -89,6 +91,8 @@
     
     </summary>
     
+    
+      <category term="正则" scheme="http://wenace.github.io/tags/%E6%AD%A3%E5%88%99/"/>
     
   </entry>
   
@@ -125,7 +129,7 @@
     <link href="http://wenace.github.io/2016/06/10/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <id>http://wenace.github.io/2016/06/10/ajax学习总结/</id>
     <published>2016-06-10T00:42:56.259Z</published>
-    <updated>2017-06-15T11:33:54.252Z</updated>
+    <updated>2017-06-15T11:53:40.299Z</updated>
     
     <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p>
 <p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p>
@@ -164,6 +168,10 @@
     
     </summary>
     
+    
+      <category term="ajax" scheme="http://wenace.github.io/tags/ajax/"/>
+    
+      <category term="前端" scheme="http://wenace.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -238,7 +246,7 @@
     <link href="http://wenace.github.io/2016/05/30/hexo%E5%BB%BA%E7%AB%99-%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
     <id>http://wenace.github.io/2016/05/30/hexo建站-部署到github/</id>
     <published>2016-05-30T01:58:33.439Z</published>
-    <updated>2017-06-15T11:34:15.906Z</updated>
+    <updated>2017-06-15T12:18:24.931Z</updated>
     
     <content type="html"><![CDATA[<p>昨天已经说了在本地搭建一个hexo，今天来总结下怎么把hexo部署到github上</p>
 <h2 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h2><p>当然了，部署到github上，首先你得有个github账号，注册步骤大家可以自行的google下，不难。<br><a id="more"></a></p>
@@ -272,6 +280,10 @@
     
     </summary>
     
+    
+      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="http://wenace.github.io/tags/github/"/>
     
   </entry>
   
