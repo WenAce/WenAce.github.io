@@ -42,7 +42,7 @@
     <link href="http://wenace.github.io/2016/06/18/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/"/>
     <id>http://wenace.github.io/2016/06/18/前端总结/</id>
     <published>2016-06-18T06:11:40.758Z</published>
-    <updated>2017-06-15T11:47:43.624Z</updated>
+    <updated>2017-06-15T12:24:31.594Z</updated>
     
     <content type="html"><![CDATA[<p>1.清除浮动</p>
 <p><em>此清除浮动可作为初始化的基本样式</em></p>
@@ -71,6 +71,12 @@
     
     </summary>
     
+    
+      <category term="浮动" scheme="http://wenace.github.io/tags/%E6%B5%AE%E5%8A%A8/"/>
+    
+      <category term="数组" scheme="http://wenace.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="面试常见" scheme="http://wenace.github.io/tags/%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81/"/>
     
   </entry>
   
@@ -101,7 +107,7 @@
     <link href="http://wenace.github.io/2016/06/10/http%E7%9B%B8%E5%85%B3%E7%BC%93%E5%AD%98%E5%A4%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
     <id>http://wenace.github.io/2016/06/10/http相关缓存头信息收集/</id>
     <published>2016-06-10T08:14:33.762Z</published>
-    <updated>2017-06-15T11:35:10.201Z</updated>
+    <updated>2017-06-15T12:24:32.026Z</updated>
     
     <content type="html"><![CDATA[<p>http中分请求头和响应头两种。</p>
 <blockquote>
@@ -121,6 +127,10 @@
     
     </summary>
     
+    
+      <category term="网络相关" scheme="http://wenace.github.io/tags/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="http" scheme="http://wenace.github.io/tags/http/"/>
     
   </entry>
   
@@ -180,7 +190,7 @@
     <link href="http://wenace.github.io/2016/06/07/JavaScript%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/"/>
     <id>http://wenace.github.io/2016/06/07/JavaScript的遍历方式/</id>
     <published>2016-06-07T12:11:08.110Z</published>
-    <updated>2017-06-15T11:29:14.212Z</updated>
+    <updated>2017-06-15T12:24:31.952Z</updated>
     
     <content type="html"><![CDATA[<p> 首先我们写一个数组和json对象。<br> var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];<br> var obj={<br>     first:’javascripts’,<br>     second:’css’,<br>     third:’jquery’<br> };<br><a id="more"></a></p>
 <h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">function</span>&#123;</div><div class="line">	<span class="keyword">for</span>(var i=0,len=Arr.length;i&lt;len;i++)&#123;</div><div class="line">	<span class="keyword">if</span>(i==2)&#123;</div><div class="line">		//<span class="built_in">return</span>;  //函数执行被终止</div><div class="line">		//<span class="built_in">break</span>;   //循环被终止</div><div class="line">		<span class="built_in">continue</span>;  //循环被跳过</div><div class="line">	&#125;</div><div class="line">	console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</div><div class="line">	&#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
@@ -239,6 +249,8 @@
     </summary>
     
     
+      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
+    
   </entry>
   
   <entry>
@@ -292,7 +304,7 @@
     <link href="http://wenace.github.io/2016/05/29/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
     <id>http://wenace.github.io/2016/05/29/新的开始/</id>
     <published>2016-05-29T14:43:22.983Z</published>
-    <updated>2017-06-15T11:29:14.106Z</updated>
+    <updated>2017-06-15T12:24:31.980Z</updated>
     
     <content type="html"><![CDATA[<p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
 <h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="external">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br><a id="more"></a></p>
@@ -321,6 +333,10 @@
     
     </summary>
     
+    
+      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
+    
+      <category term="本地搭建" scheme="http://wenace.github.io/tags/%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
