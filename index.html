@@ -719,7 +719,7 @@
         <p>昨天已经说了在本地搭建一个hexo，今天来总结下怎么把hexo部署到github上</p>
 <h2 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h2><p>当然了，部署到github上，首先你得有个github账号，注册步骤大家可以自行的google下，不难。</p>
 <h2 id="建立一个仓库"><a href="#建立一个仓库" class="headerlink" title="建立一个仓库"></a>建立一个仓库</h2><p>ok，这里说一下github是个好东西，新手应该好好打理自己的github，而不是做好博客就不管啦。<br>回头来看，当你注册好后，你需要建立一个仓库，具体建立仓库的办法如下<br>1.先建立一个新仓库<br><img src="/images/newRepo.png"><br>2.填入各项信息<br><img src="/images/buildRepo.png"><br>3.回到你刚建立的仓库，点击setting<br><img src="/images/setting.png"><br>4.滚轮至底部，寻找到如图按钮并点击<br><img src="/images/automaticPage.png"><br>5.进入下一页，根据自己想法填，这里设置之后就是你的首页了，最后找到如图按钮<br><img src="/images/continueLayout.png"><br>6.最后选择你喜欢的布局，按下如图按钮<br><img src="/images/publishLayout.png"></p>
-<p>现在你的github博客站点已经完成，地址应该是<a href="http://wenace.github.io/">http://wenace.github.io/</a>把wenace改成你的博客名字就可以访问了.接下来，我们把在本地的hexo部署到github上，才算真正的成功。</p>
+<p>现在你的github博客站点已经完成，地址应该是<a href="http://xxxx.github.io/" target="_blank" rel="external">http://wenace.github.io/</a>把xxxx改成你的博客名字就可以访问了.接下来，我们把在本地的hexo部署到github上，才算真正的成功。</p>
 <h2 id="hexo部署"><a href="#hexo部署" class="headerlink" title="hexo部署"></a>hexo部署</h2><p>首先你需要在<em>_config.yml</em>文件中的deploy进行书写，如下格式</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy: </div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repo: git@github.com:WenAce/WenAce.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
 <p>设置好后，进行两个命令即可部署到github上了，如下</p>
