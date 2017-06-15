@@ -7,19 +7,19 @@
   
   
   
-  <title>位运算总结 | Trust the light！</title>
+  <title>hexo重新部署的注意点 | Trust the light！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="位运算形式1.与，或，非，异或运算特点非（~）：1变0,0变1.与（&amp;amp;）：有0则为0，均为1返回1.">
-<meta name="keywords" content="位运算">
+  <meta name="description" content="作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="位运算总结">
-<meta property="og:url" content="http://wenace.github.io/2017/06/10/CodeFight经典问题/index.html">
+<meta property="og:title" content="hexo重新部署的注意点">
+<meta property="og:url" content="http://wenace.github.io/2017/06/15/hexo重新部署的注意点/index.html">
 <meta property="og:site_name" content="Trust the light！">
-<meta property="og:description" content="位运算形式1.与，或，非，异或运算特点非（~）：1变0,0变1.与（&amp;amp;）：有0则为0，均为1返回1.">
-<meta property="og:updated_time" content="2017-06-15T12:18:24.909Z">
+<meta property="og:description" content="作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。">
+<meta property="og:updated_time" content="2017-06-15T13:29:58.439Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="位运算总结">
-<meta name="twitter:description" content="位运算形式1.与，或，非，异或运算特点非（~）：1变0,0变1.与（&amp;amp;）：有0则为0，均为1返回1.">
+<meta name="twitter:title" content="hexo重新部署的注意点">
+<meta name="twitter:description" content="作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。">
   
     <link rel="alternative" href="/atom.xml" title="Trust the light！" type="application/atom+xml">
   
@@ -241,11 +241,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-CodeFight经典问题" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-hexo重新部署的注意点" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2017/06/10/CodeFight经典问题/" class="article-date">
-      <time datetime="2017-06-10T01:16:55.052Z" itemprop="datePublished">2017-06-10</time>
+      <a  href="/2017/06/15/hexo重新部署的注意点/" class="article-date">
+      <time datetime="2017-06-15T13:28:40.000Z" itemprop="datePublished">2017-06-15</time>
 </a>
 
     </div>
@@ -259,7 +259,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      位运算总结
+      hexo重新部署的注意点
     </h1>
   
 
@@ -271,7 +271,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/位运算/">位运算</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -281,8 +281,49 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p>
-<p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>
+        <p>作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。<a id="more"></a></p>
+<p>1.一般情况下，一些朋友的是还在硬盘上，而一些朋友的可能只能从github上仓库下载下来</p>
+<p>2.开始之前，我建议大家使用cnpm，npm有时候会抽风（ps：国内）,下面的内容也是使用cnpm进行对module进行安装.</p>
+<p><strong>源文件从github下载</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[github进行源文件clone]--&gt;B[对本文件进行gitbash]</div><div class="line">B[对本文件进行gitbash]--&gt;C[cnpm install hexo]</div><div class="line">C[cnpm install hexo]--&gt;D[cnpm install hexo server]</div></pre></td></tr></table></figure></p>
+<p>如果源文件依旧在本地，将node_modules删除，然后进行如github下载的步骤.</p>
+<p><strong>注意点</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[hexo无法正常使用]--&gt;B[hexo server没有安装]</div><div class="line">A[hexo无法正常使用]--&gt;C[hexo deploy无法使用]</div><div class="line">A[hexo无法正常使用]--&gt;D[hexo无法识别]</div><div class="line"></div><div class="line">B[hexo server没有安装]--&gt;E[cnpm install hexo server]</div><div class="line"></div><div class="line">C[hexo deploy无法使用]--&gt;F[cnpm install hexo-deployer-git -save]</div><div class="line"></div><div class="line">D[hexo无法识别]--&gt;G[SSH重新配置]</div></pre></td></tr></table></figure>
+<p>以下是对SSH重新配置</p>
+<p>1.在Git Bash输入以下指令（任意位置点击鼠标右键），检查是否已经存在了SSH keys。</p>
+<blockquote>
+<p>ls -al ~/.ssh</p>
+</blockquote>
+<p>2.如果不存在就没有关系，如果存在的话，直接删除.ssh文件夹里面所有文件,位置应该在我的文档的用户文件夹中.</p>
+<p>3.输入以下指令（邮箱就是你注册Github时候的邮箱）后，回车：</p>
+<blockquote>
+<p>ssh-keygen -t rsa -C “XXXXX@XX.com”</p>
+</blockquote>
+<p>4.然后它会提示要你输入passphrase,这个时候不需要输入任何数据，直接一路回车.</p>
+<p>5.成功之后键入：</p>
+<blockquote>
+<p>ssh-agent -s</p>
+</blockquote>
+<p>6.这一步有可能会出现”Could you open..”的错误信息</p>
+<blockquote>
+<p>ssh-add ~/.ssh/id_rsa</p>
+</blockquote>
+<p>这个时候你需要键入以下命令</p>
+<blockquote>
+<p>eval <code>ssh-agent -s</code></p>
+</blockquote>
+<p>成功后键入</p>
+<blockquote>
+<p>ssh-add</p>
+</blockquote>
+<p>7.到了这一步，就可以添加SSH key到你的Github账户了。键入以下指令，拷贝Key（先拷贝了，等一下可以直接粘贴）：</p>
+<blockquote>
+<p>clip &lt; ~/.ssh/id_rsa.pub</p>
+</blockquote>
+<p>8.添加SSH至github，这里就不赘述了，网上有很多教程.</p>
+<p>9.之后可以测试下,输入以下命令，如果出现警告，输入yes就行</p>
+<blockquote>
+<p>ssh -T git@github.com</p>
+</blockquote>
 
       
     </div>
@@ -291,13 +332,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2017/06/10/CodeFight经典问题/">位运算总结</a></p>
+        <p><span>本文标题:</span><a  href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 心雨 的个人博客">心雨</a></p>
-        <p><span>发布时间:</span>2017年06月10日 - 09时16分</p>
-        <p><span>最后更新:</span>2017年06月15日 - 20时18分</p>
+        <p><span>发布时间:</span>2017年06月15日 - 21时28分</p>
+        <p><span>最后更新:</span>2017年06月15日 - 21时29分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/06/10/CodeFight经典问题/" title="位运算总结">http://wenace.github.io/2017/06/10/CodeFight经典问题/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2017/06/10/CodeFight经典问题/　　作者: 心雨" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/15/hexo重新部署的注意点/" title="hexo重新部署的注意点">http://wenace.github.io/2017/06/15/hexo重新部署的注意点/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2017/06/15/hexo重新部署的注意点/　　作者: 心雨" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -308,18 +349,9 @@
 
 <nav id="article-nav">
   
-    <a  href="/2017/06/15/hexo重新部署的注意点/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          hexo重新部署的注意点
-        
-      </div>
-    </a>
   
-  
-    <a  href="/2016/06/18/前端总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">前端开发总结(持续更新)</div>
+    <a  href="/2017/06/10/CodeFight经典问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">位运算总结</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -331,7 +363,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#位运算形式"><span class="toc-number">1.</span> <span class="toc-text">位运算形式</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -402,13 +434,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2017/06/15/hexo重新部署的注意点/" title="上一篇: hexo重新部署的注意点">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2016/06/18/前端总结/" title="下一篇: 前端开发总结(持续更新)">
+            <a  href="/2017/06/10/CodeFight经典问题/" title="下一篇: 位运算总结">
                 <i class="fa fa-angle-right"></i>
             </a>
         

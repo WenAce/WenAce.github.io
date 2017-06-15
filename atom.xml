@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2017-06-15T12:18:24.909Z</updated>
+  <updated>2017-06-15T13:29:58.439Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -14,6 +14,69 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo重新部署的注意点</title>
+    <link href="http://wenace.github.io/2017/06/15/hexo%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
+    <id>http://wenace.github.io/2017/06/15/hexo重新部署的注意点/</id>
+    <published>2017-06-15T13:28:40.000Z</published>
+    <updated>2017-06-15T13:29:58.439Z</updated>
+    
+    <content type="html"><![CDATA[<p>作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。<a id="more"></a></p>
+<p>1.一般情况下，一些朋友的是还在硬盘上，而一些朋友的可能只能从github上仓库下载下来</p>
+<p>2.开始之前，我建议大家使用cnpm，npm有时候会抽风（ps：国内）,下面的内容也是使用cnpm进行对module进行安装.</p>
+<p><strong>源文件从github下载</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[github进行源文件clone]--&gt;B[对本文件进行gitbash]</div><div class="line">B[对本文件进行gitbash]--&gt;C[cnpm install hexo]</div><div class="line">C[cnpm install hexo]--&gt;D[cnpm install hexo server]</div></pre></td></tr></table></figure></p>
+<p>如果源文件依旧在本地，将node_modules删除，然后进行如github下载的步骤.</p>
+<p><strong>注意点</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[hexo无法正常使用]--&gt;B[hexo server没有安装]</div><div class="line">A[hexo无法正常使用]--&gt;C[hexo deploy无法使用]</div><div class="line">A[hexo无法正常使用]--&gt;D[hexo无法识别]</div><div class="line"></div><div class="line">B[hexo server没有安装]--&gt;E[cnpm install hexo server]</div><div class="line"></div><div class="line">C[hexo deploy无法使用]--&gt;F[cnpm install hexo-deployer-git -save]</div><div class="line"></div><div class="line">D[hexo无法识别]--&gt;G[SSH重新配置]</div></pre></td></tr></table></figure>
+<p>以下是对SSH重新配置</p>
+<p>1.在Git Bash输入以下指令（任意位置点击鼠标右键），检查是否已经存在了SSH keys。</p>
+<blockquote>
+<p>ls -al ~/.ssh</p>
+</blockquote>
+<p>2.如果不存在就没有关系，如果存在的话，直接删除.ssh文件夹里面所有文件,位置应该在我的文档的用户文件夹中.</p>
+<p>3.输入以下指令（邮箱就是你注册Github时候的邮箱）后，回车：</p>
+<blockquote>
+<p>ssh-keygen -t rsa -C “XXXXX@XX.com”</p>
+</blockquote>
+<p>4.然后它会提示要你输入passphrase,这个时候不需要输入任何数据，直接一路回车.</p>
+<p>5.成功之后键入：</p>
+<blockquote>
+<p>ssh-agent -s</p>
+</blockquote>
+<p>6.这一步有可能会出现”Could you open..”的错误信息</p>
+<blockquote>
+<p>ssh-add ~/.ssh/id_rsa</p>
+</blockquote>
+<p>这个时候你需要键入以下命令</p>
+<blockquote>
+<p>eval <code>ssh-agent -s</code></p>
+</blockquote>
+<p>成功后键入</p>
+<blockquote>
+<p>ssh-add</p>
+</blockquote>
+<p>7.到了这一步，就可以添加SSH key到你的Github账户了。键入以下指令，拷贝Key（先拷贝了，等一下可以直接粘贴）：</p>
+<blockquote>
+<p>clip &lt; ~/.ssh/id_rsa.pub</p>
+</blockquote>
+<p>8.添加SSH至github，这里就不赘述了，网上有很多教程.</p>
+<p>9.之后可以测试下,输入以下命令，如果出现警告，输入yes就行</p>
+<blockquote>
+<p>ssh -T git@github.com</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>位运算总结</title>
@@ -85,7 +148,7 @@
     <link href="http://wenace.github.io/2016/06/11/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     <id>http://wenace.github.io/2016/06/11/常用正则表达式/</id>
     <published>2016-06-11T03:43:59.438Z</published>
-    <updated>2017-06-15T12:18:24.883Z</updated>
+    <updated>2017-06-15T12:24:31.918Z</updated>
     
     <content type="html"><![CDATA[<p>一些常用的正则表达式<a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line">//正整数</div><div class="line">/^[0-9]*[1-9][0-9]*$/;</div><div class="line"></div><div class="line">//负整数</div><div class="line">/^-[0-9]*[1-9][0-9]*$/;</div><div class="line"></div><div class="line">//正浮点数</div><div class="line">/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;</div><div class="line"></div><div class="line">//负浮点数</div><div class="line">/^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;  </div><div class="line"></div><div class="line">//浮点数</div><div class="line">/^(-?\d+)(\.\d+)?$/;</div><div class="line"></div><div class="line">//email地址</div><div class="line">/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;</div><div class="line"></div><div class="line">//url地址</div><div class="line">/^[a-zA-z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\S*)?$/;</div><div class="line">或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\<span class="string">':+!]*([^&lt;&gt;\"\"])*$ </span></div><div class="line"></div><div class="line">//年/月/日（年-月-日、年.月.日）</div><div class="line">/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;</div><div class="line"></div><div class="line">//匹配中文字符</div><div class="line">/[\u4e00-\u9fa5]/;</div><div class="line"></div><div class="line">//匹配账号是否合法(字母开头，允许5-10字节，允许字母数字下划线)</div><div class="line">/^[a-zA-Z][a-zA-Z0-9_]&#123;4,9&#125;$/;</div><div class="line"></div><div class="line">//匹配空白行的正则表达式</div><div class="line">/\n\s*\r/;</div><div class="line"></div><div class="line">//匹配中国邮政编码</div><div class="line">/[1-9]\d&#123;5&#125;(?!\d)/;</div><div class="line"></div><div class="line">//匹配身份证</div><div class="line">/\d&#123;15&#125;|\d&#123;18&#125;/;</div><div class="line"></div><div class="line">//匹配国内电话号码</div><div class="line">/(\d&#123;3&#125;-|\d&#123;4&#125;-)?(\d&#123;8&#125;|\d&#123;7&#125;)?/;</div><div class="line"></div><div class="line">//匹配IP地址</div><div class="line">/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/;</div><div class="line"></div><div class="line">//匹配首尾空白字符</div><div class="line">/^\s*|\s*$/;</div><div class="line"></div><div class="line">//匹配HTML标记</div><div class="line">&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;;</div><div class="line"></div><div class="line">//提取信息中的网络链接</div><div class="line">(h|H)(r|R)(e|E)(f|F) *=*('|<span class="string">")?(\w|\\|\/|\.)+('|"</span>| *|&gt;)?</div><div class="line"></div><div class="line">//提取信息中的邮件地址</div><div class="line">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* </div><div class="line"></div><div class="line">//提取信息中的图片链接</div><div class="line">(s|S)(r|R)(c|C) *= *(<span class="string">'|")?(\w|\\|\/|\.)+('</span>|<span class="string">"| *|&gt;)? </span></div><div class="line"></div><div class="line">//提取信息中的 IP 地址</div><div class="line">(\d+)\.(\d+)\.(\d+)\.(\d+)</div><div class="line"></div><div class="line">//取信息中的中国手机号码</div><div class="line">(86)*0*13\d&#123;9&#125; </div><div class="line"></div><div class="line">//提取信息中的中国邮政编码</div><div class="line">[1-9]&#123;1&#125;(\d+)&#123;5&#125; </div><div class="line"></div><div class="line">//提取信息中的浮点数（即小数）</div><div class="line">(-?\d*)\.?\d+ </div><div class="line"></div><div class="line">//提取信息中的任何数字</div><div class="line">(-?\d*)(\.\d+)?</div><div class="line"></div><div class="line">//电话区号</div><div class="line">^0\d&#123;2,3&#125;$</div><div class="line"></div><div class="line">//腾讯 QQ 号</div><div class="line">^[1-9]*[1-9][0-9]*$ </div><div class="line"></div><div class="line">//帐号（字母开头，允许 5-16 字节，允许字母数字下划线）</div><div class="line">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$ </div><div class="line"></div><div class="line">//中文、英文、数字及下划线</div><div class="line">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</div></pre></td></tr></table></figure></p>
 <p>这里推荐一个<a href="http://www1.w3cfuns.com/tools.php?mod=regex" target="_blank" rel="external">正则表达式的调试工具</a><br>也可以看看<a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="external">正则的基本语法</a></p>
@@ -139,7 +202,7 @@
     <link href="http://wenace.github.io/2016/06/10/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <id>http://wenace.github.io/2016/06/10/ajax学习总结/</id>
     <published>2016-06-10T00:42:56.259Z</published>
-    <updated>2017-06-15T11:53:40.299Z</updated>
+    <updated>2017-06-15T12:24:31.967Z</updated>
     
     <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p>
 <p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p>
@@ -258,7 +321,7 @@
     <link href="http://wenace.github.io/2016/05/30/hexo%E5%BB%BA%E7%AB%99-%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
     <id>http://wenace.github.io/2016/05/30/hexo建站-部署到github/</id>
     <published>2016-05-30T01:58:33.439Z</published>
-    <updated>2017-06-15T12:18:24.931Z</updated>
+    <updated>2017-06-15T12:24:32.005Z</updated>
     
     <content type="html"><![CDATA[<p>昨天已经说了在本地搭建一个hexo，今天来总结下怎么把hexo部署到github上</p>
 <h2 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h2><p>当然了，部署到github上，首先你得有个github账号，注册步骤大家可以自行的google下，不难。<br><a id="more"></a></p>
@@ -304,7 +367,7 @@
     <link href="http://wenace.github.io/2016/05/29/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
     <id>http://wenace.github.io/2016/05/29/新的开始/</id>
     <published>2016-05-29T14:43:22.983Z</published>
-    <updated>2017-06-15T12:24:31.980Z</updated>
+    <updated>2017-06-15T13:29:22.121Z</updated>
     
     <content type="html"><![CDATA[<p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
 <h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="external">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br><a id="more"></a></p>
