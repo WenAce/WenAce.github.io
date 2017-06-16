@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2017-06-16T03:17:36.428Z</updated>
+  <updated>2017-06-16T14:33:34.188Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2017gamejam记录</title>
+    <link href="http://wenace.github.io/2017/06/16/2017gamejam01/"/>
+    <id>http://wenace.github.io/2017/06/16/2017gamejam01/</id>
+    <published>2017-06-16T14:09:08.446Z</published>
+    <updated>2017-06-16T14:33:34.188Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="First-day"><a href="#First-day" class="headerlink" title="First day"></a>First day</h1><p>第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。<br><a id="more"></a></p>
+<h1 id="6点前"><a href="#6点前" class="headerlink" title="6点前"></a>6点前</h1><p>主持人和乐逗方面负责人的一些谈话，我觉得这里有些东西还是可以分享的，首先一款游戏的开发流程一般是这样：</p>
+<p>1.立项：做什么<br>2.策划：怎么做<br>3.开发：做出来<br>4.演示：卖出去</p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/2017gamejam00.jpg" alt="2017gamejam00"></p>
+<p>这是一种比较理想下的情况，更多的时候是不断的反复于前三项。</p>
+<h1 id="6点"><a href="#6点" class="headerlink" title="6点"></a>6点</h1><p>主题揭开，此次的主题很有意思，如下:</p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/2017gamejam_theme.jpg" alt="2017gamejamthem"></p>
+<p>是一颗树，从根部到树干都很完整的一棵树，作为吃瓜群众的我，首先映入脑海的就是要有寓意，这次出这个题，玩法上应该需要偏轻松些，但是寓意要强。</p>
+<p>试想下，自己要做应该做成什么样子，我大概也想了想，也有那么几套方案吧。以文字代替集中在时间轮回，小孩，暗与光。这几个题材上。</p>
+<p>玩法上会偏休闲，一笔画，简单数字解谜，都是可以的。自己也和现场小伙伴有些交流，感觉都很棒，接下来两天就看他们怎么开始了，明天继续去学习观摩。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;First-day&quot;&gt;&lt;a href=&quot;#First-day&quot; class=&quot;headerlink&quot; title=&quot;First day&quot;&gt;&lt;/a&gt;First day&lt;/h1&gt;&lt;p&gt;第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="感悟" scheme="http://wenace.github.io/categories/%E6%84%9F%E6%82%9F/"/>
+    
+    
+      <category term="2017gamejam" scheme="http://wenace.github.io/tags/2017gamejam/"/>
+    
+      <category term="游戏开发" scheme="http://wenace.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo重新部署的注意点</title>
@@ -322,12 +356,12 @@
     <link href="http://wenace.github.io/2016/05/30/hexo%E5%BB%BA%E7%AB%99-%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
     <id>http://wenace.github.io/2016/05/30/hexo建站-部署到github/</id>
     <published>2016-05-30T01:58:33.439Z</published>
-    <updated>2017-06-16T06:22:38.927Z</updated>
+    <updated>2017-06-16T14:38:34.159Z</updated>
     
     <content type="html"><![CDATA[<p>昨天已经说了在本地搭建一个hexo，今天来总结下怎么把hexo部署到github上</p>
 <h2 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h2><p>当然了，部署到github上，首先你得有个github账号，注册步骤大家可以自行的google下，不难。<br><a id="more"></a></p>
-<h2 id="建立一个仓库"><a href="#建立一个仓库" class="headerlink" title="建立一个仓库"></a>建立一个仓库</h2><p>ok，这里说一下github是个好东西，新手应该好好打理自己的github，而不是做好博客就不管啦。<br>回头来看，当你注册好后，你需要建立一个仓库，具体建立仓库的办法如下<br>1.先建立一个新仓库<br><img src="http://ormm8jbub.bkt.clouddn.com/newRepo.png"><br>2.填入各项信息<br><img src="/images/buildRepo.png"><br>3.回到你刚建立的仓库，点击setting<br><img src="/images/setting.png"><br>4.滚轮至底部，寻找到如图按钮并点击<br><img src="/images/automaticPage.png"><br>5.进入下一页，根据自己想法填，这里设置之后就是你的首页了，最后找到如图按钮<br><img src="/images/continueLayout.png"><br>6.最后选择你喜欢的布局，按下如图按钮<br><img src="/images/publishLayout.png"></p>
-<p>现在你的github博客站点已经完成，地址应该是<a href="http://xxxx.github.io/" target="_blank" rel="external">http://wenace.github.io/</a>把xxxx改成你的博客名字就可以访问了.接下来，我们把在本地的hexo部署到github上，才算真正的成功。</p>
+<h2 id="建立一个仓库"><a href="#建立一个仓库" class="headerlink" title="建立一个仓库"></a>建立一个仓库</h2><p>ok，这里说一下github是个好东西，新手应该好好打理自己的github，而不是做好博客就不管啦。<br>回头来看，当你注册好后，你需要建立一个仓库，具体建立仓库的办法如下<br>1.先建立一个新仓库<br><img src="http://ormm8jbub.bkt.clouddn.com/newRepo.png"><br>2.填入各项信息<br><img src="http://ormm8jbub.bkt.clouddn.com/buildRepo.png"><br>3.回到你刚建立的仓库，点击setting<br><img src="http://ormm8jbub.bkt.clouddn.com/setting.png"><br>4.滚轮至底部，寻找到如图按钮并点击<br><img src="http://ormm8jbub.bkt.clouddn.com/automaticPage.png"><br>5.进入下一页，根据自己想法填，这里设置之后就是你的首页了，最后找到如图按钮<br><img src="http://ormm8jbub.bkt.clouddn.com/continueLayout.png"><br>6.最后选择你喜欢的布局，按下如图按钮<br><img src="http://ormm8jbub.bkt.clouddn.com/publishLayout.png"></p>
+<p>现在你的github博客站点已经完成，地址应该是<a href="http://xxxx.github.io/" target="_blank" rel="external">http://XXXX.github.io/</a>把xxxx改成你的博客名字就可以访问了.接下来，我们把在本地的hexo部署到github上，才算真正的成功。</p>
 <h2 id="hexo部署"><a href="#hexo部署" class="headerlink" title="hexo部署"></a>hexo部署</h2><p>首先你需要在<em>_config.yml</em>文件中的deploy进行书写，如下格式</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy: </div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repo: git@github.com:WenAce/WenAce.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
 <p>设置好后，进行两个命令即可部署到github上了，如下</p>
