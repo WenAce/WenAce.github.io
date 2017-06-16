@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://wenace.github.io/2017/06/15/hexo重新部署的注意点/index.html">
 <meta property="og:site_name" content="Trust the light！">
 <meta property="og:description" content="作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。">
-<meta property="og:updated_time" content="2017-06-15T13:29:58.439Z">
+<meta property="og:updated_time" content="2017-06-16T03:17:36.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo重新部署的注意点">
 <meta name="twitter:description" content="作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。">
@@ -280,7 +280,8 @@
         <p>作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。<a id="more"></a></p>
 <p>1.一般情况下，一些朋友的是还在硬盘上，而一些朋友的可能只能从github上仓库下载下来</p>
 <p>2.开始之前，我建议大家使用cnpm，npm有时候会抽风（ps：国内）,下面的内容也是使用cnpm进行对module进行安装.</p>
-<p><strong>源文件从github下载</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[github进行源文件clone]--&gt;B[对本文件进行gitbash]</div><div class="line">B[对本文件进行gitbash]--&gt;C[cnpm install hexo]</div><div class="line">C[cnpm install hexo]--&gt;D[cnpm install hexo server]</div></pre></td></tr></table></figure></p>
+<p><strong>源文件从github下载</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[github进行源文件clone]--&gt;B[对本文件进行gitbash]</div><div class="line">B[对本文件进行gitbash]--&gt;C[cnpm install hexo]</div><div class="line">C[cnpm install hexo]--&gt;D[cnpm install hexo server]</div></pre></td></tr></table></figure>
 <p>如果源文件依旧在本地，将node_modules删除，然后进行如github下载的步骤.</p>
 <p><strong>注意点</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[hexo无法正常使用]--&gt;B[hexo server没有安装]</div><div class="line">A[hexo无法正常使用]--&gt;C[hexo deploy无法使用]</div><div class="line">A[hexo无法正常使用]--&gt;D[hexo无法识别]</div><div class="line"></div><div class="line">B[hexo server没有安装]--&gt;E[cnpm install hexo server]</div><div class="line"></div><div class="line">C[hexo deploy无法使用]--&gt;F[cnpm install hexo-deployer-git -save]</div><div class="line"></div><div class="line">D[hexo无法识别]--&gt;G[SSH重新配置]</div></pre></td></tr></table></figure>
@@ -331,7 +332,7 @@
         <p><span>本文标题:</span><a  href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 心雨 的个人博客">心雨</a></p>
         <p><span>发布时间:</span>2017年06月15日 - 21时28分</p>
-        <p><span>最后更新:</span>2017年06月15日 - 21时29分</p>
+        <p><span>最后更新:</span>2017年06月16日 - 11时17分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/06/15/hexo重新部署的注意点/" title="hexo重新部署的注意点">http://wenace.github.io/2017/06/15/hexo重新部署的注意点/</a>
             <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2017/06/15/hexo重新部署的注意点/　　作者: 心雨" title=""></span>
