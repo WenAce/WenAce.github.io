@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2017-06-16T14:33:34.188Z</updated>
+  <updated>2017-06-18T14:50:58.787Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -16,13 +16,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>gamejam总结</title>
+    <link href="http://wenace.github.io/2017/06/18/gamejam%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2017/06/18/gamejam总结/</id>
+    <published>2017-06-18T14:10:24.010Z</published>
+    <updated>2017-06-18T14:50:58.787Z</updated>
+    
+    <content type="html"><![CDATA[<p>   自己首次参与gamejam结束了，总体感觉不能完全说出来，<br>看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有<br>很长的一段路需要走，踏实的走下去，或许就是另一种结果。</p>
+<p>gamejam所提倡的就是一种纯粹的对游戏的热爱，各种新奇好玩的点子，和各开发者<br>的交流，确实不能比这个更棒的事情了，大家都在一个channel里。</p>
+<p>从技术上看见基本的开发流程，api使用，美术上更是打开我所不清楚的大门。需要学习<br>的还有很多。这次活动获益良多</p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday01.jpg" alt="gamejam"></p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday02.jpg" alt="gamejam"></p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday03.jpg" alt="gamejam"></p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday04.jpg" alt="gamejam"></p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday05.jpg" alt="gamejam"></p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday06.jpg" alt="gamejam"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   自己首次参与gamejam结束了，总体感觉不能完全说出来，&lt;br&gt;看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有&lt;br&gt;很长的一段路需要走，踏实的走下去，或许就是另一种结果。&lt;/p&gt;
+&lt;p&gt;gamejam所提倡的就是一种纯粹的对游戏的热爱，各
+    
+    </summary>
+    
+      <category term="感悟" scheme="http://wenace.github.io/categories/%E6%84%9F%E6%82%9F/"/>
+    
+    
+      <category term="gamejam" scheme="http://wenace.github.io/tags/gamejam/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2017gamejam记录</title>
     <link href="http://wenace.github.io/2017/06/16/2017gamejam01/"/>
     <id>http://wenace.github.io/2017/06/16/2017gamejam01/</id>
     <published>2017-06-16T14:09:08.446Z</published>
-    <updated>2017-06-16T14:33:34.188Z</updated>
+    <updated>2017-06-17T12:06:12.506Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="First-day"><a href="#First-day" class="headerlink" title="First day"></a>First day</h1><p>第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p>第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。<br><a id="more"></a></p>
 <h1 id="6点前"><a href="#6点前" class="headerlink" title="6点前"></a>6点前</h1><p>主持人和乐逗方面负责人的一些谈话，我觉得这里有些东西还是可以分享的，首先一款游戏的开发流程一般是这样：</p>
 <p>1.立项：做什么<br>2.策划：怎么做<br>3.开发：做出来<br>4.演示：卖出去</p>
 <p><img src="http://ormm8jbub.bkt.clouddn.com/2017gamejam00.jpg" alt="2017gamejam00"></p>
@@ -36,7 +68,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;First-day&quot;&gt;&lt;a href=&quot;#First-day&quot; class=&quot;headerlink&quot; title=&quot;First day&quot;&gt;&lt;/a&gt;First day&lt;/h1&gt;&lt;p&gt;第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。&lt;br&gt;
+      &lt;p&gt;第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。&lt;br&gt;
     
     </summary>
     
