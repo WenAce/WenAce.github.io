@@ -7,18 +7,19 @@
   
   
   
-  <title>unity 控制人物运动总结 | Trust the light！</title>
+  <title>unity注意点 | Trust the light！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="待写">
+  <meta name="description" content="unity学习小总结1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率. 2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取. 3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。">
+<meta name="keywords" content="unity">
 <meta property="og:type" content="article">
-<meta property="og:title" content="unity 控制人物运动总结">
+<meta property="og:title" content="unity注意点">
 <meta property="og:url" content="http://wenace.github.io/2017/06/21/unity-控制人物运动总结/index.html">
 <meta property="og:site_name" content="Trust the light！">
-<meta property="og:description" content="待写">
-<meta property="og:updated_time" content="2017-06-21T12:33:06.956Z">
+<meta property="og:description" content="unity学习小总结1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率. 2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取. 3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。">
+<meta property="og:updated_time" content="2017-06-21T12:35:45.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="unity 控制人物运动总结">
-<meta name="twitter:description" content="待写">
+<meta name="twitter:title" content="unity注意点">
+<meta name="twitter:description" content="unity学习小总结1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率. 2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取. 3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。">
   
     <link rel="alternative" href="/atom.xml" title="Trust the light！" type="application/atom+xml">
   
@@ -177,7 +178,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/2017gamejam/" style="font-size: 10px;">2017gamejam</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/gamejam/" style="font-size: 10px;">gamejam</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/本地搭建/" style="font-size: 10px;">本地搭建</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浮动/" style="font-size: 10px;">浮动</a> <a href="/tags/游戏开发/" style="font-size: 10px;">游戏开发</a> <a href="/tags/网络相关/" style="font-size: 10px;">网络相关</a> <a href="/tags/面试常见/" style="font-size: 10px;">面试常见</a>
+                        <a href="/tags/2017gamejam/" style="font-size: 10px;">2017gamejam</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/gamejam/" style="font-size: 10px;">gamejam</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/unity/" style="font-size: 15px;">unity</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/本地搭建/" style="font-size: 10px;">本地搭建</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浮动/" style="font-size: 10px;">浮动</a> <a href="/tags/游戏开发/" style="font-size: 10px;">游戏开发</a> <a href="/tags/网络相关/" style="font-size: 10px;">网络相关</a> <a href="/tags/面试常见/" style="font-size: 10px;">面试常见</a>
                     </div>
                 </section>
                 
@@ -240,7 +241,7 @@
   
     <div class="article-meta">
       <a  href="/2017/06/21/unity-控制人物运动总结/" class="article-date">
-      <time datetime="2017-06-21T10:50:00.000Z" itemprop="datePublished">2017-06-21</time>
+      <time datetime="2017-06-21T10:50:01.044Z" itemprop="datePublished">2017-06-21</time>
 </a>
 
     </div>
@@ -254,7 +255,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      unity 控制人物运动总结
+      unity注意点
     </h1>
   
 
@@ -265,6 +266,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -272,7 +277,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>待写</p>
+        <h1 id="unity学习小总结"><a href="#unity学习小总结" class="headerlink" title="unity学习小总结"></a>unity学习小总结</h1><p>1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.</p>
+<p>2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取.</p>
+<p>3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。<br><a id="more"></a><br>4.在edit界面下的project setting可以改变重力等游戏项目属性。</p>
+<p>5.physics.gravity属性可获得对应位置的重力加速度</p>
+<p>6.通关创建physics material可为gameobject穿件一个物理材质，可消除一些物理方面的不真实感。</p>
+<p>7.通关input.getXXX来获取输入按键.需要留意的是getkey(“a”)中的a为小写，大写没有效果，所以最好采用keycode.a这样的形式进行输入。</p>
+<p>8.移动通过Vector3.(up，left,right,down)搭配进行输入。</p>
+<p>9.order layer表示各场景的层级关系，越大越在前面</p>
+<p>10.一般物理位移采用FixUpdate()</p>
+<p>11.摄像头跟踪,定义transform player，transform.position为摄像头位置,player.position为玩家位置.update中得到camera和player之间的Vector3 offset.之后在update中实时的将player+offset，这样就可以得到摄像头的位置，从而实现跟踪</p>
+<p>12.vector3.zero即new vector3(0f,0f,0f);</p>
 
       
     </div>
@@ -281,12 +296,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2017/06/21/unity-控制人物运动总结/">unity 控制人物运动总结</a></p>
+        <p><span>本文标题:</span><a  href="/2017/06/21/unity-控制人物运动总结/">unity注意点</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 心雨 的个人博客">心雨</a></p>
         <p><span>发布时间:</span>2017年06月21日 - 18时50分</p>
-        <p><span>最后更新:</span>2017年06月21日 - 20时33分</p>
+        <p><span>最后更新:</span>2017年06月21日 - 20时35分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/06/21/unity-控制人物运动总结/" title="unity 控制人物运动总结">http://wenace.github.io/2017/06/21/unity-控制人物运动总结/</a>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/21/unity-控制人物运动总结/" title="unity注意点">http://wenace.github.io/2017/06/21/unity-控制人物运动总结/</a>
             <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2017/06/21/unity-控制人物运动总结/　　作者: 心雨" title=""></span>
         </p>
         <p>
@@ -299,8 +314,8 @@
 <nav id="article-nav">
   
   
-    <a  href="/2017/06/18/gamejam总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">gamejam总结</div>
+    <a  href="/2017/06/21/unity注意点/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">unity注意点</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -312,7 +327,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#unity学习小总结"><span class="toc-number">1.</span> <span class="toc-text">unity学习小总结</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -387,12 +402,12 @@
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2017/06/18/gamejam总结/" title="下一篇: gamejam总结">
+            <a  href="/2017/06/21/unity注意点/" title="下一篇: unity注意点">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/unity-控制人物运动总结/">unity 控制人物运动总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/gamejam总结/">gamejam总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/2017gamejam01/">2017gamejam记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/10/CodeFight经典问题/">位运算总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/前端总结/">前端开发总结(持续更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/11/常用正则表达式/">常用正则收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/10/http相关缓存头信息收集/">http相关缓存头</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/10/ajax学习总结/">原生JavaScript编写ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/07/JavaScript的遍历方式/">常见的JavaScript遍历方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/30/hexo建站-部署到github/">hexo部署到github</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/新的开始/">Hexo本地搭建心得</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/unity-控制人物运动总结/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/unity注意点/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/gamejam总结/">gamejam总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/2017gamejam01/">2017gamejam记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/10/CodeFight经典问题/">位运算总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/前端总结/">前端开发总结(持续更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/11/常用正则表达式/">常用正则收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/10/http相关缓存头信息收集/">http相关缓存头</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/10/ajax学习总结/">原生JavaScript编写ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/07/JavaScript的遍历方式/">常见的JavaScript遍历方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/30/hexo建站-部署到github/">hexo部署到github</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/新的开始/">Hexo本地搭建心得</a></li></ul>
     <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
