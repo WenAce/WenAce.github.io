@@ -9,17 +9,17 @@
   
   <title>unity控制运动 | Trust the light！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通过Transform组件移动物体 Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。  2.1 Transform.Translate">
+  <meta name="description" content="通过Transform组件移动物体 Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。">
 <meta name="keywords" content="unity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="unity控制运动">
 <meta property="og:url" content="http://wenace.github.io/2017/06/21/unity注意点/index.html">
 <meta property="og:site_name" content="Trust the light！">
-<meta property="og:description" content="通过Transform组件移动物体 Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。  2.1 Transform.Translate">
-<meta property="og:updated_time" content="2017-06-24T13:34:37.883Z">
+<meta property="og:description" content="通过Transform组件移动物体 Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。">
+<meta property="og:updated_time" content="2017-06-24T15:02:51.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="unity控制运动">
-<meta name="twitter:description" content="通过Transform组件移动物体 Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。  2.1 Transform.Translate">
+<meta name="twitter:description" content="通过Transform组件移动物体 Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。">
   
     <link rel="alternative" href="/atom.xml" title="Trust the light！" type="application/atom+xml">
   
@@ -280,6 +280,7 @@
         <ol>
 <li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
 </ol>
+<a id="more"></a>
 <p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p>
 <pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;
 </code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p>
@@ -317,7 +318,7 @@
         <p><span>本文标题:</span><a  href="/2017/06/21/unity注意点/">unity控制运动</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 心雨 的个人博客">心雨</a></p>
         <p><span>发布时间:</span>2017年06月21日 - 18时41分</p>
-        <p><span>最后更新:</span>2017年06月24日 - 21时34分</p>
+        <p><span>最后更新:</span>2017年06月24日 - 23时02分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/06/21/unity注意点/" title="unity控制运动">http://wenace.github.io/2017/06/21/unity注意点/</a>
             <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2017/06/21/unity注意点/　　作者: 心雨" title=""></span>
