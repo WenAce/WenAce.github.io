@@ -9,17 +9,17 @@
   
   <title>unity注意点 | Trust the light！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="unity学习小总结1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率. 2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取. 3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。">
+  <meta name="description" content="unity学习小总结1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.prefab之后的物品，也只能通过prefab的预制体进行赋值。 2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取. 3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。">
 <meta name="keywords" content="unity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="unity注意点">
 <meta property="og:url" content="http://wenace.github.io/2017/06/21/unity-控制人物运动总结/index.html">
 <meta property="og:site_name" content="Trust the light！">
-<meta property="og:description" content="unity学习小总结1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率. 2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取. 3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。">
-<meta property="og:updated_time" content="2017-06-21T12:35:45.032Z">
+<meta property="og:description" content="unity学习小总结1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.prefab之后的物品，也只能通过prefab的预制体进行赋值。 2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取. 3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。">
+<meta property="og:updated_time" content="2017-06-24T13:34:55.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="unity注意点">
-<meta name="twitter:description" content="unity学习小总结1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率. 2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取. 3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。">
+<meta name="twitter:description" content="unity学习小总结1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.prefab之后的物品，也只能通过prefab的预制体进行赋值。 2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取. 3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。">
   
     <link rel="alternative" href="/atom.xml" title="Trust the light！" type="application/atom+xml">
   
@@ -277,7 +277,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="unity学习小总结"><a href="#unity学习小总结" class="headerlink" title="unity学习小总结"></a>unity学习小总结</h1><p>1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.</p>
+        <h1 id="unity学习小总结"><a href="#unity学习小总结" class="headerlink" title="unity学习小总结"></a>unity学习小总结</h1><p>1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.<br>prefab之后的物品，也只能通过prefab的预制体进行赋值。</p>
 <p>2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取.</p>
 <p>3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。<br><a id="more"></a><br>4.在edit界面下的project setting可以改变重力等游戏项目属性。</p>
 <p>5.physics.gravity属性可获得对应位置的重力加速度</p>
@@ -288,6 +288,7 @@
 <p>10.一般物理位移采用FixUpdate()</p>
 <p>11.摄像头跟踪,定义transform player，transform.position为摄像头位置,player.position为玩家位置.update中得到camera和player之间的Vector3 offset.之后在update中实时的将player+offset，这样就可以得到摄像头的位置，从而实现跟踪</p>
 <p>12.vector3.zero即new vector3(0f,0f,0f);</p>
+<p>13通过在声明上面书写[]可以用于提示，或者ranger滑动控制值。</p>
 
       
     </div>
@@ -299,7 +300,7 @@
         <p><span>本文标题:</span><a  href="/2017/06/21/unity-控制人物运动总结/">unity注意点</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 心雨 的个人博客">心雨</a></p>
         <p><span>发布时间:</span>2017年06月21日 - 18时50分</p>
-        <p><span>最后更新:</span>2017年06月21日 - 20时35分</p>
+        <p><span>最后更新:</span>2017年06月24日 - 21时34分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/06/21/unity-控制人物运动总结/" title="unity注意点">http://wenace.github.io/2017/06/21/unity-控制人物运动总结/</a>
             <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2017/06/21/unity-控制人物运动总结/　　作者: 心雨" title=""></span>
@@ -315,7 +316,7 @@
   
   
     <a  href="/2017/06/21/unity注意点/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">unity注意点</div>
+      <div class="article-nav-title">unity控制运动</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -402,12 +403,12 @@
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2017/06/21/unity注意点/" title="下一篇: unity注意点">
+            <a  href="/2017/06/21/unity注意点/" title="下一篇: unity控制运动">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/unity-控制人物运动总结/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/unity注意点/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/gamejam总结/">gamejam总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/2017gamejam01/">2017gamejam记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/10/CodeFight经典问题/">位运算总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/前端总结/">前端开发总结(持续更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/11/常用正则表达式/">常用正则收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/10/http相关缓存头信息收集/">http相关缓存头</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/10/ajax学习总结/">原生JavaScript编写ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/07/JavaScript的遍历方式/">常见的JavaScript遍历方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/30/hexo建站-部署到github/">hexo部署到github</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/新的开始/">Hexo本地搭建心得</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/unity-控制人物运动总结/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/unity注意点/">unity控制运动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/gamejam总结/">gamejam总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/2017gamejam01/">2017gamejam记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/10/CodeFight经典问题/">位运算总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/前端总结/">前端开发总结(持续更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/11/常用正则表达式/">常用正则收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/10/http相关缓存头信息收集/">http相关缓存头</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/10/ajax学习总结/">原生JavaScript编写ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/07/JavaScript的遍历方式/">常见的JavaScript遍历方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/30/hexo建站-部署到github/">hexo部署到github</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/新的开始/">Hexo本地搭建心得</a></li></ul>
     <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");

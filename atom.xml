@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2017-06-21T12:35:45.032Z</updated>
+  <updated>2017-06-24T13:34:55.826Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://wenace.github.io/2017/06/21/unity-%E6%8E%A7%E5%88%B6%E4%BA%BA%E7%89%A9%E8%BF%90%E5%8A%A8%E6%80%BB%E7%BB%93/"/>
     <id>http://wenace.github.io/2017/06/21/unity-控制人物运动总结/</id>
     <published>2017-06-21T10:50:01.044Z</published>
-    <updated>2017-06-21T12:35:45.032Z</updated>
+    <updated>2017-06-24T13:34:55.826Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="unity学习小总结"><a href="#unity学习小总结" class="headerlink" title="unity学习小总结"></a>unity学习小总结</h1><p>1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.</p>
+    <content type="html"><![CDATA[<h1 id="unity学习小总结"><a href="#unity学习小总结" class="headerlink" title="unity学习小总结"></a>unity学习小总结</h1><p>1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.<br>prefab之后的物品，也只能通过prefab的预制体进行赋值。</p>
 <p>2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取.</p>
 <p>3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。<br><a id="more"></a><br>4.在edit界面下的project setting可以改变重力等游戏项目属性。</p>
 <p>5.physics.gravity属性可获得对应位置的重力加速度</p>
@@ -33,11 +33,12 @@
 <p>10.一般物理位移采用FixUpdate()</p>
 <p>11.摄像头跟踪,定义transform player，transform.position为摄像头位置,player.position为玩家位置.update中得到camera和player之间的Vector3 offset.之后在update中实时的将player+offset，这样就可以得到摄像头的位置，从而实现跟踪</p>
 <p>12.vector3.zero即new vector3(0f,0f,0f);</p>
+<p>13通过在声明上面书写[]可以用于提示，或者ranger滑动控制值。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;unity学习小总结&quot;&gt;&lt;a href=&quot;#unity学习小总结&quot; class=&quot;headerlink&quot; title=&quot;unity学习小总结&quot;&gt;&lt;/a&gt;unity学习小总结&lt;/h1&gt;&lt;p&gt;1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.&lt;/p&gt;
+      &lt;h1 id=&quot;unity学习小总结&quot;&gt;&lt;a href=&quot;#unity学习小总结&quot; class=&quot;headerlink&quot; title=&quot;unity学习小总结&quot;&gt;&lt;/a&gt;unity学习小总结&lt;/h1&gt;&lt;p&gt;1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.&lt;br&gt;prefab之后的物品，也只能通过prefab的预制体进行赋值。&lt;/p&gt;
 &lt;p&gt;2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取.&lt;/p&gt;
 &lt;p&gt;3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。&lt;br&gt;
     
@@ -49,19 +50,47 @@
   </entry>
   
   <entry>
-    <title>unity注意点</title>
+    <title>unity控制运动</title>
     <link href="http://wenace.github.io/2017/06/21/unity%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
     <id>http://wenace.github.io/2017/06/21/unity注意点/</id>
     <published>2017-06-21T10:41:47.889Z</published>
-    <updated>2017-06-21T12:36:03.466Z</updated>
+    <updated>2017-06-24T13:34:37.883Z</updated>
     
-    <content type="html"><![CDATA[<p>待写</p>
+    <content type="html"><![CDATA[<ol>
+<li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
+</ol>
+<p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p>
+<pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;
+</code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p>
+<p>2.3 Vector3.SmoothDamp<br>      该方法是可以平滑的从A逐渐移动到B点，并且可以控制速度，最常见的用法是相机跟随目标。</p>
+<p>2.4 Transform.position<br>       有时重新赋值position能更快实现我们的目标。</p>
+<ol>
+<li><p>通过Rigidbody组件移动物体<br> Rigidbody组件用于模拟物体的物理状态，比如物体受重力影响，物体被碰撞后的击飞等等。</p>
+<p> 注意：关于Rigidbody的调用均应放在FixedUpdate方法中，该方法会在每一次执行物理模拟前被调用。</p>
+</li>
+</ol>
+<p>3.1 Rigidbody.velocity<br>     设置刚体速度可以让物体运动并且忽略静摩擦力，这会让物体快速从静止状态进入运动状态。</p>
+<p>3.2 Rigidbody.AddForce<br>      给刚体添加一个方向的力，这种方式适合模拟物体在外力的作用下的运动状态。</p>
+<p>3.3 Rigidbody.MovePosition<br>      刚体受到物理约束的情况下，移动到指定点。</p>
+<ol>
+<li>通过CharacterController组件移动物体<br>  CharacterController用于控制第一人称或第三人称角色的运动，使用这种方式可以模拟人的一些行为，比如限制角色爬坡的最大斜度,步伐的高度等。</li>
+</ol>
+<p>4.1 CharacterController.SimpleMove<br>     用于模拟简单运动，并且自动应用重力，返回值表示角色当前是否着地。</p>
+<p>4.2 CharacterController.Move<br>     模拟更复杂的运动,重力需要通过代码实现，返回值表示角色与周围的碰撞信息。</p>
+<p>通常我们都需要if语句进行input.GetKey判断。根据不同的2d形式，采用unity的动画系统，动画系统中需要注意</p>
+<p>1.获取的为Aminator，需要先声明，后获取，与rigidbody相似。</p>
+<p>2.当方向较多的时候，我们使用blend tree进行各个位置的定位，因为sprite有方向，所以我们需要对Vector3.x或者y下进行1或者-1的赋值，一般在动画系统中设置parameter有moveX，moveY的bool值。在代码过程中国对aminator进行setbool方法的调用。</p>
+<p>3.在transiton(过渡)中设置conditions,状态机形式。通过getAxis来获取水平方向，键盘输入将得到1到-1范围内. transform.Translate 通过位移方式进行移动。</p>
+<p>4.transform.position得到的值是一个坐标值，也就是说，移动的sprite是通过不断刷新坐标值，从而实现移动</p>
+<p>5.放在Update()函数中的代码是以帧来执行的.如果我们需要物体的移动以秒来执行.我们需要将物体移动的值乘以Time.deltaTime。</p>
+<p>6.2d中我们需要设置player为rigidbody和box collision2d或者其他方式，还有一个就是play所站立的地方为box collision2d或其他方式。</p>
+<p>7.对钢体施加力也可形成移动，rd.addForce() Mathf.Clamp()控制速度最大和最小值，其实就是左右方向的最大值，避免速度过大，冲出场景</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;待写&lt;/p&gt;
-
+      &lt;ol&gt;
+&lt;li&gt;通过Transform组件移动物体&lt;br&gt; Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组
     
     </summary>
     
