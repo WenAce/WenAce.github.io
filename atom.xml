@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2017-06-27T15:03:17.096Z</updated>
+  <updated>2017-06-27T15:04:56.822Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://wenace.github.io/2017/06/27/javascript%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%96%B9%E9%9D%A2%E6%80%BB%E7%BB%93/"/>
     <id>http://wenace.github.io/2017/06/27/javascript原型链方面总结/</id>
     <published>2017-06-27T13:04:18.418Z</published>
-    <updated>2017-06-27T15:03:17.096Z</updated>
+    <updated>2017-06-27T15:04:56.822Z</updated>
     
-    <content type="html"><![CDATA[<p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br>如图</p>
+    <content type="html"><![CDATA[<p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br><a id="more"></a><br>如图</p>
 <p><img src="http://ormm8jbub.bkt.clouddn.com/typeof%E5%88%A4%E6%96%AD.png" alt="javcscript"></p>
 <p>2.== 会进行强制的转换，===则不会.<br>一般来说工作==可以用来简单书写某些代码，达到简洁的方式<br>如if(b==null)即是if(b===null || b===undefined)</p>
 <p>3.引用类型都可进行扩展，引用类型即typeof所不能识别。<br>如对象，函数，var a=[],JSON其实也是JS的一种对象</p>
@@ -36,7 +36,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;1.JS中有boolen，string，undefined，number，object，function，null基本类型&lt;br&gt;typeof可识别值类型，即boolen，object，number，string，undefined，function&lt;br&gt;object. 
+      &lt;p&gt;1.JS中有boolen，string，undefined，number，object，function，null基本类型&lt;br&gt;typeof可识别值类型，即boolen，object，number，string，undefined，function&lt;br&gt;object. 如null,var b=[];var b={};只会判断为object。&lt;br&gt;
     
     </summary>
     
