@@ -176,7 +176,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/2017gamejam/" style="font-size: 10px;">2017gamejam</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/gamejam/" style="font-size: 10px;">gamejam</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/unity/" style="font-size: 15px;">unity</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/本地搭建/" style="font-size: 10px;">本地搭建</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浮动/" style="font-size: 10px;">浮动</a> <a href="/tags/游戏开发/" style="font-size: 10px;">游戏开发</a> <a href="/tags/网络相关/" style="font-size: 10px;">网络相关</a> <a href="/tags/面试常见/" style="font-size: 10px;">面试常见</a>
+                        <a href="/tags/2017gamejam/" style="font-size: 10px;">2017gamejam</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/gamejam/" style="font-size: 10px;">gamejam</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/unity/" style="font-size: 15px;">unity</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/本地搭建/" style="font-size: 10px;">本地搭建</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浮动/" style="font-size: 10px;">浮动</a> <a href="/tags/游戏开发/" style="font-size: 10px;">游戏开发</a> <a href="/tags/网络相关/" style="font-size: 10px;">网络相关</a> <a href="/tags/面试常见/" style="font-size: 10px;">面试常见</a>
                     </div>
                 </section>
                 
@@ -236,6 +236,77 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-javascript原型链方面总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/06/27/javascript原型链方面总结/" class="article-date">
+      <time datetime="2017-06-27T13:04:18.418Z" itemprop="datePublished">2017-06-27</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2017/06/27/javascript原型链方面总结/">javascript原型链方面总结</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br>如图</p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/typeof%E5%88%A4%E6%96%AD.png" alt="javcscript"></p>
+<p>2.== 会进行强制的转换，===则不会.<br>一般来说工作==可以用来简单书写某些代码，达到简洁的方式<br>如if(b==null)即是if(b===null || b===undefined)</p>
+<p>3.引用类型都可进行扩展，引用类型即typeof所不能识别。<br>如对象，函数，var a=[],JSON其实也是JS的一种对象</p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E9%9A%8F%E6%84%8F%E6%89%A9%E5%B1%95.png" alt="yingyongleixing"></p>
+<p>4.所有引用类型都还有隐式类型<em>proto</em>.而函数都含有prototype类型</p>
+<p>关于原型链，var f=new Foo(),那么对象f上有隐式<em>proto</em>指向Foo.prototype,<br>所有当f在自身没找到属性，将向上寻找，即在Foo.prototype.当还是没有的时候，将<br>继续向上，而Foo.protype也存在一个隐式属性<em>proto</em>指向Object.protype.这个Object为<br>JS自身存在的native code。总结起来，可以用下图表示</p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/prototypeline.png" alt="prototype"></p>
+<p>在chrome 控制台进行测试，如图<br>可以很好的解释上图所说的原型链。通过foo.prototype.<em>proto</em>===Object.protype<br>为true，确实按照原型链所说不停往上。</p>
+<p><img src="http://ormm8jbub.bkt.clouddn.com/prototype.png" alt="chrome"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型链/">原型链</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-unity-控制人物运动总结" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -829,73 +900,6 @@
       
         <p class="article-more-link">
           <a   href="/2016/06/10/http相关缓存头信息收集/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-ajax学习总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2016/06/10/ajax学习总结/" class="article-date">
-      <time datetime="2016-06-10T00:42:56.259Z" itemprop="datePublished">2016-06-10</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2016/06/10/ajax学习总结/">原生JavaScript编写ajax</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p>
-<p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2016/06/10/ajax学习总结/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
