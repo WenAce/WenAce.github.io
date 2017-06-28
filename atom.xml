@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2017-06-27T15:04:56.822Z</updated>
+  <updated>2017-06-28T13:25:11.492Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript作用域等小结</title>
+    <link href="http://wenace.github.io/2017/06/28/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B92/"/>
+    <id>http://wenace.github.io/2017/06/28/JavaScript知识点2/</id>
+    <published>2017-06-28T12:03:27.096Z</published>
+    <updated>2017-06-28T13:25:11.492Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。<br>变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是<br>函数表达式与变量提升相似，如以下代码<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">console.log(a);// a为undefined</div><div class="line">var a=2;</div><div class="line">和</div><div class="line">var a;</div><div class="line">console.log(a);</div><div class="line">a=2;</div><div class="line">上面代码其实就下面这段代码。</div><div class="line"></div><div class="line">//又如</div><div class="line">fn();</div><div class="line">var fn=funciton()&#123;&#125;;</div><div class="line">那么这段函数表达式会被提升，导致fn()为undefined</div></pre></td></tr></table></figure></p>
+<p>2.this指针具体在那些地方执行。<br>首先肯定的是this是要在执行时才能确认值，定义时无法确认<br>一般分一下几种<br>构造函数执行,普通函数执行,对象属性执行,还有call，apply，bind三种<br>注意的是bind是用在函数表达式中的。</p>
+<p>3.作用域和作用域链<br>JS没有块级作用域，只有函数作用域和全局作用域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a=100;</div><div class="line">function a()&#123;</div><div class="line">    var a=200;</div><div class="line">    console.log(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如上述代码，假设a()内的变量a不存在，那么输出的a将成为一个自由变量，根据作用域链，将往上寻找变量<br>将在全局内找到，进而输出。</p>
+<p>4.闭包其实就在一个函数内部的函数可访问其内部的变量，特别在封装来说，有很大的作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//典型闭包封装</div><div class="line">function isLoad()&#123;</div><div class="line">    var _onLoad=[];</div><div class="line">    return function(id)&#123;</div><div class="line">        if(_onLoad.indexOf(id)&gt;=0)</div><div class="line">        return false;</div><div class="line">        else</div><div class="line">        &#123;_onLoad.push(id);</div><div class="line">        return true;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5.同步和异步最大的区别就是，同步会造成程序阻塞，而异步就不会，且使得程序高效的运行起来<br>一些常用的异、</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。&lt;br&gt;变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是&lt;br&gt;函数表达式与变量提升相似，如以下代码&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
+    
+      <category term="作用域" scheme="http://wenace.github.io/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
+    
+      <category term="闭包" scheme="http://wenace.github.io/tags/%E9%97%AD%E5%8C%85/"/>
+    
+  </entry>
   
   <entry>
     <title>javascript原型链方面总结</title>
