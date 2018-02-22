@@ -7,20 +7,20 @@
   
   
   
-  <title>hexo重新部署的注意点 | Trust the light！</title>
+  <title>选择，插入，归并，快速排序总结 | Trust the light！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="一,O(n^2)选择排序和插入排序 1选择排序基本思路:标记第一个数，循环找到比这数小的然后对换，直至找到数组中最小的数，最好将最小的数放入标记的位置。 1234567891011121314void selectSort(int arr[],int n)&amp;#123;    for(int i=1;i&amp;lt;n;i++)    &amp;#123;        int minIndex=i;">
+<meta name="keywords" content="-- 算法 -- 排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo重新部署的注意点">
-<meta property="og:url" content="http://wenace.github.io/2017/06/15/hexo重新部署的注意点/index.html">
+<meta property="og:title" content="选择，插入，归并，快速排序总结">
+<meta property="og:url" content="http://wenace.github.io/2018/02/22/选择，插入，归并，快速排序总结/index.html">
 <meta property="og:site_name" content="Trust the light！">
-<meta property="og:description" content="作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。">
+<meta property="og:description" content="一,O(n^2)选择排序和插入排序 1选择排序基本思路:标记第一个数，循环找到比这数小的然后对换，直至找到数组中最小的数，最好将最小的数放入标记的位置。 1234567891011121314void selectSort(int arr[],int n)&amp;#123;    for(int i=1;i&amp;lt;n;i++)    &amp;#123;        int minIndex=i;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-06-16T03:17:36.428Z">
+<meta property="og:updated_time" content="2018-02-22T07:18:53.390Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo重新部署的注意点">
-<meta name="twitter:description" content="作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。">
+<meta name="twitter:title" content="选择，插入，归并，快速排序总结">
+<meta name="twitter:description" content="一,O(n^2)选择排序和插入排序 1选择排序基本思路:标记第一个数，循环找到比这数小的然后对换，直至找到数组中最小的数，最好将最小的数放入标记的位置。 1234567891011121314void selectSort(int arr[],int n)&amp;#123;    for(int i=1;i&amp;lt;n;i++)    &amp;#123;        int minIndex=i;">
   
     <link rel="alternative" href="/atom.xml" title="Trust the light！" type="application/atom+xml">
   
@@ -238,11 +238,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-hexo重新部署的注意点" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-选择，插入，归并，快速排序总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2017/06/15/hexo重新部署的注意点/" class="article-date">
-      <time datetime="2017-06-15T13:28:40.000Z" itemprop="datePublished">2017-06-15</time>
+      <a  href="/2018/02/22/选择，插入，归并，快速排序总结/" class="article-date">
+      <time datetime="2018-02-22T07:17:31.000Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
     </div>
@@ -256,7 +256,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hexo重新部署的注意点
+      选择，插入，归并，快速排序总结
     </h1>
   
 
@@ -268,7 +268,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法-排序/">-- 算法 -- 排序</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -278,50 +278,19 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。<a id="more"></a></p>
-<p>1.一般情况下，一些朋友的是还在硬盘上，而一些朋友的可能只能从github上仓库下载下来</p>
-<p>2.开始之前，我建议大家使用cnpm，npm有时候会抽风（ps：国内）,下面的内容也是使用cnpm进行对module进行安装.</p>
-<p><strong>源文件从github下载</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">A[github进行源文件clone]--&gt;B[对本文件进行gitbash]</span><br><span class="line">B[对本文件进行gitbash]--&gt;C[cnpm install hexo]</span><br><span class="line">C[cnpm install hexo]--&gt;D[cnpm install hexo server]</span><br></pre></td></tr></table></figure>
-<p>如果源文件依旧在本地，将node_modules删除，然后进行如github下载的步骤.</p>
-<p><strong>注意点</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">A[hexo无法正常使用]--&gt;B[hexo server没有安装]</span><br><span class="line">A[hexo无法正常使用]--&gt;C[hexo deploy无法使用]</span><br><span class="line">A[hexo无法正常使用]--&gt;D[hexo无法识别]</span><br><span class="line"></span><br><span class="line">B[hexo server没有安装]--&gt;E[cnpm install hexo server]</span><br><span class="line"></span><br><span class="line">C[hexo deploy无法使用]--&gt;F[cnpm install hexo-deployer-git -save]</span><br><span class="line"></span><br><span class="line">D[hexo无法识别]--&gt;G[SSH重新配置]</span><br></pre></td></tr></table></figure>
-<p>以下是对SSH重新配置</p>
-<p>1.在Git Bash输入以下指令（任意位置点击鼠标右键），检查是否已经存在了SSH keys。</p>
-<blockquote>
-<p>ls -al ~/.ssh</p>
-</blockquote>
-<p>2.如果不存在就没有关系，如果存在的话，直接删除.ssh文件夹里面所有文件,位置应该在我的文档的用户文件夹中.</p>
-<p>3.输入以下指令（邮箱就是你注册Github时候的邮箱）后，回车：</p>
-<blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:XXXXX@XX.com" target="_blank" rel="noopener">XXXXX@XX.com</a>“</p>
-</blockquote>
-<p>4.然后它会提示要你输入passphrase,这个时候不需要输入任何数据，直接一路回车.</p>
-<p>5.成功之后键入：</p>
-<blockquote>
-<p>ssh-agent -s</p>
-</blockquote>
-<p>6.这一步有可能会出现”Could you open..”的错误信息</p>
-<blockquote>
-<p>ssh-add ~/.ssh/id_rsa</p>
-</blockquote>
-<p>这个时候你需要键入以下命令</p>
-<blockquote>
-<p>eval <code>ssh-agent -s</code></p>
-</blockquote>
-<p>成功后键入</p>
-<blockquote>
-<p>ssh-add</p>
-</blockquote>
-<p>7.到了这一步，就可以添加SSH key到你的Github账户了。键入以下指令，拷贝Key（先拷贝了，等一下可以直接粘贴）：</p>
-<blockquote>
-<p>clip &lt; ~/.ssh/id_rsa.pub</p>
-</blockquote>
-<p>8.添加SSH至github，这里就不赘述了，网上有很多教程.</p>
-<p>9.之后可以测试下,输入以下命令，如果出现警告，输入yes就行</p>
-<blockquote>
-<p>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></p>
-</blockquote>
+        <p>一,O(n^2)选择排序和插入排序</p>
+<p>1选择排序<br>基本思路:标记第一个数，循环找到比这数小的然后对换，直至找到数组中最小的数，最好将最小的数放入标记的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">void selectSort(int arr[],int n)</span><br><span class="line">&#123;</span><br><span class="line">    for(int i=1;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int minIndex=i;</span><br><span class="line">        //遍历i+1到n数，找到最小值</span><br><span class="line">        for(int j=i+1;j&lt;n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(arr[j]&lt;arr[minIndex])</span><br><span class="line">                minIndex=j;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(arr[j],arr[minIndex]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>2,插入排序<br>基本思路:从i开始，与i-1进行对比，插入排序不需要进行全循环，而是可以中途退出，判断的是从最后到第一的大小关系。</p>
+<h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void InsertSort(int arr[],int n)</span><br><span class="line">&#123;</span><br><span class="line">    for(int i=1;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        for(j=i;j&gt;0;j--)</span><br><span class="line">        &#123;</span><br><span class="line">            if(arr[j]&lt;arr[j-1])</span><br><span class="line">             swap(arr[j],arr[j-1])</span><br><span class="line">            else</span><br><span class="line">             break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第二-相比第一种方法。不再需要两两交换。"><a href="#第二-相比第一种方法。不再需要两两交换。" class="headerlink" title="第二 相比第一种方法。不再需要两两交换。"></a>第二 相比第一种方法。不再需要两两交换。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void InsertSort(int arr[],int n)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    int j;                                          </span><br><span class="line">    for(int i=1;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int t=arr[i];</span><br><span class="line">        for(j=i;j&gt;0;j--)</span><br><span class="line">        &#123;</span><br><span class="line">            if(arr[j-1]&gt;t)</span><br><span class="line">             arr[j]=arr[j-1];</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j]=t; //找到t所处在位置，并赋值.</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三,归并排序（nlogn）<br>基本思路:需要一个暂存区aux，然后范围为l到r，i和j分别为左右两边需要比较的值，k为通过比较之后，符合的数值存放位置。，实际与二分法思维相符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//归并排序</span><br><span class="line">void merageSort(int arr[],int n)</span><br><span class="line">&#123;</span><br><span class="line">    _merageSort(arr,0,n-1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void _merageSort(int arr[],int l,int r)</span><br><span class="line">&#123;</span><br><span class="line">    if(l&gt;=r)</span><br><span class="line">        return;</span><br><span class="line">    int mid=(l+r)/2;</span><br><span class="line">    _merageSort(arr,int l,int mid);</span><br><span class="line">    _merageSort(arr,int mid+1,int r);</span><br><span class="line">    _merage(arr,l,mid,r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void _merage(int arr[],int l,int mid,int r)</span><br><span class="line">&#123;    int aux[l-r+1];</span><br><span class="line">    for(int i=l;i&lt;=r;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        aux[i-1]=arr[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int i=l;j=mid+1;</span><br><span class="line">    for(int k=l;k&lt;=r;k++)</span><br><span class="line">    &#123;   </span><br><span class="line">         if(i&gt;mid)</span><br><span class="line">         &#123;</span><br><span class="line">             aux[k]=aux[j-l];</span><br><span class="line">             i++;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         else if(j&gt;r)</span><br><span class="line">         &#123;</span><br><span class="line">             aux[k]=aux[i-l];</span><br><span class="line">             j++;</span><br><span class="line">         &#125;</span><br><span class="line">        else if(aux[i-l]&lt;aux[j-l])</span><br><span class="line">         aux[k]=aux[i-l];</span><br><span class="line">        else</span><br><span class="line">         aux[k]=aux[j-l];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>四.快速排序(nlogn)<br>基本思路:选择一个数作为中间数t，递归整个数据，比t大的放在右边，比t小的放在左边</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">void QuickSort(int arr[],int n)</span><br><span class="line">&#123;</span><br><span class="line">    _QuickSort(int arr[],0,n-1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void _QuickSort(int arr[],int l,int r)</span><br><span class="line">&#123;</span><br><span class="line">    if(l&gt;=r)</span><br><span class="line">    &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int p=_Par(arr,l,r);</span><br><span class="line">    _QuickSort(arr,l,p);</span><br><span class="line">    _QuickSort(arr,p+1,r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void _Par(arr,l,r)</span><br><span class="line">&#123;</span><br><span class="line">    int v=arr[l];</span><br><span class="line">    int j=l;</span><br><span class="line">    for(int i=l+1;i&lt;=r;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if(arr[i]&lt;v)</span><br><span class="line">        &#123;</span><br><span class="line">            j++;</span><br><span class="line">            swap(arr[j],arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        swap(arr[l],arr[j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.二路快排<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">void _par(arr,l,r)</span><br><span class="line">&#123;</span><br><span class="line">    \\随机化生成标定点point</span><br><span class="line">    swap(arr[l],arr[rand()%(r-l+1)+1])；</span><br><span class="line">    int v= arr[l];</span><br><span class="line">    int i=l+1;int j=r;</span><br><span class="line">    while(true)</span><br><span class="line">    &#123;</span><br><span class="line">        while(i&lt;=r &amp;&amp; arr[i]&lt;v)</span><br><span class="line">        i++;</span><br><span class="line">        while(j&gt;=l+1 &amp;&amp; arr[j]&gt;v)</span><br><span class="line">        j--;</span><br><span class="line">        if(i&gt;j)</span><br><span class="line">        break;</span><br><span class="line">        swap(arr[i],arr[j])</span><br><span class="line">        i++;</span><br><span class="line">        j--;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(arr[l],arr[j]);</span><br><span class="line">    return j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3三路快排<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">void _quick3ways(arr,l,r)</span><br><span class="line">&#123;</span><br><span class="line">    int v=arr[l];</span><br><span class="line">    int lt=l;int gt=r+1;int i=l+1;</span><br><span class="line">    while(i&lt;gt)</span><br><span class="line">    &#123;</span><br><span class="line">        if(arr[i]&lt;v)&#123;</span><br><span class="line">            swap(arr[i],arr[lt+1]);</span><br><span class="line">            i++;</span><br><span class="line">            gt++;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(arr[i]&gt;v)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(arr[i],arr[gt-1])</span><br><span class="line">            gt--;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(arr[l],arr[lt]);</span><br><span class="line"></span><br><span class="line">    _quick3ways(arr,l,lt-1);</span><br><span class="line">    _quick3ways(arr,gt,r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -330,13 +299,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></p>
+        <p><span>本文标题:</span><a  href="/2018/02/22/选择，插入，归并，快速排序总结/">选择，插入，归并，快速排序总结</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 心雨 的个人博客">心雨</a></p>
-        <p><span>发布时间:</span>2017年06月15日 - 21时28分</p>
-        <p><span>最后更新:</span>2017年06月16日 - 11时17分</p>
+        <p><span>发布时间:</span>2018年02月22日 - 15时17分</p>
+        <p><span>最后更新:</span>2018年02月22日 - 15时18分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/06/15/hexo重新部署的注意点/" title="hexo重新部署的注意点">http://wenace.github.io/2017/06/15/hexo重新部署的注意点/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2017/06/15/hexo重新部署的注意点/　　作者: 心雨" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/02/22/选择，插入，归并，快速排序总结/" title="选择，插入，归并，快速排序总结">http://wenace.github.io/2018/02/22/选择，插入，归并，快速排序总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2018/02/22/选择，插入，归并，快速排序总结/　　作者: 心雨" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -347,15 +316,11 @@
 
 <nav id="article-nav">
   
-    <a  href="/2018/02/22/http相关缓存头信息收集/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          http相关缓存头
-        
-      </div>
-    </a>
   
+    <a  href="/2018/02/22/常用正则表达式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">常用正则收集</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -365,7 +330,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一种方法"><span class="toc-number">1.</span> <span class="toc-text">第一种方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二-相比第一种方法。不再需要两两交换。"><span class="toc-number">2.</span> <span class="toc-text">第二 相比第一种方法。不再需要两两交换。</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -436,13 +401,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2018/02/22/http相关缓存头信息收集/" title="上一篇: http相关缓存头">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a  href="/2018/02/22/常用正则表达式/" title="下一篇: 常用正则收集">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/选择，插入，归并，快速排序总结/">选择，插入，归并，快速排序总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/常用正则表达式/">常用正则收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript的遍历方式/">常见的JavaScript遍历方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity-控制人物运动总结/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity注意点/">unity控制运动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/前端总结/">前端开发总结(持续更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/CodeFight经典问题/">位运算总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/javascript原型链方面总结/">javascript原型链方面总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/hexo建站-部署到github/">hexo部署到github</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/gamejam总结/">gamejam总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/ajax学习总结/">原生JavaScript编写ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2017gamejam01/">2017gamejam记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/http相关缓存头信息收集/">http相关缓存头</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></li></ul>
