@@ -177,7 +177,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/2017gamejam/" style="font-size: 10px;">2017gamejam</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/gamejam/" style="font-size: 10px;">gamejam</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/unity/" style="font-size: 20px;">unity</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/本地搭建/" style="font-size: 10px;">本地搭建</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浮动/" style="font-size: 10px;">浮动</a> <a href="/tags/游戏开发/" style="font-size: 10px;">游戏开发</a> <a href="/tags/网络相关/" style="font-size: 10px;">网络相关</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试常见/" style="font-size: 10px;">面试常见</a>
+                        <a href="/tags/2017gamejam/" style="font-size: 10px;">2017gamejam</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/gamejam/" style="font-size: 10px;">gamejam</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/unity/" style="font-size: 15px;">unity</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/本地搭建/" style="font-size: 10px;">本地搭建</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浮动/" style="font-size: 10px;">浮动</a> <a href="/tags/游戏开发/" style="font-size: 10px;">游戏开发</a> <a href="/tags/网络相关/" style="font-size: 10px;">网络相关</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试常见/" style="font-size: 10px;">面试常见</a>
                     </div>
                 </section>
                 
@@ -238,10 +238,10 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-unity注意点" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-前端总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/unity注意点/" class="article-date">
+      <a  href="/2018/02/22/前端总结/" class="article-date">
       <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
@@ -256,7 +256,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/unity注意点/">unity控制运动</a>
+      <a  class="article-title" href="/2018/02/22/前端总结/">前端开发总结(持续更新)</a>
     </h1>
   
 
@@ -267,9 +267,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <ol>
-<li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
-</ol>
+              <p>1.清除浮动</p>
+<p><em>此清除浮动可作为初始化的基本样式</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfloat&#123;</span><br><span class="line">	zoom:1</span><br><span class="line">&#125;</span><br><span class="line">.clerarfloat:after&#123;</span><br><span class="line">	display:block;</span><br><span class="line">	clear:both;</span><br><span class="line">	content:<span class="string">""</span>;</span><br><span class="line">	visibility:hidden;</span><br><span class="line">	height:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
       
     </div>
@@ -280,12 +280,145 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浮动/">浮动</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试常见/">面试常见</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/unity注意点/#more">查看更多 >></a>
+          <a   href="/2018/02/22/前端总结/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript知识点2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/02/22/JavaScript知识点2/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。<br>变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是<br>函数表达式与变量提升相似，如以下代码<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/作用域/">作用域</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2018/02/22/JavaScript知识点2/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-新的开始" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/02/22/新的开始/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
+<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/本地搭建/">本地搭建</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2018/02/22/新的开始/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -372,10 +505,10 @@
 
 
   
-    <article id="post-JavaScript知识点2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-常用正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/JavaScript知识点2/" class="article-date">
+      <a  href="/2018/02/22/常用正则表达式/" class="article-date">
       <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
@@ -390,7 +523,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a>
+      <a  class="article-title" href="/2018/02/22/常用正则表达式/">常用正则收集</a>
     </h1>
   
 
@@ -401,7 +534,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。<br>变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是<br>函数表达式与变量提升相似，如以下代码<br>
+              <p>一些常用的正则表达式
           
       
     </div>
@@ -412,12 +545,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/作用域/">作用域</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/JavaScript知识点2/#more">查看更多 >></a>
+          <a   href="/2018/02/22/常用正则表达式/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -506,10 +639,10 @@
 
 
   
-    <article id="post-前端总结" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-unity注意点" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/前端总结/" class="article-date">
+      <a  href="/2018/02/22/unity注意点/" class="article-date">
       <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
@@ -524,7 +657,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/前端总结/">前端开发总结(持续更新)</a>
+      <a  class="article-title" href="/2018/02/22/unity注意点/">unity控制运动</a>
     </h1>
   
 
@@ -535,9 +668,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>1.清除浮动</p>
-<p><em>此清除浮动可作为初始化的基本样式</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfloat&#123;</span><br><span class="line">	zoom:1</span><br><span class="line">&#125;</span><br><span class="line">.clerarfloat:after&#123;</span><br><span class="line">	display:block;</span><br><span class="line">	clear:both;</span><br><span class="line">	content:<span class="string">""</span>;</span><br><span class="line">	visibility:hidden;</span><br><span class="line">	height:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              <ol>
+<li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
+</ol>
           
       
     </div>
@@ -548,12 +681,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浮动/">浮动</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试常见/">面试常见</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/前端总结/#more">查看更多 >></a>
+          <a   href="/2018/02/22/unity注意点/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -574,143 +707,10 @@
 
 
   
-    <article id="post-新的开始" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017gamejam01" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/新的开始/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
-<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/本地搭建/">本地搭建</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/02/22/新的开始/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-常用正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/02/22/常用正则表达式/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/常用正则表达式/">常用正则收集</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>一些常用的正则表达式
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/02/22/常用正则表达式/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-CodeFight经典问题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/02/22/CodeFight经典问题/" class="article-date">
+      <a  href="/2018/02/22/2017gamejam01/" class="article-date">
       <time datetime="2018-02-22T04:19:43.260Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
@@ -725,7 +725,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/CodeFight经典问题/">位运算总结</a>
+      <a  class="article-title" href="/2018/02/22/2017gamejam01/">2017gamejam记录</a>
     </h1>
   
 
@@ -736,7 +736,81 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.
+              <p>第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/感悟/">感悟</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2017gamejam/">2017gamejam</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏开发/">游戏开发</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2018/02/22/2017gamejam01/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-http相关缓存头信息收集" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/02/22/http相关缓存头信息收集/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.260Z" itemprop="datePublished">2018-02-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/02/22/http相关缓存头信息收集/">http相关缓存头</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>http中分请求头和响应头两种。</p>
+<blockquote>
+<p>请求头是浏览器向服务器发送请求的数据和资源.<br>响应头是服务器向浏览器响应的数据。</p>
+</blockquote>
+<p>##常见的请求头：<br>
           
       
     </div>
@@ -747,12 +821,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/位运算/">位运算</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络相关/">网络相关</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/CodeFight经典问题/#more">查看更多 >></a>
+          <a   href="/2018/02/22/http相关缓存头信息收集/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -820,72 +894,6 @@
       
         <p class="article-more-link">
           <a   href="/2018/02/22/ajax学习总结/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-javascript原型链方面总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/02/22/javascript原型链方面总结/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.260Z" itemprop="datePublished">2018-02-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/javascript原型链方面总结/">javascript原型链方面总结</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型链/">原型链</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/02/22/javascript原型链方面总结/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
