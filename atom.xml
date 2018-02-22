@@ -2,10 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Trust the light！</title>
   
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2017-06-28T13:25:11.492Z</updated>
+  <updated>2017-06-24T15:02:51.648Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -16,21 +17,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JavaScript作用域等小结</title>
-    <link href="http://wenace.github.io/2017/06/28/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B92/"/>
-    <id>http://wenace.github.io/2017/06/28/JavaScript知识点2/</id>
-    <published>2017-06-28T12:03:27.096Z</published>
-    <updated>2017-06-28T13:25:11.492Z</updated>
+    <title>unity控制运动</title>
+    <link href="http://wenace.github.io/2018/02/22/unity%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
+    <id>http://wenace.github.io/2018/02/22/unity注意点/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-24T15:02:51.648Z</updated>
     
-    <content type="html"><![CDATA[<p>1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。<br>变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是<br>函数表达式与变量提升相似，如以下代码<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">console.log(a);// a为undefined</div><div class="line">var a=2;</div><div class="line">和</div><div class="line">var a;</div><div class="line">console.log(a);</div><div class="line">a=2;</div><div class="line">上面代码其实就下面这段代码。</div><div class="line"></div><div class="line">//又如</div><div class="line">fn();</div><div class="line">var fn=funciton()&#123;&#125;;</div><div class="line">那么这段函数表达式会被提升，导致fn()为undefined</div></pre></td></tr></table></figure></p>
-<p>2.this指针具体在那些地方执行。<br>首先肯定的是this是要在执行时才能确认值，定义时无法确认<br>一般分一下几种<br>构造函数执行,普通函数执行,对象属性执行,还有call，apply，bind三种<br>注意的是bind是用在函数表达式中的。</p>
-<p>3.作用域和作用域链<br>JS没有块级作用域，只有函数作用域和全局作用域。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a=100;</div><div class="line">function a()&#123;</div><div class="line">    var a=200;</div><div class="line">    console.log(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如上述代码，假设a()内的变量a不存在，那么输出的a将成为一个自由变量，根据作用域链，将往上寻找变量<br>将在全局内找到，进而输出。</p>
-<p>4.闭包其实就在一个函数内部的函数可访问其内部的变量，特别在封装来说，有很大的作用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//典型闭包封装</div><div class="line">function isLoad()&#123;</div><div class="line">    var _onLoad=[];</div><div class="line">    return function(id)&#123;</div><div class="line">        if(_onLoad.indexOf(id)&gt;=0)</div><div class="line">        return false;</div><div class="line">        else</div><div class="line">        &#123;_onLoad.push(id);</div><div class="line">        return true;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>5.同步和异步最大的区别就是，同步会造成程序阻塞，而异步就不会，且使得程序高效的运行起来<br>一些常用的异、</p>
-]]></content>
+    <content type="html"><![CDATA[<ol><li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li></ol><a id="more"></a><p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p><pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;</code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p><p>2.3 Vector3.SmoothDamp<br>      该方法是可以平滑的从A逐渐移动到B点，并且可以控制速度，最常见的用法是相机跟随目标。</p><p>2.4 Transform.position<br>       有时重新赋值position能更快实现我们的目标。</p><ol><li><p>通过Rigidbody组件移动物体<br> Rigidbody组件用于模拟物体的物理状态，比如物体受重力影响，物体被碰撞后的击飞等等。</p><p> 注意：关于Rigidbody的调用均应放在FixedUpdate方法中，该方法会在每一次执行物理模拟前被调用。</p></li></ol><p>3.1 Rigidbody.velocity<br>     设置刚体速度可以让物体运动并且忽略静摩擦力，这会让物体快速从静止状态进入运动状态。</p><p>3.2 Rigidbody.AddForce<br>      给刚体添加一个方向的力，这种方式适合模拟物体在外力的作用下的运动状态。</p><p>3.3 Rigidbody.MovePosition<br>      刚体受到物理约束的情况下，移动到指定点。</p><ol><li>通过CharacterController组件移动物体<br>  CharacterController用于控制第一人称或第三人称角色的运动，使用这种方式可以模拟人的一些行为，比如限制角色爬坡的最大斜度,步伐的高度等。</li></ol><p>4.1 CharacterController.SimpleMove<br>     用于模拟简单运动，并且自动应用重力，返回值表示角色当前是否着地。</p><p>4.2 CharacterController.Move<br>     模拟更复杂的运动,重力需要通过代码实现，返回值表示角色与周围的碰撞信息。</p><p>通常我们都需要if语句进行input.GetKey判断。根据不同的2d形式，采用unity的动画系统，动画系统中需要注意</p><p>1.获取的为Aminator，需要先声明，后获取，与rigidbody相似。</p><p>2.当方向较多的时候，我们使用blend tree进行各个位置的定位，因为sprite有方向，所以我们需要对Vector3.x或者y下进行1或者-1的赋值，一般在动画系统中设置parameter有moveX，moveY的bool值。在代码过程中国对aminator进行setbool方法的调用。</p><p>3.在transiton(过渡)中设置conditions,状态机形式。通过getAxis来获取水平方向，键盘输入将得到1到-1范围内. transform.Translate 通过位移方式进行移动。</p><p>4.transform.position得到的值是一个坐标值，也就是说，移动的sprite是通过不断刷新坐标值，从而实现移动</p><p>5.放在Update()函数中的代码是以帧来执行的.如果我们需要物体的移动以秒来执行.我们需要将物体移动的值乘以Time.deltaTime。</p><p>6.2d中我们需要设置player为rigidbody和box collision2d或者其他方式，还有一个就是play所站立的地方为box collision2d或其他方式。</p><p>7.对钢体施加力也可形成移动，rd.addForce() Mathf.Clamp()控制速度最大和最小值，其实就是左右方向的最大值，避免速度过大，冲出场景</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;通过Transform组件移动物体&lt;br&gt; Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常见的JavaScript遍历方式</title>
+    <link href="http://wenace.github.io/2018/02/22/JavaScript%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/"/>
+    <id>http://wenace.github.io/2018/02/22/JavaScript的遍历方式/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-15T12:24:31.953Z</updated>
+    
+    <content type="html"><![CDATA[<p> 首先我们写一个数组和json对象。<br> var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];<br> var obj={<br>     first:’javascripts’,<br>     second:’css’,<br>     third:’jquery’<br> };<br><a id="more"></a></p><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>&#123;</span><br><span class="line"><span class="keyword">for</span>(var i=0,len=Arr.length;i&lt;len;i++)&#123;</span><br><span class="line"><span class="keyword">if</span>(i==2)&#123;</span><br><span class="line">//<span class="built_in">return</span>;  //函数执行被终止</span><br><span class="line">//<span class="built_in">break</span>;   //循环被终止</span><br><span class="line"><span class="built_in">continue</span>;  //循环被跳过</span><br><span class="line">&#125;</span><br><span class="line">console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><h3 id="for循环中有两点注意"><a href="#for循环中有两点注意" class="headerlink" title="for循环中有两点注意"></a>for循环中有两点注意</h3><ul><li>for循环中的i在循环结束后依然存在与作用域中，这个时候为了避免影响作用域中的其余变量，我们将采用函数自执行的方式将其隔离起来。形如</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（<span class="function"><span class="title">function</span></span>()&#123;&#125;)();</span><br></pre></td></tr></table></figure><ul><li>在循环中避免使用（var i=0;i&lt;Arr.length;）这样数组长度每次都在计算，效率远远低于例子中的写法，同理，我们也可以先赋值好值，如下</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var i=0;len=Arr.length;</span><br><span class="line"><span class="keyword">for</span>(;i&lt;len;i++)</span><br></pre></td></tr></table></figure><h2 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for in 循环"></a>for in 循环</h2><p>for(var item in arr|obj){}可以用于遍历数组和对象</p><ul><li>遍历数组，item为索引值，arr为当前索引值对应的元素 arr[item];</li><li>遍历对象，item为key值，arr表示key值对应的value值obj[item];</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>&#123;</span><br><span class="line"><span class="keyword">for</span>(var i <span class="keyword">in</span> Arr)&#123;</span><br><span class="line"><span class="keyword">if</span>(i==2)&#123;</span><br><span class="line">//<span class="built_in">return</span>;  //函数执行被终止</span><br><span class="line">//<span class="built_in">break</span>;   //循环被终止</span><br><span class="line"><span class="built_in">continue</span>;  //循环被跳过</span><br><span class="line">&#125;</span><br><span class="line">console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><h3 id="关于for-in-的注意"><a href="#关于for-in-的注意" class="headerlink" title="关于for in 的注意"></a>关于for in 的注意</h3><ul><li>同样式需要添加自执行函数。</li><li>跳出循环中，return为函数执行终止，即整个函数将终止，在循环外面的也不再进行。break为终止当前的循环，后续代码继续执行。</li></ul><h2 id="for-Each"><a href="#for-Each" class="headerlink" title="for Each"></a>for Each</h2><p>Arr.forEach(function(arg){})<br>参数arg为数组没一项元素。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Arr.forEach(funciton(val,index)&#123;</span><br><span class="line"><span class="keyword">if</span>(e==<span class="string">'css3'</span>)&#123;</span><br><span class="line"><span class="built_in">return</span>;  //循环被跳过</span><br><span class="line">//<span class="built_in">break</span>;   //Error</span><br><span class="line">//<span class="built_in">continue</span>;  //Error</span><br><span class="line">&#125;</span><br><span class="line">console.log(val,index);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h3 id="for-Each注意点"><a href="#for-Each注意点" class="headerlink" title="for Each注意点"></a>for Each注意点</h3><ul><li>回调函数中的2参数分别为值和索引值，和jQuery的$.each相反。</li><li><em>forEach无法遍历对象</em>.</li><li>forEach无法再IE中使用</li><li>forEach无法使用break和continue，而return和for循环中的continue一致。</li><li>可添加第二个参数，为一个数组，在回调中用this指向这个数组，若无第二参数，则this会指向window。</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var newArr[];</span><br><span class="line">Arr.forEach(<span class="keyword">function</span>(val,index)&#123;</span><br><span class="line">this.push(val); //this指向newArr.</span><br><span class="line">&#125;,newArr)</span><br></pre></td></tr></table></figure><h3 id="do-while方式"><a href="#do-while方式" class="headerlink" title="do/while方式"></a>do/while方式</h3><p>不建议使用，此处不多说明</p><h2 id="each"><a href="#each" class="headerlink" title="$.each"></a>$.each</h2><p>这个为jQuery中的方法，熟悉jQuery的应该或多或少的使用过。可遍历数组和对象。<br>下面的例子中e为索引值，或者key值，ele为value值</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each(Arr|obj,<span class="keyword">function</span>(e,ele)&#123;</span><br><span class="line">console.log(e,ele);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h3 id="each注意点"><a href="#each注意点" class="headerlink" title="$.each注意点"></a>$.each注意点</h3><ul><li>使用return或return true为跳过一次循环，继续执行后面的循环。</li><li>使用return false为终止循环的执行，但是并不终止函数执行，</li><li>无法使用break和continue来跳过循环。</li><li>循环中this输出： </li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(this);</span><br><span class="line"></span><br><span class="line">console.log(this=ele);</span><br></pre></td></tr></table></figure><h2 id="selecter-each"><a href="#selecter-each" class="headerlink" title="$(selecter).each()"></a>$(selecter).each()</h2><p>专门用来遍历DOMList</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.list li'</span>).each(<span class="keyword">function</span>(i,ele)&#123;</span><br><span class="line">console.log(i,ele);</span><br><span class="line"></span><br><span class="line">$(this).html(i);</span><br><span class="line"><span class="keyword">if</span>($(this).attr(<span class="string">'data-item'</span>)==<span class="string">'do'</span>)&#123;</span><br><span class="line">$(this).html(<span class="string">'data-item:do'</span>);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><ul><li>i ele 只被当前遍历DOM元素</li><li>this 当前被遍历的DOM元素，不能调用jQuery方法。</li><li>$(this)==$(ele) 当前被遍历元素的jQuery对象，可调用jQuery方法进行dom操作。</li></ul><p><em>在for循环中遍历DOMList中需要将DOMlist转换为数组</em></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var res=[].slice.call(domList);</span><br><span class="line"><span class="keyword">for</span>(var item <span class="keyword">in</span> res)&#123;&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; 首先我们写一个数组和json对象。&lt;br&gt; var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];&lt;br&gt; var obj={&lt;br&gt;     first:’javascripts’,&lt;br&gt;     second:’css’,&lt;br&gt;     third:’jquery’&lt;br&gt; };&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript作用域等小结</title>
+    <link href="http://wenace.github.io/2018/02/22/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B92/"/>
+    <id>http://wenace.github.io/2018/02/22/JavaScript知识点2/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-29T07:33:51.950Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。<br>变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是<br>函数表达式与变量提升相似，如以下代码<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);// a为undefined</span><br><span class="line">var a=2;</span><br><span class="line">和</span><br><span class="line">var a;</span><br><span class="line">console.log(a);</span><br><span class="line">a=2;</span><br><span class="line">上面代码其实就下面这段代码。</span><br><span class="line"></span><br><span class="line">//又如</span><br><span class="line">fn();</span><br><span class="line">var fn=funciton()&#123;&#125;;</span><br><span class="line">那么这段函数表达式会被提升，导致fn()为undefined</span><br></pre></td></tr></table></figure></p><p>2.this指针具体在那些地方执行。<br>首先肯定的是this是要在执行时才能确认值，定义时无法确认<br>一般分一下几种<br>构造函数执行,普通函数执行,对象属性执行,还有call，apply，bind三种<br>注意的是bind是用在函数表达式中的。</p><p>3.作用域和作用域链<br>JS没有块级作用域，只有函数作用域和全局作用域。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a=100;</span><br><span class="line">function a()&#123;</span><br><span class="line">    var a=200;</span><br><span class="line">    console.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如上述代码，假设a()内的变量a不存在，那么输出的a将成为一个自由变量，根据作用域链，将往上寻找变量<br>将在全局内找到，进而输出。</p><p>4.闭包其实就在一个函数内部的函数可访问其内部的变量，特别在封装来说，有很大的作用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//典型闭包封装</span><br><span class="line">function isLoad()&#123;</span><br><span class="line">    var _onLoad=[];</span><br><span class="line">    return function(id)&#123;</span><br><span class="line">        if(_onLoad.indexOf(id)&gt;=0)</span><br><span class="line">        return false;</span><br><span class="line">        else</span><br><span class="line">        &#123;_onLoad.push(id);</span><br><span class="line">        return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>5.同步和异步最大的区别就是，同步会造成程序阻塞，而异步就不会，且使得程序高效的运行起来<br>一些常用的异、</p>]]></content>
     
     <summary type="html">
     
@@ -48,57 +83,13 @@
   </entry>
   
   <entry>
-    <title>javascript原型链方面总结</title>
-    <link href="http://wenace.github.io/2017/06/27/javascript%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%96%B9%E9%9D%A2%E6%80%BB%E7%BB%93/"/>
-    <id>http://wenace.github.io/2017/06/27/javascript原型链方面总结/</id>
-    <published>2017-06-27T13:04:18.418Z</published>
-    <updated>2017-06-27T15:04:56.822Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br><a id="more"></a><br>如图</p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/typeof%E5%88%A4%E6%96%AD.png" alt="javcscript"></p>
-<p>2.== 会进行强制的转换，===则不会.<br>一般来说工作==可以用来简单书写某些代码，达到简洁的方式<br>如if(b==null)即是if(b===null || b===undefined)</p>
-<p>3.引用类型都可进行扩展，引用类型即typeof所不能识别。<br>如对象，函数，var a=[],JSON其实也是JS的一种对象</p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E9%9A%8F%E6%84%8F%E6%89%A9%E5%B1%95.png" alt="yingyongleixing"></p>
-<p>4.所有引用类型都还有隐式类型<em>proto</em>.而函数都含有prototype类型</p>
-<p>关于原型链，var f=new Foo(),那么对象f上有隐式<em>proto</em>指向Foo.prototype,<br>所有当f在自身没找到属性，将向上寻找，即在Foo.prototype.当还是没有的时候，将<br>继续向上，而Foo.protype也存在一个隐式属性<em>proto</em>指向Object.protype.这个Object为<br>JS自身存在的native code。总结起来，可以用下图表示</p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/prototypeline.png" alt="prototype"></p>
-<p>在chrome 控制台进行测试，如图<br>可以很好的解释上图所说的原型链。通过foo.prototype.<em>proto</em>===Object.protype<br>为true，确实按照原型链所说不停往上。</p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/prototype.png" alt="chrome"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1.JS中有boolen，string，undefined，number，object，function，null基本类型&lt;br&gt;typeof可识别值类型，即boolen，object，number，string，undefined，function&lt;br&gt;object. 如null,var b=[];var b={};只会判断为object。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
-    
-      <category term="原型链" scheme="http://wenace.github.io/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
-    
-  </entry>
-  
-  <entry>
     <title>unity注意点</title>
-    <link href="http://wenace.github.io/2017/06/21/unity-%E6%8E%A7%E5%88%B6%E4%BA%BA%E7%89%A9%E8%BF%90%E5%8A%A8%E6%80%BB%E7%BB%93/"/>
-    <id>http://wenace.github.io/2017/06/21/unity-控制人物运动总结/</id>
-    <published>2017-06-21T10:50:01.044Z</published>
-    <updated>2017-06-24T13:34:55.826Z</updated>
+    <link href="http://wenace.github.io/2018/02/22/unity-%E6%8E%A7%E5%88%B6%E4%BA%BA%E7%89%A9%E8%BF%90%E5%8A%A8%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/unity-控制人物运动总结/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-24T13:34:55.827Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="unity学习小总结"><a href="#unity学习小总结" class="headerlink" title="unity学习小总结"></a>unity学习小总结</h1><p>1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.<br>prefab之后的物品，也只能通过prefab的预制体进行赋值。</p>
-<p>2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取.</p>
-<p>3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。<br><a id="more"></a><br>4.在edit界面下的project setting可以改变重力等游戏项目属性。</p>
-<p>5.physics.gravity属性可获得对应位置的重力加速度</p>
-<p>6.通关创建physics material可为gameobject穿件一个物理材质，可消除一些物理方面的不真实感。</p>
-<p>7.通关input.getXXX来获取输入按键.需要留意的是getkey(“a”)中的a为小写，大写没有效果，所以最好采用keycode.a这样的形式进行输入。</p>
-<p>8.移动通过Vector3.(up，left,right,down)搭配进行输入。</p>
-<p>9.order layer表示各场景的层级关系，越大越在前面</p>
-<p>10.一般物理位移采用FixUpdate()</p>
-<p>11.摄像头跟踪,定义transform player，transform.position为摄像头位置,player.position为玩家位置.update中得到camera和player之间的Vector3 offset.之后在update中实时的将player+offset，这样就可以得到摄像头的位置，从而实现跟踪</p>
-<p>12.vector3.zero即new vector3(0f,0f,0f);</p>
-<p>13通过在声明上面书写[]可以用于提示，或者ranger滑动控制值。</p>
-]]></content>
+    <content type="html"><![CDATA[<h1 id="unity学习小总结"><a href="#unity学习小总结" class="headerlink" title="unity学习小总结"></a>unity学习小总结</h1><p>1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.<br>prefab之后的物品，也只能通过prefab的预制体进行赋值。</p><p>2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取.</p><p>3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。<br><a id="more"></a><br>4.在edit界面下的project setting可以改变重力等游戏项目属性。</p><p>5.physics.gravity属性可获得对应位置的重力加速度</p><p>6.通关创建physics material可为gameobject穿件一个物理材质，可消除一些物理方面的不真实感。</p><p>7.通关input.getXXX来获取输入按键.需要留意的是getkey(“a”)中的a为小写，大写没有效果，所以最好采用keycode.a这样的形式进行输入。</p><p>8.移动通过Vector3.(up，left,right,down)搭配进行输入。</p><p>9.order layer表示各场景的层级关系，越大越在前面</p><p>10.一般物理位移采用FixUpdate()</p><p>11.摄像头跟踪,定义transform player，transform.position为摄像头位置,player.position为玩家位置.update中得到camera和player之间的Vector3 offset.之后在update中实时的将player+offset，这样就可以得到摄像头的位置，从而实现跟踪</p><p>12.vector3.zero即new vector3(0f,0f,0f);</p><p>13通过在声明上面书写[]可以用于提示，或者ranger滑动控制值。</p>]]></content>
     
     <summary type="html">
     
@@ -114,105 +105,147 @@
   </entry>
   
   <entry>
-    <title>unity控制运动</title>
-    <link href="http://wenace.github.io/2017/06/21/unity%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
-    <id>http://wenace.github.io/2017/06/21/unity注意点/</id>
-    <published>2017-06-21T10:41:47.889Z</published>
-    <updated>2017-06-24T15:02:51.647Z</updated>
+    <title>前端开发总结(持续更新)</title>
+    <link href="http://wenace.github.io/2018/02/22/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/前端总结/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-15T12:24:31.595Z</updated>
     
-    <content type="html"><![CDATA[<ol>
-<li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
-</ol>
-<a id="more"></a>
-<p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p>
-<pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;
-</code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p>
-<p>2.3 Vector3.SmoothDamp<br>      该方法是可以平滑的从A逐渐移动到B点，并且可以控制速度，最常见的用法是相机跟随目标。</p>
-<p>2.4 Transform.position<br>       有时重新赋值position能更快实现我们的目标。</p>
-<ol>
-<li><p>通过Rigidbody组件移动物体<br> Rigidbody组件用于模拟物体的物理状态，比如物体受重力影响，物体被碰撞后的击飞等等。</p>
-<p> 注意：关于Rigidbody的调用均应放在FixedUpdate方法中，该方法会在每一次执行物理模拟前被调用。</p>
-</li>
-</ol>
-<p>3.1 Rigidbody.velocity<br>     设置刚体速度可以让物体运动并且忽略静摩擦力，这会让物体快速从静止状态进入运动状态。</p>
-<p>3.2 Rigidbody.AddForce<br>      给刚体添加一个方向的力，这种方式适合模拟物体在外力的作用下的运动状态。</p>
-<p>3.3 Rigidbody.MovePosition<br>      刚体受到物理约束的情况下，移动到指定点。</p>
-<ol>
-<li>通过CharacterController组件移动物体<br>  CharacterController用于控制第一人称或第三人称角色的运动，使用这种方式可以模拟人的一些行为，比如限制角色爬坡的最大斜度,步伐的高度等。</li>
-</ol>
-<p>4.1 CharacterController.SimpleMove<br>     用于模拟简单运动，并且自动应用重力，返回值表示角色当前是否着地。</p>
-<p>4.2 CharacterController.Move<br>     模拟更复杂的运动,重力需要通过代码实现，返回值表示角色与周围的碰撞信息。</p>
-<p>通常我们都需要if语句进行input.GetKey判断。根据不同的2d形式，采用unity的动画系统，动画系统中需要注意</p>
-<p>1.获取的为Aminator，需要先声明，后获取，与rigidbody相似。</p>
-<p>2.当方向较多的时候，我们使用blend tree进行各个位置的定位，因为sprite有方向，所以我们需要对Vector3.x或者y下进行1或者-1的赋值，一般在动画系统中设置parameter有moveX，moveY的bool值。在代码过程中国对aminator进行setbool方法的调用。</p>
-<p>3.在transiton(过渡)中设置conditions,状态机形式。通过getAxis来获取水平方向，键盘输入将得到1到-1范围内. transform.Translate 通过位移方式进行移动。</p>
-<p>4.transform.position得到的值是一个坐标值，也就是说，移动的sprite是通过不断刷新坐标值，从而实现移动</p>
-<p>5.放在Update()函数中的代码是以帧来执行的.如果我们需要物体的移动以秒来执行.我们需要将物体移动的值乘以Time.deltaTime。</p>
-<p>6.2d中我们需要设置player为rigidbody和box collision2d或者其他方式，还有一个就是play所站立的地方为box collision2d或其他方式。</p>
-<p>7.对钢体施加力也可形成移动，rd.addForce() Mathf.Clamp()控制速度最大和最小值，其实就是左右方向的最大值，避免速度过大，冲出场景</p>
-]]></content>
+    <content type="html"><![CDATA[<p>1.清除浮动</p><p><em>此清除浮动可作为初始化的基本样式</em></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfloat&#123;</span><br><span class="line">zoom:1</span><br><span class="line">&#125;</span><br><span class="line">.clerarfloat:after&#123;</span><br><span class="line">display:block;</span><br><span class="line">clear:both;</span><br><span class="line">content:<span class="string">""</span>;</span><br><span class="line">visibility:hidden;</span><br><span class="line">height:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><ol><li>cookie,localStorage,sessionStorage区别</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.cookie 是客户端保持状态方案。在浏览器和服务器间来回传递。</span><br><span class="line">2.sessionStorage和localStorage不会再浏览器和服务器间来回传递。</span><br><span class="line">3.sessionStorage和localStorage的存储空间大并且各自有独立的存储空间。</span><br><span class="line">4.更多丰富易用的接口。</span><br></pre></td></tr></table></figure><p>3.当需要声明变量的时候，记得使用var，不要漏写，虽然JavaScript同意可以不使用var来声明变量，但是这容易造成变量的混乱，当不使用var声明变量，变量为一个全局变量。我们应该尽量避免全局变量。</p><p>4.清空一个数组</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr=[1,2,3];</span><br><span class="line">arr.length=0;</span><br></pre></td></tr></table></figure><p>5.将arguments对象转换成数组</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr=Array.prototype.slice.call(arguments);</span><br></pre></td></tr></table></figure><p>slice.call()是把arguments对象数组提取出来转换成数组。</p><p>6.call()和apply()区别<br>call(thisObj,Object)参数为object<br>apply(thisObj,[arrArray])参数为arguments对象或者数组</p><p>7.变量声明提升拆分两个部分，一为声明，一位赋值。提升是吧声明提升，赋值留在原地。</p><p>javascript中一个名字(name)以四种方式进入作用域(scope)，其优先级顺序如下：<br>1、语言内置：所有的作用域中都有 this 和 arguments 关键字<br>2、形式参数：函数的参数在函数作用域中都是有效的<br>3、函数声明：形如function foo() {}<br>4、变量声明：形如var bar;</p>]]></content>
     
     <summary type="html">
     
-      &lt;ol&gt;
-&lt;li&gt;通过Transform组件移动物体&lt;br&gt; Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。&lt;/li&gt;
-&lt;/ol&gt;
+      &lt;p&gt;1.清除浮动&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;此清除浮动可作为初始化的基本样式&lt;/em&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;.clearfloat&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	zoom:1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.clerarfloat:after&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	display:block;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	clear:both;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	content:&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	visibility:hidden;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	height:0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
     
-      <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
+      <category term="浮动" scheme="http://wenace.github.io/tags/%E6%B5%AE%E5%8A%A8/"/>
+    
+      <category term="数组" scheme="http://wenace.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="面试常见" scheme="http://wenace.github.io/tags/%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81/"/>
     
   </entry>
   
   <entry>
-    <title>gamejam总结</title>
-    <link href="http://wenace.github.io/2017/06/18/gamejam%E6%80%BB%E7%BB%93/"/>
-    <id>http://wenace.github.io/2017/06/18/gamejam总结/</id>
-    <published>2017-06-18T14:10:24.010Z</published>
-    <updated>2017-06-18T15:07:17.046Z</updated>
+    <title>Hexo本地搭建心得</title>
+    <link href="http://wenace.github.io/2018/02/22/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
+    <id>http://wenace.github.io/2018/02/22/新的开始/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-15T13:29:22.121Z</updated>
     
-    <content type="html"><![CDATA[<p>   自己首次参与gamejam结束了，总体感觉不能完全说出来，<br>看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有<br>很长的一段路需要走，踏实的走下去，或许就是另一种结果。<br><a id="more"></a><br>gamejam所提倡的就是一种纯粹的对游戏的热爱，各种新奇好玩的点子，和各开发者<br>的交流，确实不能比这个更棒的事情了，大家都在一个channel里。</p>
-<p>从技术上看见基本的开发流程，api使用，美术上更是打开我所不清楚的大门。需要学习<br>的还有很多。这次活动获益良多</p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday01.jpg" alt="gamejam"></p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday02.jpg" alt="gamejam"></p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday03.jpg" alt="gamejam"></p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday04.jpg" alt="gamejam"></p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday05.jpg" alt="gamejam"></p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday06.jpg" alt="gamejam"></p>
-]]></content>
+    <content type="html"><![CDATA[<p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p><h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br><a id="more"></a></p><h2 id="hexo搭建"><a href="#hexo搭建" class="headerlink" title="hexo搭建"></a>hexo搭建</h2><p>通过npm安装hexo，具体代码在git bash中如下，采用全局安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cil -g</span><br></pre></td></tr></table></figure><p>如果安装不成功，大家可以使用淘宝的<em>CNPM</em>进行安装，毕竟有时我们和这个世界不在一个维度上。</p><h4 id="CNPM上的安装方式"><a href="#CNPM上的安装方式" class="headerlink" title="CNPM上的安装方式"></a>CNPM上的安装方式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install hexo</span><br></pre></td></tr></table></figure><p>安装成功后，我们需要建立新的文件夹，大家可以自己选个位置，然后git bash。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init yourfolderName</span><br></pre></td></tr></table></figure><p>当初始化成功之后，可以见到这么如下所示信息<br><em>INFO Start blogging with Hexo!</em></p><p>因为hexo 3.0后server分开成独立模块，所以这个时候，我们需要先进行server的安装，在你博客文件夹下git bash，键入命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo server</span><br></pre></td></tr></table></figure><p>激动人心的时刻到了，安装完后，输入以下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>或者</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure><p>我们将会获得如下信息提示。<br><em>INFO  Start processing<br>INFO  Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>. Press Ctrl+C to stop.</em></p><p>可能有朋友会没有反应，原因可能是端口冲突了，你只需要在文件下的<em>node_modules</em>中的<em>hexo-server</em>的<em>index.js</em>修改port的值即可。</p><p>待续。。。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;   自己首次参与gamejam结束了，总体感觉不能完全说出来，&lt;br&gt;看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有&lt;br&gt;很长的一段路需要走，踏实的走下去，或许就是另一种结果。&lt;br&gt;
+      &lt;p&gt;今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。&lt;/p&gt;
+&lt;h2 id=&quot;安装Node&quot;&gt;&lt;a href=&quot;#安装Node&quot; class=&quot;headerlink&quot; title=&quot;安装Node&quot;&gt;&lt;/a&gt;安装Node&lt;/h2&gt;&lt;p&gt;大家可以自行在&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Node&lt;/a&gt;的官网上进行下载.&lt;br&gt;当安装完Node之后，自然会安装NPM，即包管理器。&lt;br&gt;之后我们就可以开始安装hexo。&lt;br&gt;这里希望大家安装&lt;em&gt;git&lt;/em&gt;，并且学会使用&lt;em&gt;git&lt;/em&gt;，对以后的工作都有很大的帮助。&lt;br&gt;
     
     </summary>
     
-      <category term="感悟" scheme="http://wenace.github.io/categories/%E6%84%9F%E6%82%9F/"/>
+    
+      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
+    
+      <category term="本地搭建" scheme="http://wenace.github.io/tags/%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常用正则收集</title>
+    <link href="http://wenace.github.io/2018/02/22/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://wenace.github.io/2018/02/22/常用正则表达式/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-15T12:24:31.919Z</updated>
+    
+    <content type="html"><![CDATA[<p>一些常用的正则表达式<a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">//正整数</span><br><span class="line">/^[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//负整数</span><br><span class="line">/^-[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//正浮点数</span><br><span class="line">/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;</span><br><span class="line"></span><br><span class="line">//负浮点数</span><br><span class="line">/^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;  </span><br><span class="line"></span><br><span class="line">//浮点数</span><br><span class="line">/^(-?\d+)(\.\d+)?$/;</span><br><span class="line"></span><br><span class="line">//email地址</span><br><span class="line">/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;</span><br><span class="line"></span><br><span class="line">//url地址</span><br><span class="line">/^[a-zA-z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\S*)?$/;</span><br><span class="line">或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\<span class="string">':+!]*([^&lt;&gt;\"\"])*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//年/月/日（年-月-日、年.月.日）</span></span><br><span class="line"><span class="string">/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中文字符</span></span><br><span class="line"><span class="string">/[\u4e00-\u9fa5]/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配账号是否合法(字母开头，允许5-10字节，允许字母数字下划线)</span></span><br><span class="line"><span class="string">/^[a-zA-Z][a-zA-Z0-9_]&#123;4,9&#125;$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配空白行的正则表达式</span></span><br><span class="line"><span class="string">/\n\s*\r/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中国邮政编码</span></span><br><span class="line"><span class="string">/[1-9]\d&#123;5&#125;(?!\d)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配身份证</span></span><br><span class="line"><span class="string">/\d&#123;15&#125;|\d&#123;18&#125;/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配国内电话号码</span></span><br><span class="line"><span class="string">/(\d&#123;3&#125;-|\d&#123;4&#125;-)?(\d&#123;8&#125;|\d&#123;7&#125;)?/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配IP地址</span></span><br><span class="line"><span class="string">/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配首尾空白字符</span></span><br><span class="line"><span class="string">/^\s*|\s*$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配HTML标记</span></span><br><span class="line"><span class="string">&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的网络链接</span></span><br><span class="line"><span class="string">(h|H)(r|R)(e|E)(f|F) *=*('</span>|<span class="string">")?(\w|\\|\/|\.)+('|"</span>| *|&gt;)?</span><br><span class="line"></span><br><span class="line">//提取信息中的邮件地址</span><br><span class="line">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* </span><br><span class="line"></span><br><span class="line">//提取信息中的图片链接</span><br><span class="line">(s|S)(r|R)(c|C) *= *(<span class="string">'|")?(\w|\\|\/|\.)+('</span>|<span class="string">"| *|&gt;)? </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的 IP 地址</span></span><br><span class="line"><span class="string">(\d+)\.(\d+)\.(\d+)\.(\d+)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//取信息中的中国手机号码</span></span><br><span class="line"><span class="string">(86)*0*13\d&#123;9&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的中国邮政编码</span></span><br><span class="line"><span class="string">[1-9]&#123;1&#125;(\d+)&#123;5&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的浮点数（即小数）</span></span><br><span class="line"><span class="string">(-?\d*)\.?\d+ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的任何数字</span></span><br><span class="line"><span class="string">(-?\d*)(\.\d+)?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//电话区号</span></span><br><span class="line"><span class="string">^0\d&#123;2,3&#125;$</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//腾讯 QQ 号</span></span><br><span class="line"><span class="string">^[1-9]*[1-9][0-9]*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//帐号（字母开头，允许 5-16 字节，允许字母数字下划线）</span></span><br><span class="line"><span class="string">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//中文、英文、数字及下划线</span></span><br><span class="line"><span class="string">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</span></span><br></pre></td></tr></table></figure></p><p>这里推荐一个<a href="http://www1.w3cfuns.com/tools.php?mod=regex" target="_blank" rel="noopener">正则表达式的调试工具</a><br>也可以看看<a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="noopener">正则的基本语法</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一些常用的正则表达式
+    
+    </summary>
     
     
-      <category term="gamejam" scheme="http://wenace.github.io/tags/gamejam/"/>
+      <category term="正则" scheme="http://wenace.github.io/tags/%E6%AD%A3%E5%88%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>位运算总结</title>
+    <link href="http://wenace.github.io/2018/02/22/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
+    <id>http://wenace.github.io/2018/02/22/CodeFight经典问题/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-15T12:18:24.910Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p><p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;位运算形式&quot;&gt;&lt;a href=&quot;#位运算形式&quot; class=&quot;headerlink&quot; title=&quot;位运算形式&quot;&gt;&lt;/a&gt;位运算形式&lt;/h2&gt;&lt;p&gt;1.与，或，非，异或运算特点&lt;br&gt;非（~）：1变0,0变1.&lt;br&gt;与（&amp;amp;）：有0则为0，均为1返回1.
+    
+    </summary>
+    
+    
+      <category term="位运算" scheme="http://wenace.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>原生JavaScript编写ajax</title>
+    <link href="http://wenace.github.io/2018/02/22/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/ajax学习总结/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-15T12:24:31.968Z</updated>
+    
+    <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p><p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">createXMLDoc</span></span>()&#123;</span><br><span class="line">var xmlhttp;</span><br><span class="line"><span class="keyword">if</span>(window.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">xmlhttp=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">xmlhttp=new ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.onreadystatechange=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line"><span class="keyword">if</span>(xmlhttp.states==200&amp;&amp;xmlhttp.readyState==4)</span><br><span class="line">&#123;</span><br><span class="line">document.getElementById(<span class="string">"myDic"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>):</span><br><span class="line">xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="open-和send-的方法"><a href="#open-和send-的方法" class="headerlink" title="open()和send()的方法"></a>open()和send()的方法</h3><p>open方法中有三个参数，从左往右分别是</p><ul><li>method：请求类型：GET或者POST</li><li>url：文件在服务器上的位置</li><li>async: true()（异步）或false()（同步）<br><em>url中文件可以使任何类型的文件</em></li></ul><p>send()方法中的参数仅用于POST请求。</p><h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><p>GET：<br>1.一般用于信息获取<br>2.使用URL传递参数<br>3.对所发送信息的数量有限制，一般在2000个字符<br>4.传送数据量小，处理效率高。<br>5.安全性低，会被缓存。</p><p>POST：<br>1.用于修改服务器上的资源。<br>2.对所发送信息的数量无限制。<br>3.安全性高。可靠性高。</p><h2 id="AJAX的服务器响应"><a href="#AJAX的服务器响应" class="headerlink" title="AJAX的服务器响应"></a>AJAX的服务器响应</h2><ul><li>responseTest 获得字符串响应数据</li><li>responseXML  或的XML形式响应数据</li></ul><p>##AJAX的readyState和status</p><p>readyState：</p><blockquote><p>0：请求未初始化<br>1：服务器连接已建立<br>2：请求已接收<br>3：请求处理中<br>4：请求已经完成，且响应已就绪</p></blockquote><p>Status：</p><blockquote><p>200：ok<br>404：未找到页面</p></blockquote><h4 id="HTTP请求中常用的状态码"><a href="#HTTP请求中常用的状态码" class="headerlink" title="HTTP请求中常用的状态码"></a>HTTP请求中常用的状态码</h4><blockquote><p>301,302 重定向，后跟location头指明跳转位置<br>304 从浏览器缓存加载<br>403 权限不够，拒绝访问<br>404 资源未找到<br>500 服务器内部错误，通常为后端错误</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性&lt;/p&gt;
+&lt;p&gt;ajax是一种用于创建快速动态网页的技术&lt;br&gt;&lt;em&gt;AJAX应用程序与浏览器和平台无关&lt;/em&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="ajax" scheme="http://wenace.github.io/tags/ajax/"/>
+    
+      <category term="前端" scheme="http://wenace.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript原型链方面总结</title>
+    <link href="http://wenace.github.io/2018/02/22/javascript%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%96%B9%E9%9D%A2%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/javascript原型链方面总结/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-27T15:04:56.823Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br><a id="more"></a><br>如图</p><p><img src="http://ormm8jbub.bkt.clouddn.com/typeof%E5%88%A4%E6%96%AD.png" alt="javcscript"></p><p>2.== 会进行强制的转换，===则不会.<br>一般来说工作==可以用来简单书写某些代码，达到简洁的方式<br>如if(b==null)即是if(b===null || b===undefined)</p><p>3.引用类型都可进行扩展，引用类型即typeof所不能识别。<br>如对象，函数，var a=[],JSON其实也是JS的一种对象</p><p><img src="http://ormm8jbub.bkt.clouddn.com/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E9%9A%8F%E6%84%8F%E6%89%A9%E5%B1%95.png" alt="yingyongleixing"></p><p>4.所有引用类型都还有隐式类型<em>proto</em>.而函数都含有prototype类型</p><p>关于原型链，var f=new Foo(),那么对象f上有隐式<em>proto</em>指向Foo.prototype,<br>所有当f在自身没找到属性，将向上寻找，即在Foo.prototype.当还是没有的时候，将<br>继续向上，而Foo.protype也存在一个隐式属性<em>proto</em>指向Object.protype.这个Object为<br>JS自身存在的native code。总结起来，可以用下图表示</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototypeline.png" alt="prototype"></p><p>在chrome 控制台进行测试，如图<br>可以很好的解释上图所说的原型链。通过foo.prototype.<em>proto</em>===Object.protype<br>为true，确实按照原型链所说不停往上。</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototype.png" alt="chrome"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.JS中有boolen，string，undefined，number，object，function，null基本类型&lt;br&gt;typeof可识别值类型，即boolen，object，number，string，undefined，function&lt;br&gt;object. 如null,var b=[];var b={};只会判断为object。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
+    
+      <category term="原型链" scheme="http://wenace.github.io/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
     
   </entry>
   
   <entry>
     <title>2017gamejam记录</title>
-    <link href="http://wenace.github.io/2017/06/16/2017gamejam01/"/>
-    <id>http://wenace.github.io/2017/06/16/2017gamejam01/</id>
-    <published>2017-06-16T14:09:08.446Z</published>
-    <updated>2017-06-17T12:06:12.506Z</updated>
+    <link href="http://wenace.github.io/2018/02/22/2017gamejam01/"/>
+    <id>http://wenace.github.io/2018/02/22/2017gamejam01/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-17T12:06:12.507Z</updated>
     
-    <content type="html"><![CDATA[<p>第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。<br><a id="more"></a></p>
-<h1 id="6点前"><a href="#6点前" class="headerlink" title="6点前"></a>6点前</h1><p>主持人和乐逗方面负责人的一些谈话，我觉得这里有些东西还是可以分享的，首先一款游戏的开发流程一般是这样：</p>
-<p>1.立项：做什么<br>2.策划：怎么做<br>3.开发：做出来<br>4.演示：卖出去</p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/2017gamejam00.jpg" alt="2017gamejam00"></p>
-<p>这是一种比较理想下的情况，更多的时候是不断的反复于前三项。</p>
-<h1 id="6点"><a href="#6点" class="headerlink" title="6点"></a>6点</h1><p>主题揭开，此次的主题很有意思，如下:</p>
-<p><img src="http://ormm8jbub.bkt.clouddn.com/2017gamejam_theme.jpg" alt="2017gamejamthem"></p>
-<p>是一颗树，从根部到树干都很完整的一棵树，作为吃瓜群众的我，首先映入脑海的就是要有寓意，这次出这个题，玩法上应该需要偏轻松些，但是寓意要强。</p>
-<p>试想下，自己要做应该做成什么样子，我大概也想了想，也有那么几套方案吧。以文字代替集中在时间轮回，小孩，暗与光。这几个题材上。</p>
-<p>玩法上会偏休闲，一笔画，简单数字解谜，都是可以的。自己也和现场小伙伴有些交流，感觉都很棒，接下来两天就看他们怎么开始了，明天继续去学习观摩。</p>
-]]></content>
+    <content type="html"><![CDATA[<p>第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。<br><a id="more"></a></p><h1 id="6点前"><a href="#6点前" class="headerlink" title="6点前"></a>6点前</h1><p>主持人和乐逗方面负责人的一些谈话，我觉得这里有些东西还是可以分享的，首先一款游戏的开发流程一般是这样：</p><p>1.立项：做什么<br>2.策划：怎么做<br>3.开发：做出来<br>4.演示：卖出去</p><p><img src="http://ormm8jbub.bkt.clouddn.com/2017gamejam00.jpg" alt="2017gamejam00"></p><p>这是一种比较理想下的情况，更多的时候是不断的反复于前三项。</p><h1 id="6点"><a href="#6点" class="headerlink" title="6点"></a>6点</h1><p>主题揭开，此次的主题很有意思，如下:</p><p><img src="http://ormm8jbub.bkt.clouddn.com/2017gamejam_theme.jpg" alt="2017gamejamthem"></p><p>是一颗树，从根部到树干都很完整的一棵树，作为吃瓜群众的我，首先映入脑海的就是要有寓意，这次出这个题，玩法上应该需要偏轻松些，但是寓意要强。</p><p>试想下，自己要做应该做成什么样子，我大概也想了想，也有那么几套方案吧。以文字代替集中在时间轮回，小孩，暗与光。这几个题材上。</p><p>玩法上会偏休闲，一笔画，简单数字解谜，都是可以的。自己也和现场小伙伴有些交流，感觉都很棒，接下来两天就看他们怎么开始了，明天继续去学习观摩。</p>]]></content>
     
     <summary type="html">
     
@@ -230,170 +263,58 @@
   </entry>
   
   <entry>
-    <title>hexo重新部署的注意点</title>
-    <link href="http://wenace.github.io/2017/06/15/hexo%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
-    <id>http://wenace.github.io/2017/06/15/hexo重新部署的注意点/</id>
-    <published>2017-06-15T13:28:40.000Z</published>
-    <updated>2017-06-16T03:17:36.428Z</updated>
+    <title>hexo部署到github</title>
+    <link href="http://wenace.github.io/2018/02/22/hexo%E5%BB%BA%E7%AB%99-%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
+    <id>http://wenace.github.io/2018/02/22/hexo建站-部署到github/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-16T14:38:34.160Z</updated>
     
-    <content type="html"><![CDATA[<p>作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。<a id="more"></a></p>
-<p>1.一般情况下，一些朋友的是还在硬盘上，而一些朋友的可能只能从github上仓库下载下来</p>
-<p>2.开始之前，我建议大家使用cnpm，npm有时候会抽风（ps：国内）,下面的内容也是使用cnpm进行对module进行安装.</p>
-<p><strong>源文件从github下载</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[github进行源文件clone]--&gt;B[对本文件进行gitbash]</div><div class="line">B[对本文件进行gitbash]--&gt;C[cnpm install hexo]</div><div class="line">C[cnpm install hexo]--&gt;D[cnpm install hexo server]</div></pre></td></tr></table></figure>
-<p>如果源文件依旧在本地，将node_modules删除，然后进行如github下载的步骤.</p>
-<p><strong>注意点</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[hexo无法正常使用]--&gt;B[hexo server没有安装]</div><div class="line">A[hexo无法正常使用]--&gt;C[hexo deploy无法使用]</div><div class="line">A[hexo无法正常使用]--&gt;D[hexo无法识别]</div><div class="line"></div><div class="line">B[hexo server没有安装]--&gt;E[cnpm install hexo server]</div><div class="line"></div><div class="line">C[hexo deploy无法使用]--&gt;F[cnpm install hexo-deployer-git -save]</div><div class="line"></div><div class="line">D[hexo无法识别]--&gt;G[SSH重新配置]</div></pre></td></tr></table></figure>
-<p>以下是对SSH重新配置</p>
-<p>1.在Git Bash输入以下指令（任意位置点击鼠标右键），检查是否已经存在了SSH keys。</p>
-<blockquote>
-<p>ls -al ~/.ssh</p>
-</blockquote>
-<p>2.如果不存在就没有关系，如果存在的话，直接删除.ssh文件夹里面所有文件,位置应该在我的文档的用户文件夹中.</p>
-<p>3.输入以下指令（邮箱就是你注册Github时候的邮箱）后，回车：</p>
-<blockquote>
-<p>ssh-keygen -t rsa -C “XXXXX@XX.com”</p>
-</blockquote>
-<p>4.然后它会提示要你输入passphrase,这个时候不需要输入任何数据，直接一路回车.</p>
-<p>5.成功之后键入：</p>
-<blockquote>
-<p>ssh-agent -s</p>
-</blockquote>
-<p>6.这一步有可能会出现”Could you open..”的错误信息</p>
-<blockquote>
-<p>ssh-add ~/.ssh/id_rsa</p>
-</blockquote>
-<p>这个时候你需要键入以下命令</p>
-<blockquote>
-<p>eval <code>ssh-agent -s</code></p>
-</blockquote>
-<p>成功后键入</p>
-<blockquote>
-<p>ssh-add</p>
-</blockquote>
-<p>7.到了这一步，就可以添加SSH key到你的Github账户了。键入以下指令，拷贝Key（先拷贝了，等一下可以直接粘贴）：</p>
-<blockquote>
-<p>clip &lt; ~/.ssh/id_rsa.pub</p>
-</blockquote>
-<p>8.添加SSH至github，这里就不赘述了，网上有很多教程.</p>
-<p>9.之后可以测试下,输入以下命令，如果出现警告，输入yes就行</p>
-<blockquote>
-<p>ssh -T git@github.com</p>
-</blockquote>
-]]></content>
+    <content type="html"><![CDATA[<p>昨天已经说了在本地搭建一个hexo，今天来总结下怎么把hexo部署到github上</p><h2 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h2><p>当然了，部署到github上，首先你得有个github账号，注册步骤大家可以自行的google下，不难。<br><a id="more"></a></p><h2 id="建立一个仓库"><a href="#建立一个仓库" class="headerlink" title="建立一个仓库"></a>建立一个仓库</h2><p>ok，这里说一下github是个好东西，新手应该好好打理自己的github，而不是做好博客就不管啦。<br>回头来看，当你注册好后，你需要建立一个仓库，具体建立仓库的办法如下<br>1.先建立一个新仓库<br><img src="http://ormm8jbub.bkt.clouddn.com/newRepo.png"><br>2.填入各项信息<br><img src="http://ormm8jbub.bkt.clouddn.com/buildRepo.png"><br>3.回到你刚建立的仓库，点击setting<br><img src="http://ormm8jbub.bkt.clouddn.com/setting.png"><br>4.滚轮至底部，寻找到如图按钮并点击<br><img src="http://ormm8jbub.bkt.clouddn.com/automaticPage.png"><br>5.进入下一页，根据自己想法填，这里设置之后就是你的首页了，最后找到如图按钮<br><img src="http://ormm8jbub.bkt.clouddn.com/continueLayout.png"><br>6.最后选择你喜欢的布局，按下如图按钮<br><img src="http://ormm8jbub.bkt.clouddn.com/publishLayout.png"></p><p>现在你的github博客站点已经完成，地址应该是<a href="http://xxxx.github.io/" target="_blank" rel="noopener">http://XXXX.github.io/</a>把xxxx改成你的博客名字就可以访问了.接下来，我们把在本地的hexo部署到github上，才算真正的成功。</p><h2 id="hexo部署"><a href="#hexo部署" class="headerlink" title="hexo部署"></a>hexo部署</h2><p>首先你需要在<em>_config.yml</em>文件中的deploy进行书写，如下格式</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:WenAce/WenAce.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure><p>设置好后，进行两个命令即可部署到github上了，如下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>得到最后的提示为<em>INFO  35 files generated in 2.88 s</em>为成功<br>接着我们需要deploy就完成了</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hexo</span> deploy</span><br></pre></td></tr></table></figure><p>出现<em>INFO  Deploy done: git</em>,即成功。</p><p>当你上传之后，需要等几分钟，才有可能看到效果，耐心等待下。<br>最后说一下这里有两个会错误的点，<br>1.有朋友会出现deploy错误的情况，按照以下来做</p><ul><li>安装 npm install hexo-deployer-git –save</li><li>将deploy 的 type由github改为git</li></ul><p>2.插入图片不成功</p><ul><li>在source中建立images文件夹，把图片放进去</li><li>采用img标签进行设置即可，格式为</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"/images/publishLayout.png"</span>&gt;</span><br></pre></td></tr></table></figure><p>这样你就完成了，你的第一个在线博客完成了，接下来，我会总结一下markedown的一些语法，还有hexo上的设置问题，期待下吧(ˇˍˇ) 。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。
+      &lt;p&gt;昨天已经说了在本地搭建一个hexo，今天来总结下怎么把hexo部署到github上&lt;/p&gt;
+&lt;h2 id=&quot;注册github&quot;&gt;&lt;a href=&quot;#注册github&quot; class=&quot;headerlink&quot; title=&quot;注册github&quot;&gt;&lt;/a&gt;注册github&lt;/h2&gt;&lt;p&gt;当然了，部署到github上，首先你得有个github账号，注册步骤大家可以自行的google下，不难。&lt;br&gt;
     
     </summary>
     
     
       <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
     
-  </entry>
-  
-  <entry>
-    <title>位运算总结</title>
-    <link href="http://wenace.github.io/2017/06/10/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
-    <id>http://wenace.github.io/2017/06/10/CodeFight经典问题/</id>
-    <published>2017-06-10T01:16:55.052Z</published>
-    <updated>2017-06-15T12:18:24.909Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p>
-<p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;位运算形式&quot;&gt;&lt;a href=&quot;#位运算形式&quot; class=&quot;headerlink&quot; title=&quot;位运算形式&quot;&gt;&lt;/a&gt;位运算形式&lt;/h2&gt;&lt;p&gt;1.与，或，非，异或运算特点&lt;br&gt;非（~）：1变0,0变1.&lt;br&gt;与（&amp;amp;）：有0则为0，均为1返回1.
-    
-    </summary>
-    
-    
-      <category term="位运算" scheme="http://wenace.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+      <category term="github" scheme="http://wenace.github.io/tags/github/"/>
     
   </entry>
   
   <entry>
-    <title>前端开发总结(持续更新)</title>
-    <link href="http://wenace.github.io/2016/06/18/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/"/>
-    <id>http://wenace.github.io/2016/06/18/前端总结/</id>
-    <published>2016-06-18T06:11:40.758Z</published>
-    <updated>2017-06-15T12:24:31.594Z</updated>
+    <title>gamejam总结</title>
+    <link href="http://wenace.github.io/2018/02/22/gamejam%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/gamejam总结/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-18T15:07:17.047Z</updated>
     
-    <content type="html"><![CDATA[<p>1.清除浮动</p>
-<p><em>此清除浮动可作为初始化的基本样式</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.clearfloat&#123;</div><div class="line">	zoom:1</div><div class="line">&#125;</div><div class="line">.clerarfloat:after&#123;</div><div class="line">	display:block;</div><div class="line">	clear:both;</div><div class="line">	content:<span class="string">""</span>;</div><div class="line">	visibility:hidden;</div><div class="line">	height:0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<ol>
-<li>cookie,localStorage,sessionStorage区别</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1.cookie 是客户端保持状态方案。在浏览器和服务器间来回传递。</div><div class="line">2.sessionStorage和localStorage不会再浏览器和服务器间来回传递。</div><div class="line">3.sessionStorage和localStorage的存储空间大并且各自有独立的存储空间。</div><div class="line">4.更多丰富易用的接口。</div></pre></td></tr></table></figure>
-<p>3.当需要声明变量的时候，记得使用var，不要漏写，虽然JavaScript同意可以不使用var来声明变量，但是这容易造成变量的混乱，当不使用var声明变量，变量为一个全局变量。我们应该尽量避免全局变量。</p>
-<p>4.清空一个数组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr=[1,2,3];</div><div class="line">arr.length=0;</div></pre></td></tr></table></figure>
-<p>5.将arguments对象转换成数组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arr=Array.prototype.slice.call(arguments);</div></pre></td></tr></table></figure>
-<p>slice.call()是把arguments对象数组提取出来转换成数组。</p>
-<p>6.call()和apply()区别<br>call(thisObj,Object)参数为object<br>apply(thisObj,[arrArray])参数为arguments对象或者数组</p>
-<p>7.变量声明提升拆分两个部分，一为声明，一位赋值。提升是吧声明提升，赋值留在原地。</p>
-<p>javascript中一个名字(name)以四种方式进入作用域(scope)，其优先级顺序如下：<br>1、语言内置：所有的作用域中都有 this 和 arguments 关键字<br>2、形式参数：函数的参数在函数作用域中都是有效的<br>3、函数声明：形如function foo() {}<br>4、变量声明：形如var bar;</p>
-]]></content>
+    <content type="html"><![CDATA[<p>   自己首次参与gamejam结束了，总体感觉不能完全说出来，<br>看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有<br>很长的一段路需要走，踏实的走下去，或许就是另一种结果。<br><a id="more"></a><br>gamejam所提倡的就是一种纯粹的对游戏的热爱，各种新奇好玩的点子，和各开发者<br>的交流，确实不能比这个更棒的事情了，大家都在一个channel里。</p><p>从技术上看见基本的开发流程，api使用，美术上更是打开我所不清楚的大门。需要学习<br>的还有很多。这次活动获益良多</p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday01.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday02.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday03.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday04.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday05.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday06.jpg" alt="gamejam"></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;1.清除浮动&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;此清除浮动可作为初始化的基本样式&lt;/em&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;.clearfloat&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	zoom:1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;.clerarfloat:after&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	display:block;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	clear:both;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	content:&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	visibility:hidden;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	height:0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      &lt;p&gt;   自己首次参与gamejam结束了，总体感觉不能完全说出来，&lt;br&gt;看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有&lt;br&gt;很长的一段路需要走，踏实的走下去，或许就是另一种结果。&lt;br&gt;
     
     </summary>
     
-    
-      <category term="浮动" scheme="http://wenace.github.io/tags/%E6%B5%AE%E5%8A%A8/"/>
-    
-      <category term="数组" scheme="http://wenace.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
-      <category term="面试常见" scheme="http://wenace.github.io/tags/%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常用正则收集</title>
-    <link href="http://wenace.github.io/2016/06/11/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    <id>http://wenace.github.io/2016/06/11/常用正则表达式/</id>
-    <published>2016-06-11T03:43:59.438Z</published>
-    <updated>2017-06-15T12:24:31.918Z</updated>
-    
-    <content type="html"><![CDATA[<p>一些常用的正则表达式<a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line">//正整数</div><div class="line">/^[0-9]*[1-9][0-9]*$/;</div><div class="line"></div><div class="line">//负整数</div><div class="line">/^-[0-9]*[1-9][0-9]*$/;</div><div class="line"></div><div class="line">//正浮点数</div><div class="line">/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;</div><div class="line"></div><div class="line">//负浮点数</div><div class="line">/^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;  </div><div class="line"></div><div class="line">//浮点数</div><div class="line">/^(-?\d+)(\.\d+)?$/;</div><div class="line"></div><div class="line">//email地址</div><div class="line">/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;</div><div class="line"></div><div class="line">//url地址</div><div class="line">/^[a-zA-z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\S*)?$/;</div><div class="line">或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\<span class="string">':+!]*([^&lt;&gt;\"\"])*$ </span></div><div class="line"></div><div class="line">//年/月/日（年-月-日、年.月.日）</div><div class="line">/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;</div><div class="line"></div><div class="line">//匹配中文字符</div><div class="line">/[\u4e00-\u9fa5]/;</div><div class="line"></div><div class="line">//匹配账号是否合法(字母开头，允许5-10字节，允许字母数字下划线)</div><div class="line">/^[a-zA-Z][a-zA-Z0-9_]&#123;4,9&#125;$/;</div><div class="line"></div><div class="line">//匹配空白行的正则表达式</div><div class="line">/\n\s*\r/;</div><div class="line"></div><div class="line">//匹配中国邮政编码</div><div class="line">/[1-9]\d&#123;5&#125;(?!\d)/;</div><div class="line"></div><div class="line">//匹配身份证</div><div class="line">/\d&#123;15&#125;|\d&#123;18&#125;/;</div><div class="line"></div><div class="line">//匹配国内电话号码</div><div class="line">/(\d&#123;3&#125;-|\d&#123;4&#125;-)?(\d&#123;8&#125;|\d&#123;7&#125;)?/;</div><div class="line"></div><div class="line">//匹配IP地址</div><div class="line">/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/;</div><div class="line"></div><div class="line">//匹配首尾空白字符</div><div class="line">/^\s*|\s*$/;</div><div class="line"></div><div class="line">//匹配HTML标记</div><div class="line">&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;;</div><div class="line"></div><div class="line">//提取信息中的网络链接</div><div class="line">(h|H)(r|R)(e|E)(f|F) *=*('|<span class="string">")?(\w|\\|\/|\.)+('|"</span>| *|&gt;)?</div><div class="line"></div><div class="line">//提取信息中的邮件地址</div><div class="line">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* </div><div class="line"></div><div class="line">//提取信息中的图片链接</div><div class="line">(s|S)(r|R)(c|C) *= *(<span class="string">'|")?(\w|\\|\/|\.)+('</span>|<span class="string">"| *|&gt;)? </span></div><div class="line"></div><div class="line">//提取信息中的 IP 地址</div><div class="line">(\d+)\.(\d+)\.(\d+)\.(\d+)</div><div class="line"></div><div class="line">//取信息中的中国手机号码</div><div class="line">(86)*0*13\d&#123;9&#125; </div><div class="line"></div><div class="line">//提取信息中的中国邮政编码</div><div class="line">[1-9]&#123;1&#125;(\d+)&#123;5&#125; </div><div class="line"></div><div class="line">//提取信息中的浮点数（即小数）</div><div class="line">(-?\d*)\.?\d+ </div><div class="line"></div><div class="line">//提取信息中的任何数字</div><div class="line">(-?\d*)(\.\d+)?</div><div class="line"></div><div class="line">//电话区号</div><div class="line">^0\d&#123;2,3&#125;$</div><div class="line"></div><div class="line">//腾讯 QQ 号</div><div class="line">^[1-9]*[1-9][0-9]*$ </div><div class="line"></div><div class="line">//帐号（字母开头，允许 5-16 字节，允许字母数字下划线）</div><div class="line">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$ </div><div class="line"></div><div class="line">//中文、英文、数字及下划线</div><div class="line">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</div></pre></td></tr></table></figure></p>
-<p>这里推荐一个<a href="http://www1.w3cfuns.com/tools.php?mod=regex" target="_blank" rel="external">正则表达式的调试工具</a><br>也可以看看<a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="external">正则的基本语法</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一些常用的正则表达式
-    
-    </summary>
+      <category term="感悟" scheme="http://wenace.github.io/categories/%E6%84%9F%E6%82%9F/"/>
     
     
-      <category term="正则" scheme="http://wenace.github.io/tags/%E6%AD%A3%E5%88%99/"/>
+      <category term="gamejam" scheme="http://wenace.github.io/tags/gamejam/"/>
     
   </entry>
   
   <entry>
     <title>http相关缓存头</title>
-    <link href="http://wenace.github.io/2016/06/10/http%E7%9B%B8%E5%85%B3%E7%BC%93%E5%AD%98%E5%A4%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
-    <id>http://wenace.github.io/2016/06/10/http相关缓存头信息收集/</id>
-    <published>2016-06-10T08:14:33.762Z</published>
-    <updated>2017-06-15T12:24:32.026Z</updated>
+    <link href="http://wenace.github.io/2018/02/22/http%E7%9B%B8%E5%85%B3%E7%BC%93%E5%AD%98%E5%A4%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    <id>http://wenace.github.io/2018/02/22/http相关缓存头信息收集/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-15T12:24:32.027Z</updated>
     
-    <content type="html"><![CDATA[<p>http中分请求头和响应头两种。</p>
-<blockquote>
-<p>请求头是浏览器向服务器发送请求的数据和资源.<br>响应头是服务器向浏览器响应的数据。</p>
-</blockquote>
-<p>##常见的请求头：<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Accept: text/html,image/*                                        浏览器可以接收的类型 </div><div class="line">Accept-Charset: ISO-8859-1                                   	 浏览器可以接收的编码类型</div><div class="line">Accept-Encoding: gzip,compress                               	 浏览器可以接收压缩编码类型 </div><div class="line">Accept-Language: en-us,zh-cn                                 	 浏览器可以接收的语言和国家类型</div><div class="line">Host: www.lks.cn:80                                          	 浏览器请求的主机和端口</div><div class="line">If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT   			 	 某个页面缓存时间 </div><div class="line">Referer: http://www.lks.cn/index.html                        	 请求来自于哪个页面</div><div class="line">User-Agent: Mozilla/4.0 compatible; MSIE 5.5; Windows NT 5.0   	 浏览器相关信息</div><div class="line">Cookie：                                                         浏览器暂存服务器发送的信息</div><div class="line">Connection: close1.0/Keep-Alive1.1                               HTTP请求的版本的特点</div><div class="line">Date: Tue, 11 Jul 2000 18:23:51GMT                               请求网站的时间</div><div class="line">Allow:GET                                                        请求的方法 GET 常见的还有POST</div><div class="line">Keep-Alive：5                                                    连接的时间；5</div><div class="line">Connection：keep-alive                                           是否是长连接</div><div class="line">Cache-Control：max-age=300                                       缓存的最长时间 300s</div></pre></td></tr></table></figure></p>
-<p>##常见的响应头</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Location: http://www.lks.cn/index.html                           控制浏览器显示哪个页面 </div><div class="line">Server:apache nginx                                              服务器的类型 </div><div class="line">Content-Encoding: gzip                                           服务器发送的压缩编码方式 </div><div class="line">Content-Length: 80                                               服务器发送显示的字节码长度 </div><div class="line">Content-Language: zh-cn                                          服务器发送内容的语言和国家名 </div><div class="line">Content-Type: image/jpeg; charset=UTF-8                 		 服务器发送内容的类型和编码类型 </div><div class="line">Last-Modified: Tue, 11 Jul 2000 18:23:51GMT           			 服务器最后一次修改的时间 </div><div class="line">Refresh: 1;url=http://www.lks.cn                                 控制浏览器1秒钟后转发URL所指向的页面 </div><div class="line">Content-Disposition: attachment; filename=lks.jpg      			 服务器控制浏览器发下载方式打开文件 </div><div class="line">Transfer-Encoding: chunked                                       服务器分块传递数据到客户端  </div><div class="line">Set-Cookie:SS=Q0=5Lb_nQ; path=/search                	  服务器发送Cookie相关的信息 </div><div class="line">Expires: -1                                               资源的过期时间，提供给浏览器缓存数据,-1永远过期 </div><div class="line">Cache-Control: no-cache                                   告诉浏览器,定要回服务器校验,不管有没有缓存数据。 </div><div class="line">Pragma: no-cache                                          服务器控制浏览器不要缓存网页   </div><div class="line">Connection: close/Keep-AliveHTTP                          请求的版本的特点   </div><div class="line">Date: Tue, 11 Jul 2000 18:23:51 GMT                       响应网站的时间 </div><div class="line">ETag：“ihfdgkdgnp98hdfg”                                  资源实体的标识(唯一标识，类似md5值，文件有修改md5就不一样)</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>http中分请求头和响应头两种。</p><blockquote><p>请求头是浏览器向服务器发送请求的数据和资源.<br>响应头是服务器向浏览器响应的数据。</p></blockquote><p>##常见的请求头：<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Accept: text/html,image/*                                        浏览器可以接收的类型 </span><br><span class="line">Accept-Charset: ISO-8859-1                                    浏览器可以接收的编码类型</span><br><span class="line">Accept-Encoding: gzip,compress                                浏览器可以接收压缩编码类型 </span><br><span class="line">Accept-Language: en-us,zh-cn                                  浏览器可以接收的语言和国家类型</span><br><span class="line">Host: www.lks.cn:80                                           浏览器请求的主机和端口</span><br><span class="line">If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT     某个页面缓存时间 </span><br><span class="line">Referer: http://www.lks.cn/index.html                         请求来自于哪个页面</span><br><span class="line">User-Agent: Mozilla/4.0 compatible; MSIE 5.5; Windows NT 5.0    浏览器相关信息</span><br><span class="line">Cookie：                                                         浏览器暂存服务器发送的信息</span><br><span class="line">Connection: close1.0/Keep-Alive1.1                               HTTP请求的版本的特点</span><br><span class="line">Date: Tue, 11 Jul 2000 18:23:51GMT                               请求网站的时间</span><br><span class="line">Allow:GET                                                        请求的方法 GET 常见的还有POST</span><br><span class="line">Keep-Alive：5                                                    连接的时间；5</span><br><span class="line">Connection：keep-alive                                           是否是长连接</span><br><span class="line">Cache-Control：max-age=300                                       缓存的最长时间 300s</span><br></pre></td></tr></table></figure></p><p>##常见的响应头</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Location: http://www.lks.cn/index.html                           控制浏览器显示哪个页面 </span><br><span class="line">Server:apache nginx                                              服务器的类型 </span><br><span class="line">Content-Encoding: gzip                                           服务器发送的压缩编码方式 </span><br><span class="line">Content-Length: 80                                               服务器发送显示的字节码长度 </span><br><span class="line">Content-Language: zh-cn                                          服务器发送内容的语言和国家名 </span><br><span class="line">Content-Type: image/jpeg; charset=UTF-8                  服务器发送内容的类型和编码类型 </span><br><span class="line">Last-Modified: Tue, 11 Jul 2000 18:23:51GMT            服务器最后一次修改的时间 </span><br><span class="line">Refresh: 1;url=http://www.lks.cn                                 控制浏览器1秒钟后转发URL所指向的页面 </span><br><span class="line">Content-Disposition: attachment; filename=lks.jpg       服务器控制浏览器发下载方式打开文件 </span><br><span class="line">Transfer-Encoding: chunked                                       服务器分块传递数据到客户端  </span><br><span class="line">Set-Cookie:SS=Q0=5Lb_nQ; path=/search                  服务器发送Cookie相关的信息 </span><br><span class="line">Expires: -1                                               资源的过期时间，提供给浏览器缓存数据,-1永远过期 </span><br><span class="line">Cache-Control: no-cache                                   告诉浏览器,定要回服务器校验,不管有没有缓存数据。 </span><br><span class="line">Pragma: no-cache                                          服务器控制浏览器不要缓存网页   </span><br><span class="line">Connection: close/Keep-AliveHTTP                          请求的版本的特点   </span><br><span class="line">Date: Tue, 11 Jul 2000 18:23:51 GMT                       响应网站的时间 </span><br><span class="line">ETag：“ihfdgkdgnp98hdfg”                                  资源实体的标识(唯一标识，类似md5值，文件有修改md5就不一样)</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -413,208 +334,38 @@
   </entry>
   
   <entry>
-    <title>原生JavaScript编写ajax</title>
-    <link href="http://wenace.github.io/2016/06/10/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
-    <id>http://wenace.github.io/2016/06/10/ajax学习总结/</id>
-    <published>2016-06-10T00:42:56.259Z</published>
-    <updated>2017-06-15T12:24:31.967Z</updated>
-    
-    <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p>
-<p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">createXMLDoc</span></span>()&#123;</div><div class="line">	var xmlhttp;</div><div class="line">	<span class="keyword">if</span>(window.XMLHttpRequest)</div><div class="line">	&#123;</div><div class="line">		xmlhttp=new XMLHttpRequest();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		xmlhttp=new ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</div><div class="line">	&#125;</div><div class="line">	xmlhttp.onreadystatechange=<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		<span class="keyword">if</span>(xmlhttp.states==200&amp;&amp;xmlhttp.readyState==4)</div><div class="line">		&#123;</div><div class="line">			document.getElementById(<span class="string">"myDic"</span>).innerHTML=xmlhttp.responseText;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>):</div><div class="line">	xmlhttp.send();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="open-和send-的方法"><a href="#open-和send-的方法" class="headerlink" title="open()和send()的方法"></a>open()和send()的方法</h3><p>open方法中有三个参数，从左往右分别是</p>
-<ul>
-<li>method：请求类型：GET或者POST</li>
-<li>url：文件在服务器上的位置</li>
-<li>async: true()（异步）或false()（同步）<br><em>url中文件可以使任何类型的文件</em></li>
-</ul>
-<p>send()方法中的参数仅用于POST请求。</p>
-<h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><p>GET：<br>1.一般用于信息获取<br>2.使用URL传递参数<br>3.对所发送信息的数量有限制，一般在2000个字符<br>4.传送数据量小，处理效率高。<br>5.安全性低，会被缓存。</p>
-<p>POST：<br>1.用于修改服务器上的资源。<br>2.对所发送信息的数量无限制。<br>3.安全性高。可靠性高。</p>
-<h2 id="AJAX的服务器响应"><a href="#AJAX的服务器响应" class="headerlink" title="AJAX的服务器响应"></a>AJAX的服务器响应</h2><ul>
-<li>responseTest 获得字符串响应数据</li>
-<li>responseXML  或的XML形式响应数据</li>
-</ul>
-<p>##AJAX的readyState和status</p>
-<p>readyState：</p>
-<blockquote>
-<p>0：请求未初始化<br>1：服务器连接已建立<br>2：请求已接收<br>3：请求处理中<br>4：请求已经完成，且响应已就绪</p>
-</blockquote>
-<p>Status：</p>
-<blockquote>
-<p>200：ok<br>404：未找到页面</p>
-</blockquote>
-<h4 id="HTTP请求中常用的状态码"><a href="#HTTP请求中常用的状态码" class="headerlink" title="HTTP请求中常用的状态码"></a>HTTP请求中常用的状态码</h4><blockquote>
-<p>301,302 重定向，后跟location头指明跳转位置<br>304 从浏览器缓存加载<br>403 权限不够，拒绝访问<br>404 资源未找到<br>500 服务器内部错误，通常为后端错误</p>
-</blockquote>
-]]></content>
+    <title>unity学习体会</title>
+    <link href="http://wenace.github.io/2017/08/14/unity%E5%AD%A6%E4%B9%A0%E4%BD%93%E4%BC%9A/"/>
+    <id>http://wenace.github.io/2017/08/14/unity学习体会/</id>
+    <published>2017-08-14T12:42:23.000Z</published>
+    <updated>2017-08-14T12:43:44.157Z</updated>
     
     <summary type="html">
-    
-      &lt;p&gt;ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性&lt;/p&gt;
-&lt;p&gt;ajax是一种用于创建快速动态网页的技术&lt;br&gt;&lt;em&gt;AJAX应用程序与浏览器和平台无关&lt;/em&gt;&lt;br&gt;
     
     </summary>
     
     
-      <category term="ajax" scheme="http://wenace.github.io/tags/ajax/"/>
-    
-      <category term="前端" scheme="http://wenace.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+      <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
     
   </entry>
   
   <entry>
-    <title>常见的JavaScript遍历方式</title>
-    <link href="http://wenace.github.io/2016/06/07/JavaScript%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/"/>
-    <id>http://wenace.github.io/2016/06/07/JavaScript的遍历方式/</id>
-    <published>2016-06-07T12:11:08.110Z</published>
-    <updated>2017-06-15T12:24:31.952Z</updated>
+    <title>hexo重新部署的注意点</title>
+    <link href="http://wenace.github.io/2017/06/15/hexo%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
+    <id>http://wenace.github.io/2017/06/15/hexo重新部署的注意点/</id>
+    <published>2017-06-15T13:28:40.000Z</published>
+    <updated>2017-06-16T03:17:36.428Z</updated>
     
-    <content type="html"><![CDATA[<p> 首先我们写一个数组和json对象。<br> var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];<br> var obj={<br>     first:’javascripts’,<br>     second:’css’,<br>     third:’jquery’<br> };<br><a id="more"></a></p>
-<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">function</span>&#123;</div><div class="line">	<span class="keyword">for</span>(var i=0,len=Arr.length;i&lt;len;i++)&#123;</div><div class="line">	<span class="keyword">if</span>(i==2)&#123;</div><div class="line">		//<span class="built_in">return</span>;  //函数执行被终止</div><div class="line">		//<span class="built_in">break</span>;   //循环被终止</div><div class="line">		<span class="built_in">continue</span>;  //循环被跳过</div><div class="line">	&#125;</div><div class="line">	console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</div><div class="line">	&#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
-<h3 id="for循环中有两点注意"><a href="#for循环中有两点注意" class="headerlink" title="for循环中有两点注意"></a>for循环中有两点注意</h3><ul>
-<li>for循环中的i在循环结束后依然存在与作用域中，这个时候为了避免影响作用域中的其余变量，我们将采用函数自执行的方式将其隔离起来。形如</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">（<span class="function"><span class="title">function</span></span>()&#123;&#125;)();</div></pre></td></tr></table></figure>
-<ul>
-<li>在循环中避免使用（var i=0;i&lt;Arr.length;）这样数组长度每次都在计算，效率远远低于例子中的写法，同理，我们也可以先赋值好值，如下</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var i=0;len=Arr.length;</div><div class="line"><span class="keyword">for</span>(;i&lt;len;i++)</div></pre></td></tr></table></figure>
-<h2 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for in 循环"></a>for in 循环</h2><p>for(var item in arr|obj){}可以用于遍历数组和对象</p>
-<ul>
-<li>遍历数组，item为索引值，arr为当前索引值对应的元素 arr[item];</li>
-<li>遍历对象，item为key值，arr表示key值对应的value值obj[item];</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">function</span>&#123;</div><div class="line">	<span class="keyword">for</span>(var i <span class="keyword">in</span> Arr)&#123;</div><div class="line">	<span class="keyword">if</span>(i==2)&#123;</div><div class="line">		//<span class="built_in">return</span>;  //函数执行被终止</div><div class="line">		//<span class="built_in">break</span>;   //循环被终止</div><div class="line">		<span class="built_in">continue</span>;  //循环被跳过</div><div class="line">	&#125;</div><div class="line">	console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</div><div class="line">	&#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
-<h3 id="关于for-in-的注意"><a href="#关于for-in-的注意" class="headerlink" title="关于for in 的注意"></a>关于for in 的注意</h3><ul>
-<li>同样式需要添加自执行函数。</li>
-<li>跳出循环中，return为函数执行终止，即整个函数将终止，在循环外面的也不再进行。break为终止当前的循环，后续代码继续执行。</li>
-</ul>
-<h2 id="for-Each"><a href="#for-Each" class="headerlink" title="for Each"></a>for Each</h2><p>Arr.forEach(function(arg){})<br>参数arg为数组没一项元素。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Arr.forEach(funciton(val,index)&#123;</div><div class="line">	<span class="keyword">if</span>(e==<span class="string">'css3'</span>)&#123;</div><div class="line">		<span class="built_in">return</span>;  //循环被跳过</div><div class="line">		//<span class="built_in">break</span>;   //Error</div><div class="line">		//<span class="built_in">continue</span>;  //Error</div><div class="line">	&#125;</div><div class="line">	console.log(val,index);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h3 id="for-Each注意点"><a href="#for-Each注意点" class="headerlink" title="for Each注意点"></a>for Each注意点</h3><ul>
-<li>回调函数中的2参数分别为值和索引值，和jQuery的$.each相反。</li>
-<li><em>forEach无法遍历对象</em>.</li>
-<li>forEach无法再IE中使用</li>
-<li>forEach无法使用break和continue，而return和for循环中的continue一致。</li>
-<li>可添加第二个参数，为一个数组，在回调中用this指向这个数组，若无第二参数，则this会指向window。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var newArr[];</div><div class="line">Arr.forEach(<span class="keyword">function</span>(val,index)&#123;</div><div class="line">	this.push(val); //this指向newArr.</div><div class="line">&#125;,newArr)</div></pre></td></tr></table></figure>
-<h3 id="do-while方式"><a href="#do-while方式" class="headerlink" title="do/while方式"></a>do/while方式</h3><p>不建议使用，此处不多说明</p>
-<h2 id="each"><a href="#each" class="headerlink" title="$.each"></a>$.each</h2><p>这个为jQuery中的方法，熟悉jQuery的应该或多或少的使用过。可遍历数组和对象。<br>下面的例子中e为索引值，或者key值，ele为value值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.each(Arr|obj,<span class="keyword">function</span>(e,ele)&#123;</div><div class="line">	console.log(e,ele);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h3 id="each注意点"><a href="#each注意点" class="headerlink" title="$.each注意点"></a>$.each注意点</h3><ul>
-<li>使用return或return true为跳过一次循环，继续执行后面的循环。</li>
-<li>使用return false为终止循环的执行，但是并不终止函数执行，</li>
-<li>无法使用break和continue来跳过循环。</li>
-<li>循环中this输出： </li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">console.log(this);</div><div class="line"></div><div class="line">console.log(this=ele);</div></pre></td></tr></table></figure>
-<h2 id="selecter-each"><a href="#selecter-each" class="headerlink" title="$(selecter).each()"></a>$(selecter).each()</h2><p>专门用来遍历DOMList</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.list li'</span>).each(<span class="keyword">function</span>(i,ele)&#123;</div><div class="line">	console.log(i,ele);</div><div class="line"></div><div class="line">	$(this).html(i);</div><div class="line">	<span class="keyword">if</span>($(this).attr(<span class="string">'data-item'</span>)==<span class="string">'do'</span>)&#123;</div><div class="line">	$(this).html(<span class="string">'data-item:do'</span>);</div><div class="line">	&#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<ul>
-<li>i ele 只被当前遍历DOM元素</li>
-<li>this 当前被遍历的DOM元素，不能调用jQuery方法。</li>
-<li>$(this)==$(ele) 当前被遍历元素的jQuery对象，可调用jQuery方法进行dom操作。</li>
-</ul>
-<p><em>在for循环中遍历DOMList中需要将DOMlist转换为数组</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var res=[].slice.call(domList);</div><div class="line"><span class="keyword">for</span>(var item <span class="keyword">in</span> res)&#123;&#125;</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。<a id="more"></a></p><p>1.一般情况下，一些朋友的是还在硬盘上，而一些朋友的可能只能从github上仓库下载下来</p><p>2.开始之前，我建议大家使用cnpm，npm有时候会抽风（ps：国内）,下面的内容也是使用cnpm进行对module进行安装.</p><p><strong>源文件从github下载</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">A[github进行源文件clone]--&gt;B[对本文件进行gitbash]</span><br><span class="line">B[对本文件进行gitbash]--&gt;C[cnpm install hexo]</span><br><span class="line">C[cnpm install hexo]--&gt;D[cnpm install hexo server]</span><br></pre></td></tr></table></figure><p>如果源文件依旧在本地，将node_modules删除，然后进行如github下载的步骤.</p><p><strong>注意点</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">A[hexo无法正常使用]--&gt;B[hexo server没有安装]</span><br><span class="line">A[hexo无法正常使用]--&gt;C[hexo deploy无法使用]</span><br><span class="line">A[hexo无法正常使用]--&gt;D[hexo无法识别]</span><br><span class="line"></span><br><span class="line">B[hexo server没有安装]--&gt;E[cnpm install hexo server]</span><br><span class="line"></span><br><span class="line">C[hexo deploy无法使用]--&gt;F[cnpm install hexo-deployer-git -save]</span><br><span class="line"></span><br><span class="line">D[hexo无法识别]--&gt;G[SSH重新配置]</span><br></pre></td></tr></table></figure><p>以下是对SSH重新配置</p><p>1.在Git Bash输入以下指令（任意位置点击鼠标右键），检查是否已经存在了SSH keys。</p><blockquote><p>ls -al ~/.ssh</p></blockquote><p>2.如果不存在就没有关系，如果存在的话，直接删除.ssh文件夹里面所有文件,位置应该在我的文档的用户文件夹中.</p><p>3.输入以下指令（邮箱就是你注册Github时候的邮箱）后，回车：</p><blockquote><p>ssh-keygen -t rsa -C “<a href="mailto:XXXXX@XX.com" target="_blank" rel="noopener">XXXXX@XX.com</a>“</p></blockquote><p>4.然后它会提示要你输入passphrase,这个时候不需要输入任何数据，直接一路回车.</p><p>5.成功之后键入：</p><blockquote><p>ssh-agent -s</p></blockquote><p>6.这一步有可能会出现”Could you open..”的错误信息</p><blockquote><p>ssh-add ~/.ssh/id_rsa</p></blockquote><p>这个时候你需要键入以下命令</p><blockquote><p>eval <code>ssh-agent -s</code></p></blockquote><p>成功后键入</p><blockquote><p>ssh-add</p></blockquote><p>7.到了这一步，就可以添加SSH key到你的Github账户了。键入以下指令，拷贝Key（先拷贝了，等一下可以直接粘贴）：</p><blockquote><p>clip &lt; ~/.ssh/id_rsa.pub</p></blockquote><p>8.添加SSH至github，这里就不赘述了，网上有很多教程.</p><p>9.之后可以测试下,输入以下命令，如果出现警告，输入yes就行</p><blockquote><p>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></p></blockquote>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt; 首先我们写一个数组和json对象。&lt;br&gt; var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];&lt;br&gt; var obj={&lt;br&gt;     first:’javascripts’,&lt;br&gt;     second:’css’,&lt;br&gt;     third:’jquery’&lt;br&gt; };&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo部署到github</title>
-    <link href="http://wenace.github.io/2016/05/30/hexo%E5%BB%BA%E7%AB%99-%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
-    <id>http://wenace.github.io/2016/05/30/hexo建站-部署到github/</id>
-    <published>2016-05-30T01:58:33.439Z</published>
-    <updated>2017-06-16T14:38:34.159Z</updated>
-    
-    <content type="html"><![CDATA[<p>昨天已经说了在本地搭建一个hexo，今天来总结下怎么把hexo部署到github上</p>
-<h2 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h2><p>当然了，部署到github上，首先你得有个github账号，注册步骤大家可以自行的google下，不难。<br><a id="more"></a></p>
-<h2 id="建立一个仓库"><a href="#建立一个仓库" class="headerlink" title="建立一个仓库"></a>建立一个仓库</h2><p>ok，这里说一下github是个好东西，新手应该好好打理自己的github，而不是做好博客就不管啦。<br>回头来看，当你注册好后，你需要建立一个仓库，具体建立仓库的办法如下<br>1.先建立一个新仓库<br><img src="http://ormm8jbub.bkt.clouddn.com/newRepo.png"><br>2.填入各项信息<br><img src="http://ormm8jbub.bkt.clouddn.com/buildRepo.png"><br>3.回到你刚建立的仓库，点击setting<br><img src="http://ormm8jbub.bkt.clouddn.com/setting.png"><br>4.滚轮至底部，寻找到如图按钮并点击<br><img src="http://ormm8jbub.bkt.clouddn.com/automaticPage.png"><br>5.进入下一页，根据自己想法填，这里设置之后就是你的首页了，最后找到如图按钮<br><img src="http://ormm8jbub.bkt.clouddn.com/continueLayout.png"><br>6.最后选择你喜欢的布局，按下如图按钮<br><img src="http://ormm8jbub.bkt.clouddn.com/publishLayout.png"></p>
-<p>现在你的github博客站点已经完成，地址应该是<a href="http://xxxx.github.io/" target="_blank" rel="external">http://XXXX.github.io/</a>把xxxx改成你的博客名字就可以访问了.接下来，我们把在本地的hexo部署到github上，才算真正的成功。</p>
-<h2 id="hexo部署"><a href="#hexo部署" class="headerlink" title="hexo部署"></a>hexo部署</h2><p>首先你需要在<em>_config.yml</em>文件中的deploy进行书写，如下格式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy: </div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repo: git@github.com:WenAce/WenAce.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<p>设置好后，进行两个命令即可部署到github上了，如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>得到最后的提示为<em>INFO  35 files generated in 2.88 s</em>为成功<br>接着我们需要deploy就完成了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$hexo</span> deploy</div></pre></td></tr></table></figure>
-<p>出现<em>INFO  Deploy done: git</em>,即成功。</p>
-<p>当你上传之后，需要等几分钟，才有可能看到效果，耐心等待下。<br>最后说一下这里有两个会错误的点，<br>1.有朋友会出现deploy错误的情况，按照以下来做</p>
-<ul>
-<li>安装 npm install hexo-deployer-git –save</li>
-<li>将deploy 的 type由github改为git</li>
-</ul>
-<p>2.插入图片不成功</p>
-<ul>
-<li>在source中建立images文件夹，把图片放进去</li>
-<li>采用img标签进行设置即可，格式为</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;img src=<span class="string">"/images/publishLayout.png"</span>&gt;</div></pre></td></tr></table></figure>
-<p>这样你就完成了，你的第一个在线博客完成了，接下来，我会总结一下markedown的一些语法，还有hexo上的设置问题，期待下吧(ˇˍˇ) 。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;昨天已经说了在本地搭建一个hexo，今天来总结下怎么把hexo部署到github上&lt;/p&gt;
-&lt;h2 id=&quot;注册github&quot;&gt;&lt;a href=&quot;#注册github&quot; class=&quot;headerlink&quot; title=&quot;注册github&quot;&gt;&lt;/a&gt;注册github&lt;/h2&gt;&lt;p&gt;当然了，部署到github上，首先你得有个github账号，注册步骤大家可以自行的google下，不难。&lt;br&gt;
+      &lt;p&gt;作为博客，hexo在本地弄好之后是相对方便的，然后偶尔的重装或者换电脑的时候，我们应该怎么样来进行重新部署呢。
     
     </summary>
     
     
       <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
-    
-      <category term="github" scheme="http://wenace.github.io/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo本地搭建心得</title>
-    <link href="http://wenace.github.io/2016/05/29/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
-    <id>http://wenace.github.io/2016/05/29/新的开始/</id>
-    <published>2016-05-29T14:43:22.983Z</published>
-    <updated>2017-06-15T13:29:22.121Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
-<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="external">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br><a id="more"></a></p>
-<h2 id="hexo搭建"><a href="#hexo搭建" class="headerlink" title="hexo搭建"></a>hexo搭建</h2><p>通过npm安装hexo，具体代码在git bash中如下，采用全局安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-cil -g</div></pre></td></tr></table></figure>
-<p>如果安装不成功，大家可以使用淘宝的<em>CNPM</em>进行安装，毕竟有时我们和这个世界不在一个维度上。</p>
-<h4 id="CNPM上的安装方式"><a href="#CNPM上的安装方式" class="headerlink" title="CNPM上的安装方式"></a>CNPM上的安装方式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install hexo</div></pre></td></tr></table></figure>
-<p>安装成功后，我们需要建立新的文件夹，大家可以自己选个位置，然后git bash。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init yourfolderName</div></pre></td></tr></table></figure>
-<p>当初始化成功之后，可以见到这么如下所示信息<br><em>INFO Start blogging with Hexo!</em></p>
-<p>因为hexo 3.0后server分开成独立模块，所以这个时候，我们需要先进行server的安装，在你博客文件夹下git bash，键入命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo server</div></pre></td></tr></table></figure>
-<p>激动人心的时刻到了，安装完后，输入以下命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div></pre></td></tr></table></figure>
-<p>我们将会获得如下信息提示。<br><em>INFO  Start processing<br>INFO  Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.</em></p>
-<p>可能有朋友会没有反应，原因可能是端口冲突了，你只需要在文件下的<em>node_modules</em>中的<em>hexo-server</em>的<em>index.js</em>修改port的值即可。</p>
-<p>待续。。。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。&lt;/p&gt;
-&lt;h2 id=&quot;安装Node&quot;&gt;&lt;a href=&quot;#安装Node&quot; class=&quot;headerlink&quot; title=&quot;安装Node&quot;&gt;&lt;/a&gt;安装Node&lt;/h2&gt;&lt;p&gt;大家可以自行在&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Node&lt;/a&gt;的官网上进行下载.&lt;br&gt;当安装完Node之后，自然会安装NPM，即包管理器。&lt;br&gt;之后我们就可以开始安装hexo。&lt;br&gt;这里希望大家安装&lt;em&gt;git&lt;/em&gt;，并且学会使用&lt;em&gt;git&lt;/em&gt;，对以后的工作都有很大的帮助。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
-    
-      <category term="本地搭建" scheme="http://wenace.github.io/tags/%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
