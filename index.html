@@ -306,6 +306,74 @@
 
 
   
+    <article id="post-前端总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/02/22/前端总结/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/02/22/前端总结/">前端开发总结(持续更新)</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>1.清除浮动</p>
+<p><em>此清除浮动可作为初始化的基本样式</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfloat&#123;</span><br><span class="line">	zoom:1</span><br><span class="line">&#125;</span><br><span class="line">.clerarfloat:after&#123;</span><br><span class="line">	display:block;</span><br><span class="line">	clear:both;</span><br><span class="line">	content:<span class="string">""</span>;</span><br><span class="line">	visibility:hidden;</span><br><span class="line">	height:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浮动/">浮动</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试常见/">面试常见</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2018/02/22/前端总结/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-JavaScript知识点2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -352,140 +420,6 @@
       
         <p class="article-more-link">
           <a   href="/2018/02/22/JavaScript知识点2/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-常用正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/02/22/常用正则表达式/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/常用正则表达式/">常用正则收集</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>一些常用的正则表达式
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/02/22/常用正则表达式/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-unity注意点" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/02/22/unity注意点/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/unity注意点/">unity控制运动</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <ol>
-<li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
-</ol>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/02/22/unity注意点/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -640,6 +574,140 @@
 
 
   
+    <article id="post-常用正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/02/22/常用正则表达式/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/02/22/常用正则表达式/">常用正则收集</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>一些常用的正则表达式
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2018/02/22/常用正则表达式/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-unity注意点" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/02/22/unity注意点/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/02/22/unity注意点/">unity控制运动</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <ol>
+<li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
+</ol>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2018/02/22/unity注意点/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-新的开始" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -707,11 +775,11 @@
 
 
   
-    <article id="post-前端总结" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-ajax学习总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/前端总结/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
+      <a  href="/2018/02/22/ajax学习总结/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.260Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
     </div>
@@ -725,7 +793,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/前端总结/">前端开发总结(持续更新)</a>
+      <a  class="article-title" href="/2018/02/22/ajax学习总结/">原生JavaScript编写ajax</a>
     </h1>
   
 
@@ -736,9 +804,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>1.清除浮动</p>
-<p><em>此清除浮动可作为初始化的基本样式</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfloat&#123;</span><br><span class="line">	zoom:1</span><br><span class="line">&#125;</span><br><span class="line">.clerarfloat:after&#123;</span><br><span class="line">	display:block;</span><br><span class="line">	clear:both;</span><br><span class="line">	content:<span class="string">""</span>;</span><br><span class="line">	visibility:hidden;</span><br><span class="line">	height:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              <p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p>
+<p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br>
           
       
     </div>
@@ -749,12 +816,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浮动/">浮动</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试常见/">面试常见</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/前端总结/#more">查看更多 >></a>
+          <a   href="/2018/02/22/ajax学习总结/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -775,10 +842,10 @@
 
 
   
-    <article id="post-2017gamejam01" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-http相关缓存头信息收集" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/2017gamejam01/" class="article-date">
+      <a  href="/2018/02/22/http相关缓存头信息收集/" class="article-date">
       <time datetime="2018-02-22T04:19:43.260Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
@@ -793,7 +860,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/2017gamejam01/">2017gamejam记录</a>
+      <a  class="article-title" href="/2018/02/22/http相关缓存头信息收集/">http相关缓存头</a>
     </h1>
   
 
@@ -804,77 +871,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/感悟/">感悟</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2017gamejam/">2017gamejam</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏开发/">游戏开发</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/02/22/2017gamejam01/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-javascript原型链方面总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/02/22/javascript原型链方面总结/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.260Z" itemprop="datePublished">2018-02-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/javascript原型链方面总结/">javascript原型链方面总结</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br>
+              <p>http中分请求头和响应头两种。</p>
+<blockquote>
+<p>请求头是浏览器向服务器发送请求的数据和资源.<br>响应头是服务器向浏览器响应的数据。</p>
+</blockquote>
+<p>##常见的请求头：<br>
           
       
     </div>
@@ -885,12 +886,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型链/">原型链</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络相关/">网络相关</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/javascript原型链方面总结/#more">查看更多 >></a>
+          <a   href="/2018/02/22/http相关缓存头信息收集/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
