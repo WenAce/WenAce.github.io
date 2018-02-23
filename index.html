@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="AceS1992">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Trust the light！"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Trust the light！"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Trust the light！</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    主页
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about/">
+                    关于我
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags/">
+                    标签
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories/">
+                    感悟
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+            <h1 id="main-title" class="title">Trust the light！</h1>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/选择，插入，归并，快速排序总结/">
+                选择，插入，归并，快速排序总结
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>一,O(n^2)选择排序和插入排序</p>
+<p>1选择排序<br>基本思路:标记第一个数，循环找到比这数小的然后对换，直至找到数组中最小的数，最好将最小的数放入标记的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">void selectSort(int arr[],int n)</span><br><span class="line">&#123;</span><br><span class="line">    for(int i=1;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int minIndex=i;</span><br><span class="line">        //遍历i+1到n数，找到最小值</span><br><span class="line">        for(int j=i+1;j&lt;n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(arr[j]&lt;arr[minIndex])</span><br><span class="line">                minIndex=j;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(arr[j],arr[minIndex]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        <a href="/2018/02/22/选择，插入，归并，快速排序总结/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/JavaScript的遍历方式/">
+                常见的JavaScript遍历方式
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p> 首先我们写一个数组和json对象。<br> var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];<br> var obj={<br>     first:’javascripts’,<br>     second:’css’,<br>     third:’jquery’<br> };<br>
+        </div>
+        <a href="/2018/02/22/JavaScript的遍历方式/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/JavaScript知识点2/">
+                JavaScript作用域等小结
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。<br>变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是<br>函数表达式与变量提升相似，如以下代码<br>
+        </div>
+        <a href="/2018/02/22/JavaScript知识点2/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/新的开始/">
+                Hexo本地搭建心得
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
+<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br>
+        </div>
+        <a href="/2018/02/22/新的开始/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/unity-控制人物运动总结/">
+                unity注意点
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h1 id="unity学习小总结"><a href="#unity学习小总结" class="headerlink" title="unity学习小总结"></a>unity学习小总结</h1><p>1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.<br>prefab之后的物品，也只能通过prefab的预制体进行赋值。</p>
+<p>2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取.</p>
+<p>3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。<br>
+        </div>
+        <a href="/2018/02/22/unity-控制人物运动总结/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/常用正则表达式/">
+                常用正则收集
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>一些常用的正则表达式
+        </div>
+        <a href="/2018/02/22/常用正则表达式/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/前端总结/">
+                前端开发总结(持续更新)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>1.清除浮动</p>
+<p><em>此清除浮动可作为初始化的基本样式</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfloat&#123;</span><br><span class="line">	zoom:1</span><br><span class="line">&#125;</span><br><span class="line">.clerarfloat:after&#123;</span><br><span class="line">	display:block;</span><br><span class="line">	clear:both;</span><br><span class="line">	content:<span class="string">""</span>;</span><br><span class="line">	visibility:hidden;</span><br><span class="line">	height:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        <a href="/2018/02/22/前端总结/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/unity注意点/">
+                unity控制运动
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <ol>
+<li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
+</ol>
+        </div>
+        <a href="/2018/02/22/unity注意点/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/2017gamejam01/">
+                2017gamejam记录
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/感悟/">感悟</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>第一次参加gamejam，虽然不是以参赛者的身份，但是确感受到了不一样的东西。对于一个热爱游戏，并且希望致力于游戏开发方向的我，参加这次活动，自我感觉还是挺值的，可以认识到行业里面的人，从他们的口中，或者是制作过程中，可以去了解游戏制作的过程，何乐而不为呢。<br>
+        </div>
+        <a href="/2018/02/22/2017gamejam01/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2018/02/22/ajax学习总结/">
+                原生JavaScript编写ajax
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p>
+<p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br>
+        </div>
+        <a href="/2018/02/22/ajax学习总结/" class="read-more">Read More</a>
+    
+
+</div>
+            
+        </section>
+    </div>
+</div>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="wrap-pagination">
+                <a class="disabled" href="/">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </a>
+                <a class="" href="/page/2/">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/选择，插入，归并，快速排序总结/">选择，插入，归并，快速排序总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/JavaScript的遍历方式/">常见的JavaScript遍历方式</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/感悟/">感悟</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/WenAce">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:704241431@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

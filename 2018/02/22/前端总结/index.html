@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="1.清除浮动
+此清除浮动可作为初始化的基本样式
+12345678910.clearfloat&amp;#123;	zoom:1&amp;#125;.clerarfloat:after&amp;#123;	display:block;	clear:both;	content:&quot;&quot;;	visibility:hidden;	height:0;&amp;#125;">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="AceS1992">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="前端开发总结(持续更新)"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Trust the light！"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>前端开发总结(持续更新) - Trust the light！</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    主页
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about/">
+                    关于我
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags/">
+                    标签
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories/">
+                    感悟
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/02/22/前端总结/">
+                前端开发总结(持续更新)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>1.清除浮动</p>
+<p><em>此清除浮动可作为初始化的基本样式</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfloat&#123;</span><br><span class="line">	zoom:1</span><br><span class="line">&#125;</span><br><span class="line">.clerarfloat:after&#123;</span><br><span class="line">	display:block;</span><br><span class="line">	clear:both;</span><br><span class="line">	content:<span class="string">""</span>;</span><br><span class="line">	visibility:hidden;</span><br><span class="line">	height:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ol>
+<li>cookie,localStorage,sessionStorage区别</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.cookie 是客户端保持状态方案。在浏览器和服务器间来回传递。</span><br><span class="line">2.sessionStorage和localStorage不会再浏览器和服务器间来回传递。</span><br><span class="line">3.sessionStorage和localStorage的存储空间大并且各自有独立的存储空间。</span><br><span class="line">4.更多丰富易用的接口。</span><br></pre></td></tr></table></figure>
+<p>3.当需要声明变量的时候，记得使用var，不要漏写，虽然JavaScript同意可以不使用var来声明变量，但是这容易造成变量的混乱，当不使用var声明变量，变量为一个全局变量。我们应该尽量避免全局变量。</p>
+<p>4.清空一个数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr=[1,2,3];</span><br><span class="line">arr.length=0;</span><br></pre></td></tr></table></figure>
+<p>5.将arguments对象转换成数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr=Array.prototype.slice.call(arguments);</span><br></pre></td></tr></table></figure>
+<p>slice.call()是把arguments对象数组提取出来转换成数组。</p>
+<p>6.call()和apply()区别<br>call(thisObj,Object)参数为object<br>apply(thisObj,[arrArray])参数为arguments对象或者数组</p>
+<p>7.变量声明提升拆分两个部分，一为声明，一位赋值。提升是吧声明提升，赋值留在原地。</p>
+<p>javascript中一个名字(name)以四种方式进入作用域(scope)，其优先级顺序如下：<br>1、语言内置：所有的作用域中都有 this 和 arguments 关键字<br>2、形式参数：函数的参数在函数作用域中都是有效的<br>3、函数声明：形如function foo() {}<br>4、变量声明：形如var bar;</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/浮动/">#浮动</a> <a href="/tags/数组/">#数组</a> <a href="/tags/面试常见/">#面试常见</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/选择，插入，归并，快速排序总结/">选择，插入，归并，快速排序总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/JavaScript的遍历方式/">常见的JavaScript遍历方式</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/感悟/">感悟</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/WenAce">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:704241431@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

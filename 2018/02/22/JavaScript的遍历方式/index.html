@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="首先我们写一个数组和json对象。 var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’]; var obj={     first:’javascripts’,     second:’css’,     third:’jquery’ };">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="AceS1992">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="常见的JavaScript遍历方式"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Trust the light！"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>常见的JavaScript遍历方式 - Trust the light！</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    主页
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about/">
+                    关于我
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags/">
+                    标签
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories/">
+                    感悟
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/02/22/JavaScript的遍历方式/">
+                常见的JavaScript遍历方式
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p> 首先我们写一个数组和json对象。<br> var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];<br> var obj={<br>     first:’javascripts’,<br>     second:’css’,<br>     third:’jquery’<br> };<br><a id="more"></a></p>
+<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(var i=0,len=Arr.length;i&lt;len;i++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(i==2)&#123;</span><br><span class="line">		//<span class="built_in">return</span>;  //函数执行被终止</span><br><span class="line">		//<span class="built_in">break</span>;   //循环被终止</span><br><span class="line">		<span class="built_in">continue</span>;  //循环被跳过</span><br><span class="line">	&#125;</span><br><span class="line">	console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="for循环中有两点注意"><a href="#for循环中有两点注意" class="headerlink" title="for循环中有两点注意"></a>for循环中有两点注意</h3><ul>
+<li>for循环中的i在循环结束后依然存在与作用域中，这个时候为了避免影响作用域中的其余变量，我们将采用函数自执行的方式将其隔离起来。形如</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（<span class="function"><span class="title">function</span></span>()&#123;&#125;)();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在循环中避免使用（var i=0;i&lt;Arr.length;）这样数组长度每次都在计算，效率远远低于例子中的写法，同理，我们也可以先赋值好值，如下</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var i=0;len=Arr.length;</span><br><span class="line"><span class="keyword">for</span>(;i&lt;len;i++)</span><br></pre></td></tr></table></figure>
+<h2 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for in 循环"></a>for in 循环</h2><p>for(var item in arr|obj){}可以用于遍历数组和对象</p>
+<ul>
+<li>遍历数组，item为索引值，arr为当前索引值对应的元素 arr[item];</li>
+<li>遍历对象，item为key值，arr表示key值对应的value值obj[item];</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(var i <span class="keyword">in</span> Arr)&#123;</span><br><span class="line">	<span class="keyword">if</span>(i==2)&#123;</span><br><span class="line">		//<span class="built_in">return</span>;  //函数执行被终止</span><br><span class="line">		//<span class="built_in">break</span>;   //循环被终止</span><br><span class="line">		<span class="built_in">continue</span>;  //循环被跳过</span><br><span class="line">	&#125;</span><br><span class="line">	console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="关于for-in-的注意"><a href="#关于for-in-的注意" class="headerlink" title="关于for in 的注意"></a>关于for in 的注意</h3><ul>
+<li>同样式需要添加自执行函数。</li>
+<li>跳出循环中，return为函数执行终止，即整个函数将终止，在循环外面的也不再进行。break为终止当前的循环，后续代码继续执行。</li>
+</ul>
+<h2 id="for-Each"><a href="#for-Each" class="headerlink" title="for Each"></a>for Each</h2><p>Arr.forEach(function(arg){})<br>参数arg为数组没一项元素。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Arr.forEach(funciton(val,index)&#123;</span><br><span class="line">	<span class="keyword">if</span>(e==<span class="string">'css3'</span>)&#123;</span><br><span class="line">		<span class="built_in">return</span>;  //循环被跳过</span><br><span class="line">		//<span class="built_in">break</span>;   //Error</span><br><span class="line">		//<span class="built_in">continue</span>;  //Error</span><br><span class="line">	&#125;</span><br><span class="line">	console.log(val,index);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="for-Each注意点"><a href="#for-Each注意点" class="headerlink" title="for Each注意点"></a>for Each注意点</h3><ul>
+<li>回调函数中的2参数分别为值和索引值，和jQuery的$.each相反。</li>
+<li><em>forEach无法遍历对象</em>.</li>
+<li>forEach无法再IE中使用</li>
+<li>forEach无法使用break和continue，而return和for循环中的continue一致。</li>
+<li>可添加第二个参数，为一个数组，在回调中用this指向这个数组，若无第二参数，则this会指向window。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var newArr[];</span><br><span class="line">Arr.forEach(<span class="keyword">function</span>(val,index)&#123;</span><br><span class="line">	this.push(val); //this指向newArr.</span><br><span class="line">&#125;,newArr)</span><br></pre></td></tr></table></figure>
+<h3 id="do-while方式"><a href="#do-while方式" class="headerlink" title="do/while方式"></a>do/while方式</h3><p>不建议使用，此处不多说明</p>
+<h2 id="each"><a href="#each" class="headerlink" title="$.each"></a>$.each</h2><p>这个为jQuery中的方法，熟悉jQuery的应该或多或少的使用过。可遍历数组和对象。<br>下面的例子中e为索引值，或者key值，ele为value值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each(Arr|obj,<span class="keyword">function</span>(e,ele)&#123;</span><br><span class="line">	console.log(e,ele);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="each注意点"><a href="#each注意点" class="headerlink" title="$.each注意点"></a>$.each注意点</h3><ul>
+<li>使用return或return true为跳过一次循环，继续执行后面的循环。</li>
+<li>使用return false为终止循环的执行，但是并不终止函数执行，</li>
+<li>无法使用break和continue来跳过循环。</li>
+<li>循环中this输出： </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(this);</span><br><span class="line"></span><br><span class="line">console.log(this=ele);</span><br></pre></td></tr></table></figure>
+<h2 id="selecter-each"><a href="#selecter-each" class="headerlink" title="$(selecter).each()"></a>$(selecter).each()</h2><p>专门用来遍历DOMList</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.list li'</span>).each(<span class="keyword">function</span>(i,ele)&#123;</span><br><span class="line">	console.log(i,ele);</span><br><span class="line"></span><br><span class="line">	$(this).html(i);</span><br><span class="line">	<span class="keyword">if</span>($(this).attr(<span class="string">'data-item'</span>)==<span class="string">'do'</span>)&#123;</span><br><span class="line">	$(this).html(<span class="string">'data-item:do'</span>);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>i ele 只被当前遍历DOM元素</li>
+<li>this 当前被遍历的DOM元素，不能调用jQuery方法。</li>
+<li>$(this)==$(ele) 当前被遍历元素的jQuery对象，可调用jQuery方法进行dom操作。</li>
+</ul>
+<p><em>在for循环中遍历DOMList中需要将DOMlist转换为数组</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var res=[].slice.call(domList);</span><br><span class="line"><span class="keyword">for</span>(var item <span class="keyword">in</span> res)&#123;&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/JavaScript/">#JavaScript</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/选择，插入，归并，快速排序总结/">选择，插入，归并，快速排序总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/JavaScript的遍历方式/">常见的JavaScript遍历方式</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/感悟/">感悟</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/WenAce">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:704241431@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

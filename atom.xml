@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Trust the light！</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://wenace.github.io/"/>
   <updated>2018-02-22T13:35:30.447Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://wenace.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>AceS1992</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>选择，插入，归并，快速排序总结</title>
-    <link href="http://yoursite.com/2018/02/22/%E9%80%89%E6%8B%A9%EF%BC%8C%E6%8F%92%E5%85%A5%EF%BC%8C%E5%BD%92%E5%B9%B6%EF%BC%8C%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2018/02/22/选择，插入，归并，快速排序总结/</id>
+    <link href="http://wenace.github.io/2018/02/22/%E9%80%89%E6%8B%A9%EF%BC%8C%E6%8F%92%E5%85%A5%EF%BC%8C%E5%BD%92%E5%B9%B6%EF%BC%8C%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/选择，插入，归并，快速排序总结/</id>
     <published>2018-02-22T07:17:31.000Z</published>
     <updated>2018-02-22T13:35:30.447Z</updated>
     
@@ -34,38 +34,14 @@
     </summary>
     
     
-      <category term="-- 算法 -- 排序" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript作用域等小结</title>
-    <link href="http://yoursite.com/2018/02/22/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B92/"/>
-    <id>http://yoursite.com/2018/02/22/JavaScript知识点2/</id>
-    <published>2018-02-22T04:19:43.270Z</published>
-    <updated>2017-06-29T07:33:51.950Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。<br>变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是<br>函数表达式与变量提升相似，如以下代码<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);// a为undefined</span><br><span class="line">var a=2;</span><br><span class="line">和</span><br><span class="line">var a;</span><br><span class="line">console.log(a);</span><br><span class="line">a=2;</span><br><span class="line">上面代码其实就下面这段代码。</span><br><span class="line"></span><br><span class="line">//又如</span><br><span class="line">fn();</span><br><span class="line">var fn=funciton()&#123;&#125;;</span><br><span class="line">那么这段函数表达式会被提升，导致fn()为undefined</span><br></pre></td></tr></table></figure></p><p>2.this指针具体在那些地方执行。<br>首先肯定的是this是要在执行时才能确认值，定义时无法确认<br>一般分一下几种<br>构造函数执行,普通函数执行,对象属性执行,还有call，apply，bind三种<br>注意的是bind是用在函数表达式中的。</p><p>3.作用域和作用域链<br>JS没有块级作用域，只有函数作用域和全局作用域。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a=100;</span><br><span class="line">function a()&#123;</span><br><span class="line">    var a=200;</span><br><span class="line">    console.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如上述代码，假设a()内的变量a不存在，那么输出的a将成为一个自由变量，根据作用域链，将往上寻找变量<br>将在全局内找到，进而输出。</p><p>4.闭包其实就在一个函数内部的函数可访问其内部的变量，特别在封装来说，有很大的作用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//典型闭包封装</span><br><span class="line">function isLoad()&#123;</span><br><span class="line">    var _onLoad=[];</span><br><span class="line">    return function(id)&#123;</span><br><span class="line">        if(_onLoad.indexOf(id)&gt;=0)</span><br><span class="line">        return false;</span><br><span class="line">        else</span><br><span class="line">        &#123;_onLoad.push(id);</span><br><span class="line">        return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>5.同步和异步最大的区别就是，同步会造成程序阻塞，而异步就不会，且使得程序高效的运行起来<br>一些常用的异、</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。&lt;br&gt;变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是&lt;br&gt;函数表达式与变量提升相似，如以下代码&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
-    
-      <category term="作用域" scheme="http://yoursite.com/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
-    
-      <category term="闭包" scheme="http://yoursite.com/tags/%E9%97%AD%E5%8C%85/"/>
+      <category term="-- 算法 -- 排序" scheme="http://wenace.github.io/tags/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/"/>
     
   </entry>
   
   <entry>
     <title>常见的JavaScript遍历方式</title>
-    <link href="http://yoursite.com/2018/02/22/JavaScript%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/"/>
-    <id>http://yoursite.com/2018/02/22/JavaScript的遍历方式/</id>
+    <link href="http://wenace.github.io/2018/02/22/JavaScript%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/"/>
+    <id>http://wenace.github.io/2018/02/22/JavaScript的遍历方式/</id>
     <published>2018-02-22T04:19:43.270Z</published>
     <updated>2017-06-15T12:24:31.953Z</updated>
     
@@ -78,40 +54,38 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
     
   </entry>
   
   <entry>
-    <title>前端开发总结(持续更新)</title>
-    <link href="http://yoursite.com/2018/02/22/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2018/02/22/前端总结/</id>
+    <title>JavaScript作用域等小结</title>
+    <link href="http://wenace.github.io/2018/02/22/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B92/"/>
+    <id>http://wenace.github.io/2018/02/22/JavaScript知识点2/</id>
     <published>2018-02-22T04:19:43.270Z</published>
-    <updated>2017-06-15T12:24:31.595Z</updated>
+    <updated>2017-06-29T07:33:51.950Z</updated>
     
-    <content type="html"><![CDATA[<p>1.清除浮动</p><p><em>此清除浮动可作为初始化的基本样式</em></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfloat&#123;</span><br><span class="line">zoom:1</span><br><span class="line">&#125;</span><br><span class="line">.clerarfloat:after&#123;</span><br><span class="line">display:block;</span><br><span class="line">clear:both;</span><br><span class="line">content:<span class="string">""</span>;</span><br><span class="line">visibility:hidden;</span><br><span class="line">height:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><ol><li>cookie,localStorage,sessionStorage区别</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.cookie 是客户端保持状态方案。在浏览器和服务器间来回传递。</span><br><span class="line">2.sessionStorage和localStorage不会再浏览器和服务器间来回传递。</span><br><span class="line">3.sessionStorage和localStorage的存储空间大并且各自有独立的存储空间。</span><br><span class="line">4.更多丰富易用的接口。</span><br></pre></td></tr></table></figure><p>3.当需要声明变量的时候，记得使用var，不要漏写，虽然JavaScript同意可以不使用var来声明变量，但是这容易造成变量的混乱，当不使用var声明变量，变量为一个全局变量。我们应该尽量避免全局变量。</p><p>4.清空一个数组</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr=[1,2,3];</span><br><span class="line">arr.length=0;</span><br></pre></td></tr></table></figure><p>5.将arguments对象转换成数组</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr=Array.prototype.slice.call(arguments);</span><br></pre></td></tr></table></figure><p>slice.call()是把arguments对象数组提取出来转换成数组。</p><p>6.call()和apply()区别<br>call(thisObj,Object)参数为object<br>apply(thisObj,[arrArray])参数为arguments对象或者数组</p><p>7.变量声明提升拆分两个部分，一为声明，一位赋值。提升是吧声明提升，赋值留在原地。</p><p>javascript中一个名字(name)以四种方式进入作用域(scope)，其优先级顺序如下：<br>1、语言内置：所有的作用域中都有 this 和 arguments 关键字<br>2、形式参数：函数的参数在函数作用域中都是有效的<br>3、函数声明：形如function foo() {}<br>4、变量声明：形如var bar;</p>]]></content>
+    <content type="html"><![CDATA[<p>1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。<br>变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是<br>函数表达式与变量提升相似，如以下代码<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);// a为undefined</span><br><span class="line">var a=2;</span><br><span class="line">和</span><br><span class="line">var a;</span><br><span class="line">console.log(a);</span><br><span class="line">a=2;</span><br><span class="line">上面代码其实就下面这段代码。</span><br><span class="line"></span><br><span class="line">//又如</span><br><span class="line">fn();</span><br><span class="line">var fn=funciton()&#123;&#125;;</span><br><span class="line">那么这段函数表达式会被提升，导致fn()为undefined</span><br></pre></td></tr></table></figure></p><p>2.this指针具体在那些地方执行。<br>首先肯定的是this是要在执行时才能确认值，定义时无法确认<br>一般分一下几种<br>构造函数执行,普通函数执行,对象属性执行,还有call，apply，bind三种<br>注意的是bind是用在函数表达式中的。</p><p>3.作用域和作用域链<br>JS没有块级作用域，只有函数作用域和全局作用域。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a=100;</span><br><span class="line">function a()&#123;</span><br><span class="line">    var a=200;</span><br><span class="line">    console.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如上述代码，假设a()内的变量a不存在，那么输出的a将成为一个自由变量，根据作用域链，将往上寻找变量<br>将在全局内找到，进而输出。</p><p>4.闭包其实就在一个函数内部的函数可访问其内部的变量，特别在封装来说，有很大的作用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//典型闭包封装</span><br><span class="line">function isLoad()&#123;</span><br><span class="line">    var _onLoad=[];</span><br><span class="line">    return function(id)&#123;</span><br><span class="line">        if(_onLoad.indexOf(id)&gt;=0)</span><br><span class="line">        return false;</span><br><span class="line">        else</span><br><span class="line">        &#123;_onLoad.push(id);</span><br><span class="line">        return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>5.同步和异步最大的区别就是，同步会造成程序阻塞，而异步就不会，且使得程序高效的运行起来<br>一些常用的异、</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;1.清除浮动&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;此清除浮动可作为初始化的基本样式&lt;/em&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;.clearfloat&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	zoom:1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.clerarfloat:after&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	display:block;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	clear:both;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	content:&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	visibility:hidden;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	height:0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      &lt;p&gt;1.JS中执行上下文，范围为一段script标签，或者一个函数范围内。&lt;br&gt;变量提升中，注意函数表达式和函数声明的区别，可以说函数声明会整体提升，但是&lt;br&gt;函数表达式与变量提升相似，如以下代码&lt;br&gt;
     
     </summary>
     
     
-      <category term="浮动" scheme="http://yoursite.com/tags/%E6%B5%AE%E5%8A%A8/"/>
+      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
     
-      <category term="数组" scheme="http://yoursite.com/tags/%E6%95%B0%E7%BB%84/"/>
+      <category term="作用域" scheme="http://wenace.github.io/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
     
-      <category term="面试常见" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81/"/>
+      <category term="闭包" scheme="http://wenace.github.io/tags/%E9%97%AD%E5%8C%85/"/>
     
   </entry>
   
   <entry>
     <title>Hexo本地搭建心得</title>
-    <link href="http://yoursite.com/2018/02/22/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
-    <id>http://yoursite.com/2018/02/22/新的开始/</id>
+    <link href="http://wenace.github.io/2018/02/22/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
+    <id>http://wenace.github.io/2018/02/22/新的开始/</id>
     <published>2018-02-22T04:19:43.270Z</published>
     <updated>2017-06-15T13:29:22.121Z</updated>
     
@@ -125,58 +99,16 @@
     </summary>
     
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
     
-      <category term="本地搭建" scheme="http://yoursite.com/tags/%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>unity控制运动</title>
-    <link href="http://yoursite.com/2018/02/22/unity%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
-    <id>http://yoursite.com/2018/02/22/unity注意点/</id>
-    <published>2018-02-22T04:19:43.270Z</published>
-    <updated>2017-06-24T15:02:51.648Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li></ol><a id="more"></a><p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p><pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;</code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p><p>2.3 Vector3.SmoothDamp<br>      该方法是可以平滑的从A逐渐移动到B点，并且可以控制速度，最常见的用法是相机跟随目标。</p><p>2.4 Transform.position<br>       有时重新赋值position能更快实现我们的目标。</p><ol><li><p>通过Rigidbody组件移动物体<br> Rigidbody组件用于模拟物体的物理状态，比如物体受重力影响，物体被碰撞后的击飞等等。</p><p> 注意：关于Rigidbody的调用均应放在FixedUpdate方法中，该方法会在每一次执行物理模拟前被调用。</p></li></ol><p>3.1 Rigidbody.velocity<br>     设置刚体速度可以让物体运动并且忽略静摩擦力，这会让物体快速从静止状态进入运动状态。</p><p>3.2 Rigidbody.AddForce<br>      给刚体添加一个方向的力，这种方式适合模拟物体在外力的作用下的运动状态。</p><p>3.3 Rigidbody.MovePosition<br>      刚体受到物理约束的情况下，移动到指定点。</p><ol><li>通过CharacterController组件移动物体<br>  CharacterController用于控制第一人称或第三人称角色的运动，使用这种方式可以模拟人的一些行为，比如限制角色爬坡的最大斜度,步伐的高度等。</li></ol><p>4.1 CharacterController.SimpleMove<br>     用于模拟简单运动，并且自动应用重力，返回值表示角色当前是否着地。</p><p>4.2 CharacterController.Move<br>     模拟更复杂的运动,重力需要通过代码实现，返回值表示角色与周围的碰撞信息。</p><p>通常我们都需要if语句进行input.GetKey判断。根据不同的2d形式，采用unity的动画系统，动画系统中需要注意</p><p>1.获取的为Aminator，需要先声明，后获取，与rigidbody相似。</p><p>2.当方向较多的时候，我们使用blend tree进行各个位置的定位，因为sprite有方向，所以我们需要对Vector3.x或者y下进行1或者-1的赋值，一般在动画系统中设置parameter有moveX，moveY的bool值。在代码过程中国对aminator进行setbool方法的调用。</p><p>3.在transiton(过渡)中设置conditions,状态机形式。通过getAxis来获取水平方向，键盘输入将得到1到-1范围内. transform.Translate 通过位移方式进行移动。</p><p>4.transform.position得到的值是一个坐标值，也就是说，移动的sprite是通过不断刷新坐标值，从而实现移动</p><p>5.放在Update()函数中的代码是以帧来执行的.如果我们需要物体的移动以秒来执行.我们需要将物体移动的值乘以Time.deltaTime。</p><p>6.2d中我们需要设置player为rigidbody和box collision2d或者其他方式，还有一个就是play所站立的地方为box collision2d或其他方式。</p><p>7.对钢体施加力也可形成移动，rd.addForce() Mathf.Clamp()控制速度最大和最小值，其实就是左右方向的最大值，避免速度过大，冲出场景</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;通过Transform组件移动物体&lt;br&gt; Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="unity" scheme="http://yoursite.com/tags/unity/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常用正则收集</title>
-    <link href="http://yoursite.com/2018/02/22/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    <id>http://yoursite.com/2018/02/22/常用正则表达式/</id>
-    <published>2018-02-22T04:19:43.270Z</published>
-    <updated>2017-06-15T12:24:31.919Z</updated>
-    
-    <content type="html"><![CDATA[<p>一些常用的正则表达式<a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">//正整数</span><br><span class="line">/^[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//负整数</span><br><span class="line">/^-[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//正浮点数</span><br><span class="line">/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;</span><br><span class="line"></span><br><span class="line">//负浮点数</span><br><span class="line">/^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;  </span><br><span class="line"></span><br><span class="line">//浮点数</span><br><span class="line">/^(-?\d+)(\.\d+)?$/;</span><br><span class="line"></span><br><span class="line">//email地址</span><br><span class="line">/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;</span><br><span class="line"></span><br><span class="line">//url地址</span><br><span class="line">/^[a-zA-z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\S*)?$/;</span><br><span class="line">或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\<span class="string">':+!]*([^&lt;&gt;\"\"])*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//年/月/日（年-月-日、年.月.日）</span></span><br><span class="line"><span class="string">/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中文字符</span></span><br><span class="line"><span class="string">/[\u4e00-\u9fa5]/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配账号是否合法(字母开头，允许5-10字节，允许字母数字下划线)</span></span><br><span class="line"><span class="string">/^[a-zA-Z][a-zA-Z0-9_]&#123;4,9&#125;$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配空白行的正则表达式</span></span><br><span class="line"><span class="string">/\n\s*\r/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中国邮政编码</span></span><br><span class="line"><span class="string">/[1-9]\d&#123;5&#125;(?!\d)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配身份证</span></span><br><span class="line"><span class="string">/\d&#123;15&#125;|\d&#123;18&#125;/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配国内电话号码</span></span><br><span class="line"><span class="string">/(\d&#123;3&#125;-|\d&#123;4&#125;-)?(\d&#123;8&#125;|\d&#123;7&#125;)?/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配IP地址</span></span><br><span class="line"><span class="string">/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配首尾空白字符</span></span><br><span class="line"><span class="string">/^\s*|\s*$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配HTML标记</span></span><br><span class="line"><span class="string">&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的网络链接</span></span><br><span class="line"><span class="string">(h|H)(r|R)(e|E)(f|F) *=*('</span>|<span class="string">")?(\w|\\|\/|\.)+('|"</span>| *|&gt;)?</span><br><span class="line"></span><br><span class="line">//提取信息中的邮件地址</span><br><span class="line">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* </span><br><span class="line"></span><br><span class="line">//提取信息中的图片链接</span><br><span class="line">(s|S)(r|R)(c|C) *= *(<span class="string">'|")?(\w|\\|\/|\.)+('</span>|<span class="string">"| *|&gt;)? </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的 IP 地址</span></span><br><span class="line"><span class="string">(\d+)\.(\d+)\.(\d+)\.(\d+)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//取信息中的中国手机号码</span></span><br><span class="line"><span class="string">(86)*0*13\d&#123;9&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的中国邮政编码</span></span><br><span class="line"><span class="string">[1-9]&#123;1&#125;(\d+)&#123;5&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的浮点数（即小数）</span></span><br><span class="line"><span class="string">(-?\d*)\.?\d+ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的任何数字</span></span><br><span class="line"><span class="string">(-?\d*)(\.\d+)?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//电话区号</span></span><br><span class="line"><span class="string">^0\d&#123;2,3&#125;$</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//腾讯 QQ 号</span></span><br><span class="line"><span class="string">^[1-9]*[1-9][0-9]*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//帐号（字母开头，允许 5-16 字节，允许字母数字下划线）</span></span><br><span class="line"><span class="string">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//中文、英文、数字及下划线</span></span><br><span class="line"><span class="string">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</span></span><br></pre></td></tr></table></figure></p><p>这里推荐一个<a href="http://www1.w3cfuns.com/tools.php?mod=regex" target="_blank" rel="noopener">正则表达式的调试工具</a><br>也可以看看<a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="noopener">正则的基本语法</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一些常用的正则表达式
-    
-    </summary>
-    
-    
-      <category term="正则" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99/"/>
+      <category term="本地搭建" scheme="http://wenace.github.io/tags/%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
   <entry>
     <title>unity注意点</title>
-    <link href="http://yoursite.com/2018/02/22/unity-%E6%8E%A7%E5%88%B6%E4%BA%BA%E7%89%A9%E8%BF%90%E5%8A%A8%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2018/02/22/unity-控制人物运动总结/</id>
+    <link href="http://wenace.github.io/2018/02/22/unity-%E6%8E%A7%E5%88%B6%E4%BA%BA%E7%89%A9%E8%BF%90%E5%8A%A8%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/unity-控制人物运动总结/</id>
     <published>2018-02-22T04:19:43.270Z</published>
     <updated>2017-06-24T13:34:55.827Z</updated>
     
@@ -191,14 +123,82 @@
     </summary>
     
     
-      <category term="unity" scheme="http://yoursite.com/tags/unity/"/>
+      <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常用正则收集</title>
+    <link href="http://wenace.github.io/2018/02/22/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://wenace.github.io/2018/02/22/常用正则表达式/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-15T12:24:31.919Z</updated>
+    
+    <content type="html"><![CDATA[<p>一些常用的正则表达式<a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">//正整数</span><br><span class="line">/^[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//负整数</span><br><span class="line">/^-[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//正浮点数</span><br><span class="line">/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;</span><br><span class="line"></span><br><span class="line">//负浮点数</span><br><span class="line">/^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;  </span><br><span class="line"></span><br><span class="line">//浮点数</span><br><span class="line">/^(-?\d+)(\.\d+)?$/;</span><br><span class="line"></span><br><span class="line">//email地址</span><br><span class="line">/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;</span><br><span class="line"></span><br><span class="line">//url地址</span><br><span class="line">/^[a-zA-z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\S*)?$/;</span><br><span class="line">或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\<span class="string">':+!]*([^&lt;&gt;\"\"])*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//年/月/日（年-月-日、年.月.日）</span></span><br><span class="line"><span class="string">/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中文字符</span></span><br><span class="line"><span class="string">/[\u4e00-\u9fa5]/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配账号是否合法(字母开头，允许5-10字节，允许字母数字下划线)</span></span><br><span class="line"><span class="string">/^[a-zA-Z][a-zA-Z0-9_]&#123;4,9&#125;$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配空白行的正则表达式</span></span><br><span class="line"><span class="string">/\n\s*\r/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中国邮政编码</span></span><br><span class="line"><span class="string">/[1-9]\d&#123;5&#125;(?!\d)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配身份证</span></span><br><span class="line"><span class="string">/\d&#123;15&#125;|\d&#123;18&#125;/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配国内电话号码</span></span><br><span class="line"><span class="string">/(\d&#123;3&#125;-|\d&#123;4&#125;-)?(\d&#123;8&#125;|\d&#123;7&#125;)?/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配IP地址</span></span><br><span class="line"><span class="string">/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配首尾空白字符</span></span><br><span class="line"><span class="string">/^\s*|\s*$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配HTML标记</span></span><br><span class="line"><span class="string">&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的网络链接</span></span><br><span class="line"><span class="string">(h|H)(r|R)(e|E)(f|F) *=*('</span>|<span class="string">")?(\w|\\|\/|\.)+('|"</span>| *|&gt;)?</span><br><span class="line"></span><br><span class="line">//提取信息中的邮件地址</span><br><span class="line">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* </span><br><span class="line"></span><br><span class="line">//提取信息中的图片链接</span><br><span class="line">(s|S)(r|R)(c|C) *= *(<span class="string">'|")?(\w|\\|\/|\.)+('</span>|<span class="string">"| *|&gt;)? </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的 IP 地址</span></span><br><span class="line"><span class="string">(\d+)\.(\d+)\.(\d+)\.(\d+)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//取信息中的中国手机号码</span></span><br><span class="line"><span class="string">(86)*0*13\d&#123;9&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的中国邮政编码</span></span><br><span class="line"><span class="string">[1-9]&#123;1&#125;(\d+)&#123;5&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的浮点数（即小数）</span></span><br><span class="line"><span class="string">(-?\d*)\.?\d+ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的任何数字</span></span><br><span class="line"><span class="string">(-?\d*)(\.\d+)?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//电话区号</span></span><br><span class="line"><span class="string">^0\d&#123;2,3&#125;$</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//腾讯 QQ 号</span></span><br><span class="line"><span class="string">^[1-9]*[1-9][0-9]*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//帐号（字母开头，允许 5-16 字节，允许字母数字下划线）</span></span><br><span class="line"><span class="string">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//中文、英文、数字及下划线</span></span><br><span class="line"><span class="string">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</span></span><br></pre></td></tr></table></figure></p><p>这里推荐一个<a href="http://www1.w3cfuns.com/tools.php?mod=regex" target="_blank" rel="noopener">正则表达式的调试工具</a><br>也可以看看<a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="noopener">正则的基本语法</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一些常用的正则表达式
+    
+    </summary>
+    
+    
+      <category term="正则" scheme="http://wenace.github.io/tags/%E6%AD%A3%E5%88%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端开发总结(持续更新)</title>
+    <link href="http://wenace.github.io/2018/02/22/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/前端总结/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-15T12:24:31.595Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.清除浮动</p><p><em>此清除浮动可作为初始化的基本样式</em></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfloat&#123;</span><br><span class="line">zoom:1</span><br><span class="line">&#125;</span><br><span class="line">.clerarfloat:after&#123;</span><br><span class="line">display:block;</span><br><span class="line">clear:both;</span><br><span class="line">content:<span class="string">""</span>;</span><br><span class="line">visibility:hidden;</span><br><span class="line">height:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><ol><li>cookie,localStorage,sessionStorage区别</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.cookie 是客户端保持状态方案。在浏览器和服务器间来回传递。</span><br><span class="line">2.sessionStorage和localStorage不会再浏览器和服务器间来回传递。</span><br><span class="line">3.sessionStorage和localStorage的存储空间大并且各自有独立的存储空间。</span><br><span class="line">4.更多丰富易用的接口。</span><br></pre></td></tr></table></figure><p>3.当需要声明变量的时候，记得使用var，不要漏写，虽然JavaScript同意可以不使用var来声明变量，但是这容易造成变量的混乱，当不使用var声明变量，变量为一个全局变量。我们应该尽量避免全局变量。</p><p>4.清空一个数组</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr=[1,2,3];</span><br><span class="line">arr.length=0;</span><br></pre></td></tr></table></figure><p>5.将arguments对象转换成数组</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr=Array.prototype.slice.call(arguments);</span><br></pre></td></tr></table></figure><p>slice.call()是把arguments对象数组提取出来转换成数组。</p><p>6.call()和apply()区别<br>call(thisObj,Object)参数为object<br>apply(thisObj,[arrArray])参数为arguments对象或者数组</p><p>7.变量声明提升拆分两个部分，一为声明，一位赋值。提升是吧声明提升，赋值留在原地。</p><p>javascript中一个名字(name)以四种方式进入作用域(scope)，其优先级顺序如下：<br>1、语言内置：所有的作用域中都有 this 和 arguments 关键字<br>2、形式参数：函数的参数在函数作用域中都是有效的<br>3、函数声明：形如function foo() {}<br>4、变量声明：形如var bar;</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.清除浮动&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;此清除浮动可作为初始化的基本样式&lt;/em&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;.clearfloat&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	zoom:1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.clerarfloat:after&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	display:block;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	clear:both;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	content:&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	visibility:hidden;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	height:0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="浮动" scheme="http://wenace.github.io/tags/%E6%B5%AE%E5%8A%A8/"/>
+    
+      <category term="数组" scheme="http://wenace.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="面试常见" scheme="http://wenace.github.io/tags/%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>unity控制运动</title>
+    <link href="http://wenace.github.io/2018/02/22/unity%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
+    <id>http://wenace.github.io/2018/02/22/unity注意点/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-24T15:02:51.648Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li></ol><a id="more"></a><p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p><pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;</code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p><p>2.3 Vector3.SmoothDamp<br>      该方法是可以平滑的从A逐渐移动到B点，并且可以控制速度，最常见的用法是相机跟随目标。</p><p>2.4 Transform.position<br>       有时重新赋值position能更快实现我们的目标。</p><ol><li><p>通过Rigidbody组件移动物体<br> Rigidbody组件用于模拟物体的物理状态，比如物体受重力影响，物体被碰撞后的击飞等等。</p><p> 注意：关于Rigidbody的调用均应放在FixedUpdate方法中，该方法会在每一次执行物理模拟前被调用。</p></li></ol><p>3.1 Rigidbody.velocity<br>     设置刚体速度可以让物体运动并且忽略静摩擦力，这会让物体快速从静止状态进入运动状态。</p><p>3.2 Rigidbody.AddForce<br>      给刚体添加一个方向的力，这种方式适合模拟物体在外力的作用下的运动状态。</p><p>3.3 Rigidbody.MovePosition<br>      刚体受到物理约束的情况下，移动到指定点。</p><ol><li>通过CharacterController组件移动物体<br>  CharacterController用于控制第一人称或第三人称角色的运动，使用这种方式可以模拟人的一些行为，比如限制角色爬坡的最大斜度,步伐的高度等。</li></ol><p>4.1 CharacterController.SimpleMove<br>     用于模拟简单运动，并且自动应用重力，返回值表示角色当前是否着地。</p><p>4.2 CharacterController.Move<br>     模拟更复杂的运动,重力需要通过代码实现，返回值表示角色与周围的碰撞信息。</p><p>通常我们都需要if语句进行input.GetKey判断。根据不同的2d形式，采用unity的动画系统，动画系统中需要注意</p><p>1.获取的为Aminator，需要先声明，后获取，与rigidbody相似。</p><p>2.当方向较多的时候，我们使用blend tree进行各个位置的定位，因为sprite有方向，所以我们需要对Vector3.x或者y下进行1或者-1的赋值，一般在动画系统中设置parameter有moveX，moveY的bool值。在代码过程中国对aminator进行setbool方法的调用。</p><p>3.在transiton(过渡)中设置conditions,状态机形式。通过getAxis来获取水平方向，键盘输入将得到1到-1范围内. transform.Translate 通过位移方式进行移动。</p><p>4.transform.position得到的值是一个坐标值，也就是说，移动的sprite是通过不断刷新坐标值，从而实现移动</p><p>5.放在Update()函数中的代码是以帧来执行的.如果我们需要物体的移动以秒来执行.我们需要将物体移动的值乘以Time.deltaTime。</p><p>6.2d中我们需要设置player为rigidbody和box collision2d或者其他方式，还有一个就是play所站立的地方为box collision2d或其他方式。</p><p>7.对钢体施加力也可形成移动，rd.addForce() Mathf.Clamp()控制速度最大和最小值，其实就是左右方向的最大值，避免速度过大，冲出场景</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;通过Transform组件移动物体&lt;br&gt; Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
     
   </entry>
   
   <entry>
     <title>2017gamejam记录</title>
-    <link href="http://yoursite.com/2018/02/22/2017gamejam01/"/>
-    <id>http://yoursite.com/2018/02/22/2017gamejam01/</id>
+    <link href="http://wenace.github.io/2018/02/22/2017gamejam01/"/>
+    <id>http://wenace.github.io/2018/02/22/2017gamejam01/</id>
     <published>2018-02-22T04:19:43.260Z</published>
     <updated>2017-06-17T12:06:12.507Z</updated>
     
@@ -210,19 +210,106 @@
     
     </summary>
     
-      <category term="感悟" scheme="http://yoursite.com/categories/%E6%84%9F%E6%82%9F/"/>
+      <category term="感悟" scheme="http://wenace.github.io/categories/%E6%84%9F%E6%82%9F/"/>
     
     
-      <category term="2017gamejam" scheme="http://yoursite.com/tags/2017gamejam/"/>
+      <category term="2017gamejam" scheme="http://wenace.github.io/tags/2017gamejam/"/>
     
-      <category term="游戏开发" scheme="http://yoursite.com/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+      <category term="游戏开发" scheme="http://wenace.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>原生JavaScript编写ajax</title>
+    <link href="http://wenace.github.io/2018/02/22/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/ajax学习总结/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-15T12:24:31.968Z</updated>
+    
+    <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p><p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">createXMLDoc</span></span>()&#123;</span><br><span class="line">var xmlhttp;</span><br><span class="line"><span class="keyword">if</span>(window.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">xmlhttp=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">xmlhttp=new ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.onreadystatechange=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line"><span class="keyword">if</span>(xmlhttp.states==200&amp;&amp;xmlhttp.readyState==4)</span><br><span class="line">&#123;</span><br><span class="line">document.getElementById(<span class="string">"myDic"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>):</span><br><span class="line">xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="open-和send-的方法"><a href="#open-和send-的方法" class="headerlink" title="open()和send()的方法"></a>open()和send()的方法</h3><p>open方法中有三个参数，从左往右分别是</p><ul><li>method：请求类型：GET或者POST</li><li>url：文件在服务器上的位置</li><li>async: true()（异步）或false()（同步）<br><em>url中文件可以使任何类型的文件</em></li></ul><p>send()方法中的参数仅用于POST请求。</p><h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><p>GET：<br>1.一般用于信息获取<br>2.使用URL传递参数<br>3.对所发送信息的数量有限制，一般在2000个字符<br>4.传送数据量小，处理效率高。<br>5.安全性低，会被缓存。</p><p>POST：<br>1.用于修改服务器上的资源。<br>2.对所发送信息的数量无限制。<br>3.安全性高。可靠性高。</p><h2 id="AJAX的服务器响应"><a href="#AJAX的服务器响应" class="headerlink" title="AJAX的服务器响应"></a>AJAX的服务器响应</h2><ul><li>responseTest 获得字符串响应数据</li><li>responseXML  或的XML形式响应数据</li></ul><p>##AJAX的readyState和status</p><p>readyState：</p><blockquote><p>0：请求未初始化<br>1：服务器连接已建立<br>2：请求已接收<br>3：请求处理中<br>4：请求已经完成，且响应已就绪</p></blockquote><p>Status：</p><blockquote><p>200：ok<br>404：未找到页面</p></blockquote><h4 id="HTTP请求中常用的状态码"><a href="#HTTP请求中常用的状态码" class="headerlink" title="HTTP请求中常用的状态码"></a>HTTP请求中常用的状态码</h4><blockquote><p>301,302 重定向，后跟location头指明跳转位置<br>304 从浏览器缓存加载<br>403 权限不够，拒绝访问<br>404 资源未找到<br>500 服务器内部错误，通常为后端错误</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性&lt;/p&gt;
+&lt;p&gt;ajax是一种用于创建快速动态网页的技术&lt;br&gt;&lt;em&gt;AJAX应用程序与浏览器和平台无关&lt;/em&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="ajax" scheme="http://wenace.github.io/tags/ajax/"/>
+    
+      <category term="前端" scheme="http://wenace.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>位运算总结</title>
+    <link href="http://wenace.github.io/2018/02/22/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
+    <id>http://wenace.github.io/2018/02/22/CodeFight经典问题/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-15T12:18:24.910Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p><p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;位运算形式&quot;&gt;&lt;a href=&quot;#位运算形式&quot; class=&quot;headerlink&quot; title=&quot;位运算形式&quot;&gt;&lt;/a&gt;位运算形式&lt;/h2&gt;&lt;p&gt;1.与，或，非，异或运算特点&lt;br&gt;非（~）：1变0,0变1.&lt;br&gt;与（&amp;amp;）：有0则为0，均为1返回1.
+    
+    </summary>
+    
+    
+      <category term="位运算" scheme="http://wenace.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript原型链方面总结</title>
+    <link href="http://wenace.github.io/2018/02/22/javascript%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%96%B9%E9%9D%A2%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/javascript原型链方面总结/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-27T15:04:56.823Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br><a id="more"></a><br>如图</p><p><img src="http://ormm8jbub.bkt.clouddn.com/typeof%E5%88%A4%E6%96%AD.png" alt="javcscript"></p><p>2.== 会进行强制的转换，===则不会.<br>一般来说工作==可以用来简单书写某些代码，达到简洁的方式<br>如if(b==null)即是if(b===null || b===undefined)</p><p>3.引用类型都可进行扩展，引用类型即typeof所不能识别。<br>如对象，函数，var a=[],JSON其实也是JS的一种对象</p><p><img src="http://ormm8jbub.bkt.clouddn.com/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E9%9A%8F%E6%84%8F%E6%89%A9%E5%B1%95.png" alt="yingyongleixing"></p><p>4.所有引用类型都还有隐式类型<em>proto</em>.而函数都含有prototype类型</p><p>关于原型链，var f=new Foo(),那么对象f上有隐式<em>proto</em>指向Foo.prototype,<br>所有当f在自身没找到属性，将向上寻找，即在Foo.prototype.当还是没有的时候，将<br>继续向上，而Foo.protype也存在一个隐式属性<em>proto</em>指向Object.protype.这个Object为<br>JS自身存在的native code。总结起来，可以用下图表示</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototypeline.png" alt="prototype"></p><p>在chrome 控制台进行测试，如图<br>可以很好的解释上图所说的原型链。通过foo.prototype.<em>proto</em>===Object.protype<br>为true，确实按照原型链所说不停往上。</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototype.png" alt="chrome"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.JS中有boolen，string，undefined，number，object，function，null基本类型&lt;br&gt;typeof可识别值类型，即boolen，object，number，string，undefined，function&lt;br&gt;object. 如null,var b=[];var b={};只会判断为object。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
+    
+      <category term="原型链" scheme="http://wenace.github.io/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gamejam总结</title>
+    <link href="http://wenace.github.io/2018/02/22/gamejam%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/gamejam总结/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-18T15:07:17.047Z</updated>
+    
+    <content type="html"><![CDATA[<p>   自己首次参与gamejam结束了，总体感觉不能完全说出来，<br>看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有<br>很长的一段路需要走，踏实的走下去，或许就是另一种结果。<br><a id="more"></a><br>gamejam所提倡的就是一种纯粹的对游戏的热爱，各种新奇好玩的点子，和各开发者<br>的交流，确实不能比这个更棒的事情了，大家都在一个channel里。</p><p>从技术上看见基本的开发流程，api使用，美术上更是打开我所不清楚的大门。需要学习<br>的还有很多。这次活动获益良多</p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday01.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday02.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday03.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday04.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday05.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday06.jpg" alt="gamejam"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   自己首次参与gamejam结束了，总体感觉不能完全说出来，&lt;br&gt;看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有&lt;br&gt;很长的一段路需要走，踏实的走下去，或许就是另一种结果。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="感悟" scheme="http://wenace.github.io/categories/%E6%84%9F%E6%82%9F/"/>
+    
+    
+      <category term="gamejam" scheme="http://wenace.github.io/tags/gamejam/"/>
     
   </entry>
   
   <entry>
     <title>http相关缓存头</title>
-    <link href="http://yoursite.com/2018/02/22/http%E7%9B%B8%E5%85%B3%E7%BC%93%E5%AD%98%E5%A4%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
-    <id>http://yoursite.com/2018/02/22/http相关缓存头信息收集/</id>
+    <link href="http://wenace.github.io/2018/02/22/http%E7%9B%B8%E5%85%B3%E7%BC%93%E5%AD%98%E5%A4%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    <id>http://wenace.github.io/2018/02/22/http相关缓存头信息收集/</id>
     <published>2018-02-22T04:19:43.260Z</published>
     <updated>2017-06-15T12:24:32.027Z</updated>
     
@@ -239,16 +326,16 @@
     </summary>
     
     
-      <category term="网络相关" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
+      <category term="网络相关" scheme="http://wenace.github.io/tags/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
     
-      <category term="http" scheme="http://yoursite.com/tags/http/"/>
+      <category term="http" scheme="http://wenace.github.io/tags/http/"/>
     
   </entry>
   
   <entry>
     <title>hexo部署到github</title>
-    <link href="http://yoursite.com/2018/02/22/hexo%E5%BB%BA%E7%AB%99-%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
-    <id>http://yoursite.com/2018/02/22/hexo建站-部署到github/</id>
+    <link href="http://wenace.github.io/2018/02/22/hexo%E5%BB%BA%E7%AB%99-%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
+    <id>http://wenace.github.io/2018/02/22/hexo建站-部署到github/</id>
     <published>2018-02-22T04:19:43.260Z</published>
     <updated>2017-06-16T14:38:34.160Z</updated>
     
@@ -262,103 +349,16 @@
     </summary>
     
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
     
-      <category term="github" scheme="http://yoursite.com/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>gamejam总结</title>
-    <link href="http://yoursite.com/2018/02/22/gamejam%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2018/02/22/gamejam总结/</id>
-    <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-18T15:07:17.047Z</updated>
-    
-    <content type="html"><![CDATA[<p>   自己首次参与gamejam结束了，总体感觉不能完全说出来，<br>看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有<br>很长的一段路需要走，踏实的走下去，或许就是另一种结果。<br><a id="more"></a><br>gamejam所提倡的就是一种纯粹的对游戏的热爱，各种新奇好玩的点子，和各开发者<br>的交流，确实不能比这个更棒的事情了，大家都在一个channel里。</p><p>从技术上看见基本的开发流程，api使用，美术上更是打开我所不清楚的大门。需要学习<br>的还有很多。这次活动获益良多</p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday01.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday02.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday03.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday04.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday05.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday06.jpg" alt="gamejam"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   自己首次参与gamejam结束了，总体感觉不能完全说出来，&lt;br&gt;看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有&lt;br&gt;很长的一段路需要走，踏实的走下去，或许就是另一种结果。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="感悟" scheme="http://yoursite.com/categories/%E6%84%9F%E6%82%9F/"/>
-    
-    
-      <category term="gamejam" scheme="http://yoursite.com/tags/gamejam/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>位运算总结</title>
-    <link href="http://yoursite.com/2018/02/22/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2018/02/22/CodeFight经典问题/</id>
-    <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-15T12:18:24.910Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p><p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;位运算形式&quot;&gt;&lt;a href=&quot;#位运算形式&quot; class=&quot;headerlink&quot; title=&quot;位运算形式&quot;&gt;&lt;/a&gt;位运算形式&lt;/h2&gt;&lt;p&gt;1.与，或，非，异或运算特点&lt;br&gt;非（~）：1变0,0变1.&lt;br&gt;与（&amp;amp;）：有0则为0，均为1返回1.
-    
-    </summary>
-    
-    
-      <category term="位运算" scheme="http://yoursite.com/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>原生JavaScript编写ajax</title>
-    <link href="http://yoursite.com/2018/02/22/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2018/02/22/ajax学习总结/</id>
-    <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-15T12:24:31.968Z</updated>
-    
-    <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p><p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">createXMLDoc</span></span>()&#123;</span><br><span class="line">var xmlhttp;</span><br><span class="line"><span class="keyword">if</span>(window.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">xmlhttp=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">xmlhttp=new ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.onreadystatechange=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line"><span class="keyword">if</span>(xmlhttp.states==200&amp;&amp;xmlhttp.readyState==4)</span><br><span class="line">&#123;</span><br><span class="line">document.getElementById(<span class="string">"myDic"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>):</span><br><span class="line">xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="open-和send-的方法"><a href="#open-和send-的方法" class="headerlink" title="open()和send()的方法"></a>open()和send()的方法</h3><p>open方法中有三个参数，从左往右分别是</p><ul><li>method：请求类型：GET或者POST</li><li>url：文件在服务器上的位置</li><li>async: true()（异步）或false()（同步）<br><em>url中文件可以使任何类型的文件</em></li></ul><p>send()方法中的参数仅用于POST请求。</p><h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><p>GET：<br>1.一般用于信息获取<br>2.使用URL传递参数<br>3.对所发送信息的数量有限制，一般在2000个字符<br>4.传送数据量小，处理效率高。<br>5.安全性低，会被缓存。</p><p>POST：<br>1.用于修改服务器上的资源。<br>2.对所发送信息的数量无限制。<br>3.安全性高。可靠性高。</p><h2 id="AJAX的服务器响应"><a href="#AJAX的服务器响应" class="headerlink" title="AJAX的服务器响应"></a>AJAX的服务器响应</h2><ul><li>responseTest 获得字符串响应数据</li><li>responseXML  或的XML形式响应数据</li></ul><p>##AJAX的readyState和status</p><p>readyState：</p><blockquote><p>0：请求未初始化<br>1：服务器连接已建立<br>2：请求已接收<br>3：请求处理中<br>4：请求已经完成，且响应已就绪</p></blockquote><p>Status：</p><blockquote><p>200：ok<br>404：未找到页面</p></blockquote><h4 id="HTTP请求中常用的状态码"><a href="#HTTP请求中常用的状态码" class="headerlink" title="HTTP请求中常用的状态码"></a>HTTP请求中常用的状态码</h4><blockquote><p>301,302 重定向，后跟location头指明跳转位置<br>304 从浏览器缓存加载<br>403 权限不够，拒绝访问<br>404 资源未找到<br>500 服务器内部错误，通常为后端错误</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性&lt;/p&gt;
-&lt;p&gt;ajax是一种用于创建快速动态网页的技术&lt;br&gt;&lt;em&gt;AJAX应用程序与浏览器和平台无关&lt;/em&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="ajax" scheme="http://yoursite.com/tags/ajax/"/>
-    
-      <category term="前端" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>javascript原型链方面总结</title>
-    <link href="http://yoursite.com/2018/02/22/javascript%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%96%B9%E9%9D%A2%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2018/02/22/javascript原型链方面总结/</id>
-    <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-27T15:04:56.823Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br><a id="more"></a><br>如图</p><p><img src="http://ormm8jbub.bkt.clouddn.com/typeof%E5%88%A4%E6%96%AD.png" alt="javcscript"></p><p>2.== 会进行强制的转换，===则不会.<br>一般来说工作==可以用来简单书写某些代码，达到简洁的方式<br>如if(b==null)即是if(b===null || b===undefined)</p><p>3.引用类型都可进行扩展，引用类型即typeof所不能识别。<br>如对象，函数，var a=[],JSON其实也是JS的一种对象</p><p><img src="http://ormm8jbub.bkt.clouddn.com/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E9%9A%8F%E6%84%8F%E6%89%A9%E5%B1%95.png" alt="yingyongleixing"></p><p>4.所有引用类型都还有隐式类型<em>proto</em>.而函数都含有prototype类型</p><p>关于原型链，var f=new Foo(),那么对象f上有隐式<em>proto</em>指向Foo.prototype,<br>所有当f在自身没找到属性，将向上寻找，即在Foo.prototype.当还是没有的时候，将<br>继续向上，而Foo.protype也存在一个隐式属性<em>proto</em>指向Object.protype.这个Object为<br>JS自身存在的native code。总结起来，可以用下图表示</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototypeline.png" alt="prototype"></p><p>在chrome 控制台进行测试，如图<br>可以很好的解释上图所说的原型链。通过foo.prototype.<em>proto</em>===Object.protype<br>为true，确实按照原型链所说不停往上。</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototype.png" alt="chrome"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1.JS中有boolen，string，undefined，number，object，function，null基本类型&lt;br&gt;typeof可识别值类型，即boolen，object，number，string，undefined，function&lt;br&gt;object. 如null,var b=[];var b={};只会判断为object。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
-    
-      <category term="原型链" scheme="http://yoursite.com/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
+      <category term="github" scheme="http://wenace.github.io/tags/github/"/>
     
   </entry>
   
   <entry>
     <title>hexo重新部署的注意点</title>
-    <link href="http://yoursite.com/2017/06/15/hexo%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
-    <id>http://yoursite.com/2017/06/15/hexo重新部署的注意点/</id>
+    <link href="http://wenace.github.io/2017/06/15/hexo%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
+    <id>http://wenace.github.io/2017/06/15/hexo重新部署的注意点/</id>
     <published>2017-06-15T13:28:40.000Z</published>
     <updated>2017-06-16T03:17:36.428Z</updated>
     
@@ -371,7 +371,7 @@
     </summary>
     
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
     
   </entry>
   
