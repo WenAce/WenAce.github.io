@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2018-02-22T13:35:30.447Z</updated>
+  <updated>2018-02-24T04:02:14.235Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UnityShader(1)-基础结构</title>
+    <link href="http://wenace.github.io/2018/02/24/UnityShader-1-%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84/"/>
+    <id>http://wenace.github.io/2018/02/24/UnityShader-1-基础结构/</id>
+    <published>2018-02-24T04:01:36.000Z</published>
+    <updated>2018-02-24T04:02:14.235Z</updated>
+    
+    <content type="html"><![CDATA[<p>shader基础结构</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;MyShaderName&quot; &#123;</span><br><span class="line">Properties&#123;</span><br><span class="line">    //属性 Name通常需要下划线开始 display name是显然在材质面板上的名字，properytype是其类型 ，最后需要赋一个默认值</span><br><span class="line">    Name (&quot;display name&quot;,PropertyType)=DefaultValue</span><br><span class="line">&#125;</span><br><span class="line">SubShader&#123;</span><br><span class="line">   //针对显卡A的SubShader SubShader可有多个，但最少需要一个</span><br><span class="line">   //真正意义上的Shader代码会出现在这里</span><br><span class="line">   //表面着色器(Surface shader) or 顶点/片元着色器(Vertex/Fragment shader) or 固定函数着色器(Fixed Function shader)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   //可选</span><br><span class="line">   [Tags]         //标签 为键值对</span><br><span class="line">   Tags&#123;&quot;TagName1&quot;=&quot;Value1&quot; &quot;TagName2&quot;=&quot;Value2&quot;&#125;</span><br><span class="line">   [RenderSetup] //状态</span><br><span class="line"></span><br><span class="line">Pass&#123;</span><br><span class="line">   //设置渲染状态和标签 Pass数目应尽量少，多会造成渲染性能下降  </span><br><span class="line">    [Name]    //设置该Pass名称 可使用ShaderLab的UsePass命令直接使用其他Shader中的Pass ，提高了复用性</span><br><span class="line">    [Tags]     //不同于subshader中的标签</span><br><span class="line">    [RenderSetup]</span><br><span class="line"></span><br><span class="line">CGPROGRAM  //开始CG代码片段</span><br><span class="line"></span><br><span class="line">        #pragma vertex vert   //编译指令，某函数包含哪类着色器</span><br><span class="line">        #pragma fragment frag</span><br><span class="line"></span><br><span class="line">        //整体CG代码写在这里</span><br><span class="line"></span><br><span class="line">ENDCG</span><br><span class="line">//其他设置</span><br><span class="line">&#125;</span><br><span class="line">    //其他需要的Pass</span><br><span class="line">&#125;</span><br><span class="line">    SubShader&#123;</span><br><span class="line">        //针对显卡B</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Fallback &quot;VertexLit&quot;   //用于告诉Unity，上述SubShader在该显卡上都不支持，使用最低级Shader</span><br><span class="line">    //Fallback &quot;Name&quot; or Fallback off（关闭fallback）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/ShaderProperties.png" alt="image"></p><p>从上图看出对于Int，Float，Range类型，默认值是一个单独数字，Color和Vector是四维的向量，2d，cube，3d是通过一个字符串后跟一个花括号，字符串要么是空的要么就是内置的纹理名称。</p><h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/biaoqian.png" alt="image"></p><h2 id="渲染状态设置"><a href="#渲染状态设置" class="headerlink" title="渲染状态设置"></a>渲染状态设置</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/%E6%B8%B2%E6%9F%93%E7%8A%B6%E6%80%81%E8%AE%BE%E7%BD%AE.png" alt="image"></p><h2 id="Pass标签"><a href="#Pass标签" class="headerlink" title="Pass标签"></a>Pass标签</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/Pass%E6%A0%87%E7%AD%BE.png" alt="image"></p><p>UnityShader也支持特殊的Pass，如UsePass和GrabPass，GrabPass负责抓取屏幕并将结果存储在一张纹理中，便于后续Pass处理。</p><ol><li>表面着色器无需写在Pass语义快中，表面着色器无需关心有多少个Pass2</li><li>顶点/片元着色器是写在Pass中，我们需要自己定义Pass中的shader代码，灵活性更高，控制渲染的实现细节。</li><li>都在CGPROGRAM到ENDCG之间写，但是区别在一个在subshader中，一个在pass中。</li></ol><h2 id="选择哪种shader形式"><a href="#选择哪种shader形式" class="headerlink" title="选择哪种shader形式"></a>选择哪种shader形式</h2><ol><li>如果需求中有明确表示对旧设备进行支持，需要使用固定函数着色器，否则使用可编程管线着色器</li><li>如果和各种光源打交道，采用表面着色器，但要注意移动平台性能表现</li><li>如果光照数目非常少，有很多自定义渲染效果， 那么使用顶点/片元着色器</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;shader基础结构&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/sp
+      
+    
+    </summary>
+    
+    
+      <category term="-- UnityShader -- 图形学" scheme="http://wenace.github.io/tags/UnityShader-%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>选择，插入，归并，快速排序总结</title>
@@ -62,26 +86,6 @@
   </entry>
   
   <entry>
-    <title>常见的JavaScript遍历方式</title>
-    <link href="http://wenace.github.io/2018/02/22/JavaScript%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/"/>
-    <id>http://wenace.github.io/2018/02/22/JavaScript的遍历方式/</id>
-    <published>2018-02-22T04:19:43.270Z</published>
-    <updated>2017-06-15T12:24:31.953Z</updated>
-    
-    <content type="html"><![CDATA[<p> 首先我们写一个数组和json对象。<br> var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];<br> var obj={<br>     first:’javascripts’,<br>     second:’css’,<br>     third:’jquery’<br> };<br><a id="more"></a></p><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>&#123;</span><br><span class="line"><span class="keyword">for</span>(var i=0,len=Arr.length;i&lt;len;i++)&#123;</span><br><span class="line"><span class="keyword">if</span>(i==2)&#123;</span><br><span class="line">//<span class="built_in">return</span>;  //函数执行被终止</span><br><span class="line">//<span class="built_in">break</span>;   //循环被终止</span><br><span class="line"><span class="built_in">continue</span>;  //循环被跳过</span><br><span class="line">&#125;</span><br><span class="line">console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><h3 id="for循环中有两点注意"><a href="#for循环中有两点注意" class="headerlink" title="for循环中有两点注意"></a>for循环中有两点注意</h3><ul><li>for循环中的i在循环结束后依然存在与作用域中，这个时候为了避免影响作用域中的其余变量，我们将采用函数自执行的方式将其隔离起来。形如</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（<span class="function"><span class="title">function</span></span>()&#123;&#125;)();</span><br></pre></td></tr></table></figure><ul><li>在循环中避免使用（var i=0;i&lt;Arr.length;）这样数组长度每次都在计算，效率远远低于例子中的写法，同理，我们也可以先赋值好值，如下</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var i=0;len=Arr.length;</span><br><span class="line"><span class="keyword">for</span>(;i&lt;len;i++)</span><br></pre></td></tr></table></figure><h2 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for in 循环"></a>for in 循环</h2><p>for(var item in arr|obj){}可以用于遍历数组和对象</p><ul><li>遍历数组，item为索引值，arr为当前索引值对应的元素 arr[item];</li><li>遍历对象，item为key值，arr表示key值对应的value值obj[item];</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>&#123;</span><br><span class="line"><span class="keyword">for</span>(var i <span class="keyword">in</span> Arr)&#123;</span><br><span class="line"><span class="keyword">if</span>(i==2)&#123;</span><br><span class="line">//<span class="built_in">return</span>;  //函数执行被终止</span><br><span class="line">//<span class="built_in">break</span>;   //循环被终止</span><br><span class="line"><span class="built_in">continue</span>;  //循环被跳过</span><br><span class="line">&#125;</span><br><span class="line">console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><h3 id="关于for-in-的注意"><a href="#关于for-in-的注意" class="headerlink" title="关于for in 的注意"></a>关于for in 的注意</h3><ul><li>同样式需要添加自执行函数。</li><li>跳出循环中，return为函数执行终止，即整个函数将终止，在循环外面的也不再进行。break为终止当前的循环，后续代码继续执行。</li></ul><h2 id="for-Each"><a href="#for-Each" class="headerlink" title="for Each"></a>for Each</h2><p>Arr.forEach(function(arg){})<br>参数arg为数组没一项元素。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Arr.forEach(funciton(val,index)&#123;</span><br><span class="line"><span class="keyword">if</span>(e==<span class="string">'css3'</span>)&#123;</span><br><span class="line"><span class="built_in">return</span>;  //循环被跳过</span><br><span class="line">//<span class="built_in">break</span>;   //Error</span><br><span class="line">//<span class="built_in">continue</span>;  //Error</span><br><span class="line">&#125;</span><br><span class="line">console.log(val,index);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h3 id="for-Each注意点"><a href="#for-Each注意点" class="headerlink" title="for Each注意点"></a>for Each注意点</h3><ul><li>回调函数中的2参数分别为值和索引值，和jQuery的$.each相反。</li><li><em>forEach无法遍历对象</em>.</li><li>forEach无法再IE中使用</li><li>forEach无法使用break和continue，而return和for循环中的continue一致。</li><li>可添加第二个参数，为一个数组，在回调中用this指向这个数组，若无第二参数，则this会指向window。</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var newArr[];</span><br><span class="line">Arr.forEach(<span class="keyword">function</span>(val,index)&#123;</span><br><span class="line">this.push(val); //this指向newArr.</span><br><span class="line">&#125;,newArr)</span><br></pre></td></tr></table></figure><h3 id="do-while方式"><a href="#do-while方式" class="headerlink" title="do/while方式"></a>do/while方式</h3><p>不建议使用，此处不多说明</p><h2 id="each"><a href="#each" class="headerlink" title="$.each"></a>$.each</h2><p>这个为jQuery中的方法，熟悉jQuery的应该或多或少的使用过。可遍历数组和对象。<br>下面的例子中e为索引值，或者key值，ele为value值</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each(Arr|obj,<span class="keyword">function</span>(e,ele)&#123;</span><br><span class="line">console.log(e,ele);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h3 id="each注意点"><a href="#each注意点" class="headerlink" title="$.each注意点"></a>$.each注意点</h3><ul><li>使用return或return true为跳过一次循环，继续执行后面的循环。</li><li>使用return false为终止循环的执行，但是并不终止函数执行，</li><li>无法使用break和continue来跳过循环。</li><li>循环中this输出： </li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(this);</span><br><span class="line"></span><br><span class="line">console.log(this=ele);</span><br></pre></td></tr></table></figure><h2 id="selecter-each"><a href="#selecter-each" class="headerlink" title="$(selecter).each()"></a>$(selecter).each()</h2><p>专门用来遍历DOMList</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.list li'</span>).each(<span class="keyword">function</span>(i,ele)&#123;</span><br><span class="line">console.log(i,ele);</span><br><span class="line"></span><br><span class="line">$(this).html(i);</span><br><span class="line"><span class="keyword">if</span>($(this).attr(<span class="string">'data-item'</span>)==<span class="string">'do'</span>)&#123;</span><br><span class="line">$(this).html(<span class="string">'data-item:do'</span>);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><ul><li>i ele 只被当前遍历DOM元素</li><li>this 当前被遍历的DOM元素，不能调用jQuery方法。</li><li>$(this)==$(ele) 当前被遍历元素的jQuery对象，可调用jQuery方法进行dom操作。</li></ul><p><em>在for循环中遍历DOMList中需要将DOMlist转换为数组</em></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var res=[].slice.call(domList);</span><br><span class="line"><span class="keyword">for</span>(var item <span class="keyword">in</span> res)&#123;&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt; 首先我们写一个数组和json对象。&lt;br&gt; var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];&lt;br&gt; var obj={&lt;br&gt;     first:’javascripts’,&lt;br&gt;     second:’css’,&lt;br&gt;     third:’jquery’&lt;br&gt; };&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
     <title>JavaScript作用域等小结</title>
     <link href="http://wenace.github.io/2018/02/22/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B92/"/>
     <id>http://wenace.github.io/2018/02/22/JavaScript知识点2/</id>
@@ -106,24 +110,22 @@
   </entry>
   
   <entry>
-    <title>unity控制运动</title>
-    <link href="http://wenace.github.io/2018/02/22/unity%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
-    <id>http://wenace.github.io/2018/02/22/unity注意点/</id>
+    <title>常见的JavaScript遍历方式</title>
+    <link href="http://wenace.github.io/2018/02/22/JavaScript%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/"/>
+    <id>http://wenace.github.io/2018/02/22/JavaScript的遍历方式/</id>
     <published>2018-02-22T04:19:43.270Z</published>
-    <updated>2017-06-24T15:02:51.648Z</updated>
+    <updated>2017-06-15T12:24:31.953Z</updated>
     
-    <content type="html"><![CDATA[<ol><li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li></ol><a id="more"></a><p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p><pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;</code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p><p>2.3 Vector3.SmoothDamp<br>      该方法是可以平滑的从A逐渐移动到B点，并且可以控制速度，最常见的用法是相机跟随目标。</p><p>2.4 Transform.position<br>       有时重新赋值position能更快实现我们的目标。</p><ol><li><p>通过Rigidbody组件移动物体<br> Rigidbody组件用于模拟物体的物理状态，比如物体受重力影响，物体被碰撞后的击飞等等。</p><p> 注意：关于Rigidbody的调用均应放在FixedUpdate方法中，该方法会在每一次执行物理模拟前被调用。</p></li></ol><p>3.1 Rigidbody.velocity<br>     设置刚体速度可以让物体运动并且忽略静摩擦力，这会让物体快速从静止状态进入运动状态。</p><p>3.2 Rigidbody.AddForce<br>      给刚体添加一个方向的力，这种方式适合模拟物体在外力的作用下的运动状态。</p><p>3.3 Rigidbody.MovePosition<br>      刚体受到物理约束的情况下，移动到指定点。</p><ol><li>通过CharacterController组件移动物体<br>  CharacterController用于控制第一人称或第三人称角色的运动，使用这种方式可以模拟人的一些行为，比如限制角色爬坡的最大斜度,步伐的高度等。</li></ol><p>4.1 CharacterController.SimpleMove<br>     用于模拟简单运动，并且自动应用重力，返回值表示角色当前是否着地。</p><p>4.2 CharacterController.Move<br>     模拟更复杂的运动,重力需要通过代码实现，返回值表示角色与周围的碰撞信息。</p><p>通常我们都需要if语句进行input.GetKey判断。根据不同的2d形式，采用unity的动画系统，动画系统中需要注意</p><p>1.获取的为Aminator，需要先声明，后获取，与rigidbody相似。</p><p>2.当方向较多的时候，我们使用blend tree进行各个位置的定位，因为sprite有方向，所以我们需要对Vector3.x或者y下进行1或者-1的赋值，一般在动画系统中设置parameter有moveX，moveY的bool值。在代码过程中国对aminator进行setbool方法的调用。</p><p>3.在transiton(过渡)中设置conditions,状态机形式。通过getAxis来获取水平方向，键盘输入将得到1到-1范围内. transform.Translate 通过位移方式进行移动。</p><p>4.transform.position得到的值是一个坐标值，也就是说，移动的sprite是通过不断刷新坐标值，从而实现移动</p><p>5.放在Update()函数中的代码是以帧来执行的.如果我们需要物体的移动以秒来执行.我们需要将物体移动的值乘以Time.deltaTime。</p><p>6.2d中我们需要设置player为rigidbody和box collision2d或者其他方式，还有一个就是play所站立的地方为box collision2d或其他方式。</p><p>7.对钢体施加力也可形成移动，rd.addForce() Mathf.Clamp()控制速度最大和最小值，其实就是左右方向的最大值，避免速度过大，冲出场景</p>]]></content>
+    <content type="html"><![CDATA[<p> 首先我们写一个数组和json对象。<br> var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];<br> var obj={<br>     first:’javascripts’,<br>     second:’css’,<br>     third:’jquery’<br> };<br><a id="more"></a></p><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>&#123;</span><br><span class="line"><span class="keyword">for</span>(var i=0,len=Arr.length;i&lt;len;i++)&#123;</span><br><span class="line"><span class="keyword">if</span>(i==2)&#123;</span><br><span class="line">//<span class="built_in">return</span>;  //函数执行被终止</span><br><span class="line">//<span class="built_in">break</span>;   //循环被终止</span><br><span class="line"><span class="built_in">continue</span>;  //循环被跳过</span><br><span class="line">&#125;</span><br><span class="line">console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><h3 id="for循环中有两点注意"><a href="#for循环中有两点注意" class="headerlink" title="for循环中有两点注意"></a>for循环中有两点注意</h3><ul><li>for循环中的i在循环结束后依然存在与作用域中，这个时候为了避免影响作用域中的其余变量，我们将采用函数自执行的方式将其隔离起来。形如</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（<span class="function"><span class="title">function</span></span>()&#123;&#125;)();</span><br></pre></td></tr></table></figure><ul><li>在循环中避免使用（var i=0;i&lt;Arr.length;）这样数组长度每次都在计算，效率远远低于例子中的写法，同理，我们也可以先赋值好值，如下</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var i=0;len=Arr.length;</span><br><span class="line"><span class="keyword">for</span>(;i&lt;len;i++)</span><br></pre></td></tr></table></figure><h2 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for in 循环"></a>for in 循环</h2><p>for(var item in arr|obj){}可以用于遍历数组和对象</p><ul><li>遍历数组，item为索引值，arr为当前索引值对应的元素 arr[item];</li><li>遍历对象，item为key值，arr表示key值对应的value值obj[item];</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>&#123;</span><br><span class="line"><span class="keyword">for</span>(var i <span class="keyword">in</span> Arr)&#123;</span><br><span class="line"><span class="keyword">if</span>(i==2)&#123;</span><br><span class="line">//<span class="built_in">return</span>;  //函数执行被终止</span><br><span class="line">//<span class="built_in">break</span>;   //循环被终止</span><br><span class="line"><span class="built_in">continue</span>;  //循环被跳过</span><br><span class="line">&#125;</span><br><span class="line">console.log(<span class="string">'Arr['</span>+i+<span class="string">']:'</span>+Arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><h3 id="关于for-in-的注意"><a href="#关于for-in-的注意" class="headerlink" title="关于for in 的注意"></a>关于for in 的注意</h3><ul><li>同样式需要添加自执行函数。</li><li>跳出循环中，return为函数执行终止，即整个函数将终止，在循环外面的也不再进行。break为终止当前的循环，后续代码继续执行。</li></ul><h2 id="for-Each"><a href="#for-Each" class="headerlink" title="for Each"></a>for Each</h2><p>Arr.forEach(function(arg){})<br>参数arg为数组没一项元素。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Arr.forEach(funciton(val,index)&#123;</span><br><span class="line"><span class="keyword">if</span>(e==<span class="string">'css3'</span>)&#123;</span><br><span class="line"><span class="built_in">return</span>;  //循环被跳过</span><br><span class="line">//<span class="built_in">break</span>;   //Error</span><br><span class="line">//<span class="built_in">continue</span>;  //Error</span><br><span class="line">&#125;</span><br><span class="line">console.log(val,index);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h3 id="for-Each注意点"><a href="#for-Each注意点" class="headerlink" title="for Each注意点"></a>for Each注意点</h3><ul><li>回调函数中的2参数分别为值和索引值，和jQuery的$.each相反。</li><li><em>forEach无法遍历对象</em>.</li><li>forEach无法再IE中使用</li><li>forEach无法使用break和continue，而return和for循环中的continue一致。</li><li>可添加第二个参数，为一个数组，在回调中用this指向这个数组，若无第二参数，则this会指向window。</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var newArr[];</span><br><span class="line">Arr.forEach(<span class="keyword">function</span>(val,index)&#123;</span><br><span class="line">this.push(val); //this指向newArr.</span><br><span class="line">&#125;,newArr)</span><br></pre></td></tr></table></figure><h3 id="do-while方式"><a href="#do-while方式" class="headerlink" title="do/while方式"></a>do/while方式</h3><p>不建议使用，此处不多说明</p><h2 id="each"><a href="#each" class="headerlink" title="$.each"></a>$.each</h2><p>这个为jQuery中的方法，熟悉jQuery的应该或多或少的使用过。可遍历数组和对象。<br>下面的例子中e为索引值，或者key值，ele为value值</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each(Arr|obj,<span class="keyword">function</span>(e,ele)&#123;</span><br><span class="line">console.log(e,ele);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h3 id="each注意点"><a href="#each注意点" class="headerlink" title="$.each注意点"></a>$.each注意点</h3><ul><li>使用return或return true为跳过一次循环，继续执行后面的循环。</li><li>使用return false为终止循环的执行，但是并不终止函数执行，</li><li>无法使用break和continue来跳过循环。</li><li>循环中this输出： </li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(this);</span><br><span class="line"></span><br><span class="line">console.log(this=ele);</span><br></pre></td></tr></table></figure><h2 id="selecter-each"><a href="#selecter-each" class="headerlink" title="$(selecter).each()"></a>$(selecter).each()</h2><p>专门用来遍历DOMList</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.list li'</span>).each(<span class="keyword">function</span>(i,ele)&#123;</span><br><span class="line">console.log(i,ele);</span><br><span class="line"></span><br><span class="line">$(this).html(i);</span><br><span class="line"><span class="keyword">if</span>($(this).attr(<span class="string">'data-item'</span>)==<span class="string">'do'</span>)&#123;</span><br><span class="line">$(this).html(<span class="string">'data-item:do'</span>);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><ul><li>i ele 只被当前遍历DOM元素</li><li>this 当前被遍历的DOM元素，不能调用jQuery方法。</li><li>$(this)==$(ele) 当前被遍历元素的jQuery对象，可调用jQuery方法进行dom操作。</li></ul><p><em>在for循环中遍历DOMList中需要将DOMlist转换为数组</em></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var res=[].slice.call(domList);</span><br><span class="line"><span class="keyword">for</span>(var item <span class="keyword">in</span> res)&#123;&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;ol&gt;
-&lt;li&gt;通过Transform组件移动物体&lt;br&gt; Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。&lt;/li&gt;
-&lt;/ol&gt;
+      &lt;p&gt; 首先我们写一个数组和json对象。&lt;br&gt; var Arr=[‘C++’,’c#’,’java’,’css’,’html’,’javascripts’];&lt;br&gt; var obj={&lt;br&gt;     first:’javascripts’,&lt;br&gt;     second:’css’,&lt;br&gt;     third:’jquery’&lt;br&gt; };&lt;br&gt;
     
     </summary>
     
     
-      <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
+      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
     
   </entry>
   
@@ -141,6 +143,28 @@
       &lt;h1 id=&quot;unity学习小总结&quot;&gt;&lt;a href=&quot;#unity学习小总结&quot; class=&quot;headerlink&quot; title=&quot;unity学习小总结&quot;&gt;&lt;/a&gt;unity学习小总结&lt;/h1&gt;&lt;p&gt;1.prefab的使用,当完成一个gameObject的使用,通过拖拽到项目栏成为prefab,prefab将可以加快开发效率.&lt;br&gt;prefab之后的物品，也只能通过prefab的预制体进行赋值。&lt;/p&gt;
 &lt;p&gt;2.5.0版本后,Unity规范了c#的写法，RigidBody均需要先声明后获取.&lt;/p&gt;
 &lt;p&gt;3.采用tag标记来处理一些碰撞检测，在逻辑上采用tag来判断，这样可以避免一些逻辑bug。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>unity控制运动</title>
+    <link href="http://wenace.github.io/2018/02/22/unity%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
+    <id>http://wenace.github.io/2018/02/22/unity注意点/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-24T15:02:51.648Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li></ol><a id="more"></a><p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p><pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;</code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p><p>2.3 Vector3.SmoothDamp<br>      该方法是可以平滑的从A逐渐移动到B点，并且可以控制速度，最常见的用法是相机跟随目标。</p><p>2.4 Transform.position<br>       有时重新赋值position能更快实现我们的目标。</p><ol><li><p>通过Rigidbody组件移动物体<br> Rigidbody组件用于模拟物体的物理状态，比如物体受重力影响，物体被碰撞后的击飞等等。</p><p> 注意：关于Rigidbody的调用均应放在FixedUpdate方法中，该方法会在每一次执行物理模拟前被调用。</p></li></ol><p>3.1 Rigidbody.velocity<br>     设置刚体速度可以让物体运动并且忽略静摩擦力，这会让物体快速从静止状态进入运动状态。</p><p>3.2 Rigidbody.AddForce<br>      给刚体添加一个方向的力，这种方式适合模拟物体在外力的作用下的运动状态。</p><p>3.3 Rigidbody.MovePosition<br>      刚体受到物理约束的情况下，移动到指定点。</p><ol><li>通过CharacterController组件移动物体<br>  CharacterController用于控制第一人称或第三人称角色的运动，使用这种方式可以模拟人的一些行为，比如限制角色爬坡的最大斜度,步伐的高度等。</li></ol><p>4.1 CharacterController.SimpleMove<br>     用于模拟简单运动，并且自动应用重力，返回值表示角色当前是否着地。</p><p>4.2 CharacterController.Move<br>     模拟更复杂的运动,重力需要通过代码实现，返回值表示角色与周围的碰撞信息。</p><p>通常我们都需要if语句进行input.GetKey判断。根据不同的2d形式，采用unity的动画系统，动画系统中需要注意</p><p>1.获取的为Aminator，需要先声明，后获取，与rigidbody相似。</p><p>2.当方向较多的时候，我们使用blend tree进行各个位置的定位，因为sprite有方向，所以我们需要对Vector3.x或者y下进行1或者-1的赋值，一般在动画系统中设置parameter有moveX，moveY的bool值。在代码过程中国对aminator进行setbool方法的调用。</p><p>3.在transiton(过渡)中设置conditions,状态机形式。通过getAxis来获取水平方向，键盘输入将得到1到-1范围内. transform.Translate 通过位移方式进行移动。</p><p>4.transform.position得到的值是一个坐标值，也就是说，移动的sprite是通过不断刷新坐标值，从而实现移动</p><p>5.放在Update()函数中的代码是以帧来执行的.如果我们需要物体的移动以秒来执行.我们需要将物体移动的值乘以Time.deltaTime。</p><p>6.2d中我们需要设置player为rigidbody和box collision2d或者其他方式，还有一个就是play所站立的地方为box collision2d或其他方式。</p><p>7.对钢体施加力也可形成移动，rd.addForce() Mathf.Clamp()控制速度最大和最小值，其实就是左右方向的最大值，避免速度过大，冲出场景</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;通过Transform组件移动物体&lt;br&gt; Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
@@ -196,26 +220,6 @@
   </entry>
   
   <entry>
-    <title>位运算总结</title>
-    <link href="http://wenace.github.io/2018/02/22/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
-    <id>http://wenace.github.io/2018/02/22/CodeFight经典问题/</id>
-    <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-15T12:18:24.910Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p><p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;位运算形式&quot;&gt;&lt;a href=&quot;#位运算形式&quot; class=&quot;headerlink&quot; title=&quot;位运算形式&quot;&gt;&lt;/a&gt;位运算形式&lt;/h2&gt;&lt;p&gt;1.与，或，非，异或运算特点&lt;br&gt;非（~）：1变0,0变1.&lt;br&gt;与（&amp;amp;）：有0则为0，均为1返回1.
-    
-    </summary>
-    
-    
-      <category term="位运算" scheme="http://wenace.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
     <title>javascript原型链方面总结</title>
     <link href="http://wenace.github.io/2018/02/22/javascript%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%96%B9%E9%9D%A2%E6%80%BB%E7%BB%93/"/>
     <id>http://wenace.github.io/2018/02/22/javascript原型链方面总结/</id>
@@ -238,24 +242,22 @@
   </entry>
   
   <entry>
-    <title>gamejam总结</title>
-    <link href="http://wenace.github.io/2018/02/22/gamejam%E6%80%BB%E7%BB%93/"/>
-    <id>http://wenace.github.io/2018/02/22/gamejam总结/</id>
+    <title>位运算总结</title>
+    <link href="http://wenace.github.io/2018/02/22/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
+    <id>http://wenace.github.io/2018/02/22/CodeFight经典问题/</id>
     <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-18T15:07:17.047Z</updated>
+    <updated>2017-06-15T12:18:24.910Z</updated>
     
-    <content type="html"><![CDATA[<p>   自己首次参与gamejam结束了，总体感觉不能完全说出来，<br>看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有<br>很长的一段路需要走，踏实的走下去，或许就是另一种结果。<br><a id="more"></a><br>gamejam所提倡的就是一种纯粹的对游戏的热爱，各种新奇好玩的点子，和各开发者<br>的交流，确实不能比这个更棒的事情了，大家都在一个channel里。</p><p>从技术上看见基本的开发流程，api使用，美术上更是打开我所不清楚的大门。需要学习<br>的还有很多。这次活动获益良多</p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday01.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday02.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday03.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday04.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday05.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday06.jpg" alt="gamejam"></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p><p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;   自己首次参与gamejam结束了，总体感觉不能完全说出来，&lt;br&gt;看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有&lt;br&gt;很长的一段路需要走，踏实的走下去，或许就是另一种结果。&lt;br&gt;
+      &lt;h2 id=&quot;位运算形式&quot;&gt;&lt;a href=&quot;#位运算形式&quot; class=&quot;headerlink&quot; title=&quot;位运算形式&quot;&gt;&lt;/a&gt;位运算形式&lt;/h2&gt;&lt;p&gt;1.与，或，非，异或运算特点&lt;br&gt;非（~）：1变0,0变1.&lt;br&gt;与（&amp;amp;）：有0则为0，均为1返回1.
     
     </summary>
     
-      <category term="感悟" scheme="http://wenace.github.io/categories/%E6%84%9F%E6%82%9F/"/>
     
-    
-      <category term="gamejam" scheme="http://wenace.github.io/tags/gamejam/"/>
+      <category term="位运算" scheme="http://wenace.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
     
   </entry>
   
@@ -280,29 +282,6 @@
       <category term="2017gamejam" scheme="http://wenace.github.io/tags/2017gamejam/"/>
     
       <category term="游戏开发" scheme="http://wenace.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>原生JavaScript编写ajax</title>
-    <link href="http://wenace.github.io/2018/02/22/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
-    <id>http://wenace.github.io/2018/02/22/ajax学习总结/</id>
-    <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-15T12:24:31.968Z</updated>
-    
-    <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p><p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">createXMLDoc</span></span>()&#123;</span><br><span class="line">var xmlhttp;</span><br><span class="line"><span class="keyword">if</span>(window.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">xmlhttp=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">xmlhttp=new ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.onreadystatechange=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line"><span class="keyword">if</span>(xmlhttp.states==200&amp;&amp;xmlhttp.readyState==4)</span><br><span class="line">&#123;</span><br><span class="line">document.getElementById(<span class="string">"myDic"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>):</span><br><span class="line">xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="open-和send-的方法"><a href="#open-和send-的方法" class="headerlink" title="open()和send()的方法"></a>open()和send()的方法</h3><p>open方法中有三个参数，从左往右分别是</p><ul><li>method：请求类型：GET或者POST</li><li>url：文件在服务器上的位置</li><li>async: true()（异步）或false()（同步）<br><em>url中文件可以使任何类型的文件</em></li></ul><p>send()方法中的参数仅用于POST请求。</p><h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><p>GET：<br>1.一般用于信息获取<br>2.使用URL传递参数<br>3.对所发送信息的数量有限制，一般在2000个字符<br>4.传送数据量小，处理效率高。<br>5.安全性低，会被缓存。</p><p>POST：<br>1.用于修改服务器上的资源。<br>2.对所发送信息的数量无限制。<br>3.安全性高。可靠性高。</p><h2 id="AJAX的服务器响应"><a href="#AJAX的服务器响应" class="headerlink" title="AJAX的服务器响应"></a>AJAX的服务器响应</h2><ul><li>responseTest 获得字符串响应数据</li><li>responseXML  或的XML形式响应数据</li></ul><p>##AJAX的readyState和status</p><p>readyState：</p><blockquote><p>0：请求未初始化<br>1：服务器连接已建立<br>2：请求已接收<br>3：请求处理中<br>4：请求已经完成，且响应已就绪</p></blockquote><p>Status：</p><blockquote><p>200：ok<br>404：未找到页面</p></blockquote><h4 id="HTTP请求中常用的状态码"><a href="#HTTP请求中常用的状态码" class="headerlink" title="HTTP请求中常用的状态码"></a>HTTP请求中常用的状态码</h4><blockquote><p>301,302 重定向，后跟location头指明跳转位置<br>304 从浏览器缓存加载<br>403 权限不够，拒绝访问<br>404 资源未找到<br>500 服务器内部错误，通常为后端错误</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性&lt;/p&gt;
-&lt;p&gt;ajax是一种用于创建快速动态网页的技术&lt;br&gt;&lt;em&gt;AJAX应用程序与浏览器和平台无关&lt;/em&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="ajax" scheme="http://wenace.github.io/tags/ajax/"/>
-    
-      <category term="前端" scheme="http://wenace.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -352,6 +331,51 @@
       <category term="网络相关" scheme="http://wenace.github.io/tags/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
     
       <category term="http" scheme="http://wenace.github.io/tags/http/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>原生JavaScript编写ajax</title>
+    <link href="http://wenace.github.io/2018/02/22/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/ajax学习总结/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-15T12:24:31.968Z</updated>
+    
+    <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p><p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">createXMLDoc</span></span>()&#123;</span><br><span class="line">var xmlhttp;</span><br><span class="line"><span class="keyword">if</span>(window.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">xmlhttp=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">xmlhttp=new ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.onreadystatechange=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line"><span class="keyword">if</span>(xmlhttp.states==200&amp;&amp;xmlhttp.readyState==4)</span><br><span class="line">&#123;</span><br><span class="line">document.getElementById(<span class="string">"myDic"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>):</span><br><span class="line">xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="open-和send-的方法"><a href="#open-和send-的方法" class="headerlink" title="open()和send()的方法"></a>open()和send()的方法</h3><p>open方法中有三个参数，从左往右分别是</p><ul><li>method：请求类型：GET或者POST</li><li>url：文件在服务器上的位置</li><li>async: true()（异步）或false()（同步）<br><em>url中文件可以使任何类型的文件</em></li></ul><p>send()方法中的参数仅用于POST请求。</p><h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><p>GET：<br>1.一般用于信息获取<br>2.使用URL传递参数<br>3.对所发送信息的数量有限制，一般在2000个字符<br>4.传送数据量小，处理效率高。<br>5.安全性低，会被缓存。</p><p>POST：<br>1.用于修改服务器上的资源。<br>2.对所发送信息的数量无限制。<br>3.安全性高。可靠性高。</p><h2 id="AJAX的服务器响应"><a href="#AJAX的服务器响应" class="headerlink" title="AJAX的服务器响应"></a>AJAX的服务器响应</h2><ul><li>responseTest 获得字符串响应数据</li><li>responseXML  或的XML形式响应数据</li></ul><p>##AJAX的readyState和status</p><p>readyState：</p><blockquote><p>0：请求未初始化<br>1：服务器连接已建立<br>2：请求已接收<br>3：请求处理中<br>4：请求已经完成，且响应已就绪</p></blockquote><p>Status：</p><blockquote><p>200：ok<br>404：未找到页面</p></blockquote><h4 id="HTTP请求中常用的状态码"><a href="#HTTP请求中常用的状态码" class="headerlink" title="HTTP请求中常用的状态码"></a>HTTP请求中常用的状态码</h4><blockquote><p>301,302 重定向，后跟location头指明跳转位置<br>304 从浏览器缓存加载<br>403 权限不够，拒绝访问<br>404 资源未找到<br>500 服务器内部错误，通常为后端错误</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性&lt;/p&gt;
+&lt;p&gt;ajax是一种用于创建快速动态网页的技术&lt;br&gt;&lt;em&gt;AJAX应用程序与浏览器和平台无关&lt;/em&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="ajax" scheme="http://wenace.github.io/tags/ajax/"/>
+    
+      <category term="前端" scheme="http://wenace.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gamejam总结</title>
+    <link href="http://wenace.github.io/2018/02/22/gamejam%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/gamejam总结/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-18T15:07:17.047Z</updated>
+    
+    <content type="html"><![CDATA[<p>   自己首次参与gamejam结束了，总体感觉不能完全说出来，<br>看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有<br>很长的一段路需要走，踏实的走下去，或许就是另一种结果。<br><a id="more"></a><br>gamejam所提倡的就是一种纯粹的对游戏的热爱，各种新奇好玩的点子，和各开发者<br>的交流，确实不能比这个更棒的事情了，大家都在一个channel里。</p><p>从技术上看见基本的开发流程，api使用，美术上更是打开我所不清楚的大门。需要学习<br>的还有很多。这次活动获益良多</p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday01.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday02.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday03.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday04.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday05.jpg" alt="gamejam"></p><p><img src="http://ormm8jbub.bkt.clouddn.com/gamejam/lastday06.jpg" alt="gamejam"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   自己首次参与gamejam结束了，总体感觉不能完全说出来，&lt;br&gt;看见各种新奇的idea，感觉看见另一个不曾知道的大门，审视自己，然而还有&lt;br&gt;很长的一段路需要走，踏实的走下去，或许就是另一种结果。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="感悟" scheme="http://wenace.github.io/categories/%E6%84%9F%E6%82%9F/"/>
+    
+    
+      <category term="gamejam" scheme="http://wenace.github.io/tags/gamejam/"/>
     
   </entry>
   
