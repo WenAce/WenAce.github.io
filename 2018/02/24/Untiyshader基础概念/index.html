@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Trust the light！">
 <meta property="og:description" content="1.渲染流水线应用阶段-&amp;gt;几何阶段-&amp;gt;光栅化阶段 应用阶段输出渲染所需几何信息-&amp;gt;渲染图元（点线三角面等） 几何阶段在GPU上进行 光栅化阶段对上一阶段得到的逐顶点数据进行插值 起点为CPU,在应用阶段把数据加载到显存中，设置渲染状态，调用DrawCall DrawCall即为一个命令，从CPU发起，到GPU接收。此命令仅仅指向一个需要被渲染的图元列表，不包含任何材质信息。 调用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-24T05:46:46.813Z">
+<meta property="og:updated_time" content="2018-02-24T05:47:38.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Untiyshader基础概念">
 <meta name="twitter:description" content="1.渲染流水线应用阶段-&amp;gt;几何阶段-&amp;gt;光栅化阶段 应用阶段输出渲染所需几何信息-&amp;gt;渲染图元（点线三角面等） 几何阶段在GPU上进行 光栅化阶段对上一阶段得到的逐顶点数据进行插值 起点为CPU,在应用阶段把数据加载到显存中，设置渲染状态，调用DrawCall DrawCall即为一个命令，从CPU发起，到GPU接收。此命令仅仅指向一个需要被渲染的图元列表，不包含任何材质信息。 调用">
@@ -284,8 +284,7 @@
 <p>光栅化阶段对上一阶段得到的逐顶点数据进行插值</p>
 <p>起点为CPU,在应用阶段把数据加载到显存中，设置渲染状态，调用DrawCall</p>
 <p>DrawCall即为一个命令，从CPU发起，到GPU接收。此命令仅仅指向一个需要被渲染的图元列表，不包含任何材质信息。</p>
-<p>调用DrawCall命令GPU进行渲染，DrawCall过多会影响帧率，原因是会造成CPU过载，而GPU的渲染速度是超过CPU提交命令能力。</p>
-<p>减少DrawCall:避免使用大量很小的网格，不可避免时考虑合并形成图集。避免使用过多材质，尽量在不同的网格之间共用同一个材质。</p>
+<p>调用DrawCall命令GPU进行渲染，DrawCall过多会影响帧率，原因是会造成CPU过载，而GPU的渲染速度是超过CPU提交命令能力。<br><a id="more"></a><br>减少DrawCall:避免使用大量很小的网格，不可避免时考虑合并形成图集。避免使用过多材质，尽量在不同的网格之间共用同一个材质。</p>
 <p>LOD（Level of detail）多层次细节 LOD技术可有效减少计算的复杂度</p>
 <p>HDR（Hight Dynamic Range）高动态范围，相对的为LDR，采用HDR不会丢失高亮度区域的颜色值，提供了更真实的光照效果，并为屏幕后处理提供更多的控制能力。缺点就是使用浮点缓冲存储高精度图像，耗费更大的显存空间且渲染速度变慢，一些硬件也不支持HDR。</p>
 <p>PBS（Pyhsically Based Shading）基于物理着色</p>
@@ -307,7 +306,7 @@
         <p><span>本文标题:</span><a  href="/2018/02/24/Untiyshader基础概念/">Untiyshader基础概念</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 AceS1992 的个人博客">AceS1992</a></p>
         <p><span>发布时间:</span>2018年02月24日 - 13时36分</p>
-        <p><span>最后更新:</span>2018年02月24日 - 13时46分</p>
+        <p><span>最后更新:</span>2018年02月24日 - 13时47分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/02/24/Untiyshader基础概念/" title="Untiyshader基础概念">http://wenace.github.io/2018/02/24/Untiyshader基础概念/</a>
             <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2018/02/24/Untiyshader基础概念/　　作者: AceS1992" title=""></span>
@@ -415,7 +414,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/24/Untiyshader基础概念/">Untiyshader基础概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/24/UnityShader-1-基础结构/">UnityShader(1)-基础结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/选择，插入，归并，快速排序总结/">选择，插入，归并，快速排序总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript的遍历方式/">常见的JavaScript遍历方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity-控制人物运动总结/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/前端总结/">前端开发总结(持续更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/常用正则表达式/">常用正则收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity注意点/">unity控制运动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/CodeFight经典问题/">位运算总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/http相关缓存头信息收集/">http相关缓存头</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2017gamejam01/">2017gamejam记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/gamejam总结/">gamejam总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/hexo建站-部署到github/">hexo部署到github</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/ajax学习总结/">原生JavaScript编写ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/javascript原型链方面总结/">javascript原型链方面总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/24/Untiyshader基础概念/">Untiyshader基础概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/24/UnityShader-1-基础结构/">UnityShader(1)-基础结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/选择，插入，归并，快速排序总结/">选择，插入，归并，快速排序总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript的遍历方式/">常见的JavaScript遍历方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/常用正则表达式/">常用正则收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity注意点/">unity控制运动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity-控制人物运动总结/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/前端总结/">前端开发总结(持续更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2017gamejam01/">2017gamejam记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/gamejam总结/">gamejam总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/javascript原型链方面总结/">javascript原型链方面总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/ajax学习总结/">原生JavaScript编写ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/hexo建站-部署到github/">hexo部署到github</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/CodeFight经典问题/">位运算总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/http相关缓存头信息收集/">http相关缓存头</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></li></ul>
     <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
