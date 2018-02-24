@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wenace.github.io/"/>
-  <updated>2018-02-24T04:14:13.434Z</updated>
+  <updated>2018-02-24T05:46:46.813Z</updated>
   <id>http://wenace.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Untiyshader基础概念</title>
+    <link href="http://wenace.github.io/2018/02/24/Untiyshader%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/"/>
+    <id>http://wenace.github.io/2018/02/24/Untiyshader基础概念/</id>
+    <published>2018-02-24T05:36:51.000Z</published>
+    <updated>2018-02-24T05:46:46.813Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.渲染流水线<br>应用阶段-&gt;几何阶段-&gt;光栅化阶段</p><p>应用阶段输出渲染所需几何信息-&gt;渲染图元（点线三角面等）</p><p>几何阶段在GPU上进行</p><p>光栅化阶段对上一阶段得到的逐顶点数据进行插值</p><p>起点为CPU,在应用阶段把数据加载到显存中，设置渲染状态，调用DrawCall</p><p>DrawCall即为一个命令，从CPU发起，到GPU接收。此命令仅仅指向一个需要被渲染的图元列表，不包含任何材质信息。</p><p>调用DrawCall命令GPU进行渲染，DrawCall过多会影响帧率，原因是会造成CPU过载，而GPU的渲染速度是超过CPU提交命令能力。</p><p>减少DrawCall:避免使用大量很小的网格，不可避免时考虑合并形成图集。避免使用过多材质，尽量在不同的网格之间共用同一个材质。</p><p>LOD（Level of detail）多层次细节 LOD技术可有效减少计算的复杂度</p><p>HDR（Hight Dynamic Range）高动态范围，相对的为LDR，采用HDR不会丢失高亮度区域的颜色值，提供了更真实的光照效果，并为屏幕后处理提供更多的控制能力。缺点就是使用浮点缓冲存储高精度图像，耗费更大的显存空间且渲染速度变慢，一些硬件也不支持HDR。</p><p>PBS（Pyhsically Based Shading）基于物理着色</p><p>2.GPU渲染流水线<br>从几何阶段到光栅化阶段分为更小的部分</p><p>  三角形设置，三角形遍历，片元着色器，逐片元操作<br>                                          |<br>顶点数据-&gt;几何阶段-&gt;光栅化阶段-&gt;屏幕图像<br>                     |<br> 顶点着色器，曲面细分着色器，几何着色器，裁剪</p><p>3标准光照模型<br>环境光-自发光-漫反射-高光反射-逐像素or逐顶点</p><p>渲染顺序很重要，在透明度混合技术中，需关闭深度写入，不关闭深度写入会导致本来需要看到的表面被剔除，破坏了深度缓冲的工作机制</p><p>光源属性常有位置，方向，颜色，强度，衰减</p><p>4基础纹理<br>   高度纹理，法线纹理<br>              |<br>单张纹理-凹凸映射-渐变纹理-遮罩纹理</p><p>5渲染路径<br>分为前向，延迟（新代替旧），顶点照明（已被unity抛弃）</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1.渲染流水线&lt;br&gt;应用阶段-&amp;gt;几何阶段-&amp;gt;光栅化阶段&lt;/p&gt;
+&lt;p&gt;应用阶段输出渲染所需几何信息-&amp;gt;渲染图元（点线三角面等）&lt;/p&gt;
+&lt;p&gt;几何阶段在GPU上进行&lt;/p&gt;
+&lt;p&gt;光栅化阶段对上一阶段得到的逐顶点数据进行插值&lt;/p&gt;
+&lt;p&gt;起点为CPU,
+      
+    
+    </summary>
+    
+    
+      <category term="-- UnityShader -- 图形学" scheme="http://wenace.github.io/tags/UnityShader-%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>UnityShader(1)-基础结构</title>
     <link href="http://wenace.github.io/2018/02/24/UnityShader-1-%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84/"/>
     <id>http://wenace.github.io/2018/02/24/UnityShader-1-基础结构/</id>
     <published>2018-02-24T04:01:36.000Z</published>
-    <updated>2018-02-24T04:14:13.434Z</updated>
+    <updated>2018-02-24T04:22:38.134Z</updated>
     
     <content type="html"><![CDATA[<p>shader基础结构</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;MyShaderName&quot; &#123;</span><br><span class="line">Properties&#123;</span><br><span class="line">    //属性 Name通常需要下划线开始 display name是显然在材质面板上的名字，properytype是其类型 ，最后需要赋一个默认值</span><br><span class="line">    Name (&quot;display name&quot;,PropertyType)=DefaultValue</span><br><span class="line">&#125;</span><br><span class="line">SubShader&#123;</span><br><span class="line">   //针对显卡A的SubShader SubShader可有多个，但最少需要一个</span><br><span class="line">   //真正意义上的Shader代码会出现在这里</span><br><span class="line">   //表面着色器(Surface shader) or 顶点/片元着色器(Vertex/Fragment shader) or 固定函数着色器(Fixed Function shader)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   //可选</span><br><span class="line">   [Tags]         //标签 为键值对</span><br><span class="line">   Tags&#123;&quot;TagName1&quot;=&quot;Value1&quot; &quot;TagName2&quot;=&quot;Value2&quot;&#125;</span><br><span class="line">   [RenderSetup] //状态</span><br><span class="line"></span><br><span class="line">Pass&#123;</span><br><span class="line">   //设置渲染状态和标签 Pass数目应尽量少，多会造成渲染性能下降  </span><br><span class="line">    [Name]    //设置该Pass名称 可使用ShaderLab的UsePass命令直接使用其他Shader中的Pass ，提高了复用性</span><br><span class="line">    [Tags]     //不同于subshader中的标签</span><br><span class="line">    [RenderSetup]</span><br><span class="line"></span><br><span class="line">CGPROGRAM  //开始CG代码片段</span><br><span class="line"></span><br><span class="line">        #pragma vertex vert   //编译指令，某函数包含哪类着色器</span><br><span class="line">        #pragma fragment frag</span><br><span class="line"></span><br><span class="line">        //整体CG代码写在这里</span><br><span class="line"></span><br><span class="line">ENDCG</span><br><span class="line">//其他设置</span><br><span class="line">&#125;</span><br><span class="line">    //其他需要的Pass</span><br><span class="line">&#125;</span><br><span class="line">    SubShader&#123;</span><br><span class="line">        //针对显卡B</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Fallback &quot;VertexLit&quot;   //用于告诉Unity，上述SubShader在该显卡上都不支持，使用最低级Shader</span><br><span class="line">    //Fallback &quot;Name&quot; or Fallback off（关闭fallback）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><h2 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/ShaderProperties.png" alt="image"></p><p>从上图看出对于Int，Float，Range类型，默认值是一个单独数字，Color和Vector是四维的向量，2d，cube，3d是通过一个字符串后跟一个花括号，字符串要么是空的要么就是内置的纹理名称。</p><h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/biaoqian.png" alt="image"></p><h2 id="渲染状态设置"><a href="#渲染状态设置" class="headerlink" title="渲染状态设置"></a>渲染状态设置</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/%E6%B8%B2%E6%9F%93%E7%8A%B6%E6%80%81%E8%AE%BE%E7%BD%AE.png" alt="image"></p><h2 id="Pass标签"><a href="#Pass标签" class="headerlink" title="Pass标签"></a>Pass标签</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/Pass%E6%A0%87%E7%AD%BE.png" alt="image"></p><h2 id="相关着色器的语义"><a href="#相关着色器的语义" class="headerlink" title="相关着色器的语义"></a>相关着色器的语义</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/yuyi1.png" alt="image"><br><img src="http://ormm8jbub.bkt.clouddn.com/yuyi2.png" alt="image"><br><img src="http://ormm8jbub.bkt.clouddn.com/yuyi3.png" alt="image"></p><p>UnityShader也支持特殊的Pass，如UsePass和GrabPass，GrabPass负责抓取屏幕并将结果存储在一张纹理中，便于后续Pass处理。</p><ol><li>表面着色器无需写在Pass语义快中，表面着色器无需关心有多少个Pass2</li><li>顶点/片元着色器是写在Pass中，我们需要自己定义Pass中的shader代码，灵活性更高，控制渲染的实现细节。</li><li>都在CGPROGRAM到ENDCG之间写，但是区别在一个在subshader中，一个在pass中。</li></ol><h2 id="选择哪种shader形式"><a href="#选择哪种shader形式" class="headerlink" title="选择哪种shader形式"></a>选择哪种shader形式</h2><ol><li>如果需求中有明确表示对旧设备进行支持，需要使用固定函数着色器，否则使用可编程管线着色器</li><li>如果和各种光源打交道，采用表面着色器，但要注意移动平台性能表现</li><li>如果光照数目非常少，有很多自定义渲染效果， 那么使用顶点/片元着色器</li></ol>]]></content>
     
@@ -56,6 +83,29 @@
     
     
       <category term="-- 算法 -- 排序" scheme="http://wenace.github.io/tags/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo本地搭建心得</title>
+    <link href="http://wenace.github.io/2018/02/22/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
+    <id>http://wenace.github.io/2018/02/22/新的开始/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-15T13:29:22.121Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p><h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br><a id="more"></a></p><h2 id="hexo搭建"><a href="#hexo搭建" class="headerlink" title="hexo搭建"></a>hexo搭建</h2><p>通过npm安装hexo，具体代码在git bash中如下，采用全局安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cil -g</span><br></pre></td></tr></table></figure><p>如果安装不成功，大家可以使用淘宝的<em>CNPM</em>进行安装，毕竟有时我们和这个世界不在一个维度上。</p><h4 id="CNPM上的安装方式"><a href="#CNPM上的安装方式" class="headerlink" title="CNPM上的安装方式"></a>CNPM上的安装方式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install hexo</span><br></pre></td></tr></table></figure><p>安装成功后，我们需要建立新的文件夹，大家可以自己选个位置，然后git bash。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init yourfolderName</span><br></pre></td></tr></table></figure><p>当初始化成功之后，可以见到这么如下所示信息<br><em>INFO Start blogging with Hexo!</em></p><p>因为hexo 3.0后server分开成独立模块，所以这个时候，我们需要先进行server的安装，在你博客文件夹下git bash，键入命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo server</span><br></pre></td></tr></table></figure><p>激动人心的时刻到了，安装完后，输入以下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>或者</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure><p>我们将会获得如下信息提示。<br><em>INFO  Start processing<br>INFO  Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>. Press Ctrl+C to stop.</em></p><p>可能有朋友会没有反应，原因可能是端口冲突了，你只需要在文件下的<em>node_modules</em>中的<em>hexo-server</em>的<em>index.js</em>修改port的值即可。</p><p>待续。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。&lt;/p&gt;
+&lt;h2 id=&quot;安装Node&quot;&gt;&lt;a href=&quot;#安装Node&quot; class=&quot;headerlink&quot; title=&quot;安装Node&quot;&gt;&lt;/a&gt;安装Node&lt;/h2&gt;&lt;p&gt;大家可以自行在&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Node&lt;/a&gt;的官网上进行下载.&lt;br&gt;当安装完Node之后，自然会安装NPM，即包管理器。&lt;br&gt;之后我们就可以开始安装hexo。&lt;br&gt;这里希望大家安装&lt;em&gt;git&lt;/em&gt;，并且学会使用&lt;em&gt;git&lt;/em&gt;，对以后的工作都有很大的帮助。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
+    
+      <category term="本地搭建" scheme="http://wenace.github.io/tags/%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
@@ -104,48 +154,6 @@
   </entry>
   
   <entry>
-    <title>unity控制运动</title>
-    <link href="http://wenace.github.io/2018/02/22/unity%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
-    <id>http://wenace.github.io/2018/02/22/unity注意点/</id>
-    <published>2018-02-22T04:19:43.270Z</published>
-    <updated>2017-06-24T15:02:51.648Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li></ol><a id="more"></a><p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p><pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;</code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p><p>2.3 Vector3.SmoothDamp<br>      该方法是可以平滑的从A逐渐移动到B点，并且可以控制速度，最常见的用法是相机跟随目标。</p><p>2.4 Transform.position<br>       有时重新赋值position能更快实现我们的目标。</p><ol><li><p>通过Rigidbody组件移动物体<br> Rigidbody组件用于模拟物体的物理状态，比如物体受重力影响，物体被碰撞后的击飞等等。</p><p> 注意：关于Rigidbody的调用均应放在FixedUpdate方法中，该方法会在每一次执行物理模拟前被调用。</p></li></ol><p>3.1 Rigidbody.velocity<br>     设置刚体速度可以让物体运动并且忽略静摩擦力，这会让物体快速从静止状态进入运动状态。</p><p>3.2 Rigidbody.AddForce<br>      给刚体添加一个方向的力，这种方式适合模拟物体在外力的作用下的运动状态。</p><p>3.3 Rigidbody.MovePosition<br>      刚体受到物理约束的情况下，移动到指定点。</p><ol><li>通过CharacterController组件移动物体<br>  CharacterController用于控制第一人称或第三人称角色的运动，使用这种方式可以模拟人的一些行为，比如限制角色爬坡的最大斜度,步伐的高度等。</li></ol><p>4.1 CharacterController.SimpleMove<br>     用于模拟简单运动，并且自动应用重力，返回值表示角色当前是否着地。</p><p>4.2 CharacterController.Move<br>     模拟更复杂的运动,重力需要通过代码实现，返回值表示角色与周围的碰撞信息。</p><p>通常我们都需要if语句进行input.GetKey判断。根据不同的2d形式，采用unity的动画系统，动画系统中需要注意</p><p>1.获取的为Aminator，需要先声明，后获取，与rigidbody相似。</p><p>2.当方向较多的时候，我们使用blend tree进行各个位置的定位，因为sprite有方向，所以我们需要对Vector3.x或者y下进行1或者-1的赋值，一般在动画系统中设置parameter有moveX，moveY的bool值。在代码过程中国对aminator进行setbool方法的调用。</p><p>3.在transiton(过渡)中设置conditions,状态机形式。通过getAxis来获取水平方向，键盘输入将得到1到-1范围内. transform.Translate 通过位移方式进行移动。</p><p>4.transform.position得到的值是一个坐标值，也就是说，移动的sprite是通过不断刷新坐标值，从而实现移动</p><p>5.放在Update()函数中的代码是以帧来执行的.如果我们需要物体的移动以秒来执行.我们需要将物体移动的值乘以Time.deltaTime。</p><p>6.2d中我们需要设置player为rigidbody和box collision2d或者其他方式，还有一个就是play所站立的地方为box collision2d或其他方式。</p><p>7.对钢体施加力也可形成移动，rd.addForce() Mathf.Clamp()控制速度最大和最小值，其实就是左右方向的最大值，避免速度过大，冲出场景</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;通过Transform组件移动物体&lt;br&gt; Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常用正则收集</title>
-    <link href="http://wenace.github.io/2018/02/22/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    <id>http://wenace.github.io/2018/02/22/常用正则表达式/</id>
-    <published>2018-02-22T04:19:43.270Z</published>
-    <updated>2017-06-15T12:24:31.919Z</updated>
-    
-    <content type="html"><![CDATA[<p>一些常用的正则表达式<a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">//正整数</span><br><span class="line">/^[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//负整数</span><br><span class="line">/^-[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//正浮点数</span><br><span class="line">/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;</span><br><span class="line"></span><br><span class="line">//负浮点数</span><br><span class="line">/^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;  </span><br><span class="line"></span><br><span class="line">//浮点数</span><br><span class="line">/^(-?\d+)(\.\d+)?$/;</span><br><span class="line"></span><br><span class="line">//email地址</span><br><span class="line">/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;</span><br><span class="line"></span><br><span class="line">//url地址</span><br><span class="line">/^[a-zA-z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\S*)?$/;</span><br><span class="line">或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\<span class="string">':+!]*([^&lt;&gt;\"\"])*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//年/月/日（年-月-日、年.月.日）</span></span><br><span class="line"><span class="string">/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中文字符</span></span><br><span class="line"><span class="string">/[\u4e00-\u9fa5]/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配账号是否合法(字母开头，允许5-10字节，允许字母数字下划线)</span></span><br><span class="line"><span class="string">/^[a-zA-Z][a-zA-Z0-9_]&#123;4,9&#125;$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配空白行的正则表达式</span></span><br><span class="line"><span class="string">/\n\s*\r/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中国邮政编码</span></span><br><span class="line"><span class="string">/[1-9]\d&#123;5&#125;(?!\d)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配身份证</span></span><br><span class="line"><span class="string">/\d&#123;15&#125;|\d&#123;18&#125;/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配国内电话号码</span></span><br><span class="line"><span class="string">/(\d&#123;3&#125;-|\d&#123;4&#125;-)?(\d&#123;8&#125;|\d&#123;7&#125;)?/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配IP地址</span></span><br><span class="line"><span class="string">/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配首尾空白字符</span></span><br><span class="line"><span class="string">/^\s*|\s*$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配HTML标记</span></span><br><span class="line"><span class="string">&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的网络链接</span></span><br><span class="line"><span class="string">(h|H)(r|R)(e|E)(f|F) *=*('</span>|<span class="string">")?(\w|\\|\/|\.)+('|"</span>| *|&gt;)?</span><br><span class="line"></span><br><span class="line">//提取信息中的邮件地址</span><br><span class="line">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* </span><br><span class="line"></span><br><span class="line">//提取信息中的图片链接</span><br><span class="line">(s|S)(r|R)(c|C) *= *(<span class="string">'|")?(\w|\\|\/|\.)+('</span>|<span class="string">"| *|&gt;)? </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的 IP 地址</span></span><br><span class="line"><span class="string">(\d+)\.(\d+)\.(\d+)\.(\d+)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//取信息中的中国手机号码</span></span><br><span class="line"><span class="string">(86)*0*13\d&#123;9&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的中国邮政编码</span></span><br><span class="line"><span class="string">[1-9]&#123;1&#125;(\d+)&#123;5&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的浮点数（即小数）</span></span><br><span class="line"><span class="string">(-?\d*)\.?\d+ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的任何数字</span></span><br><span class="line"><span class="string">(-?\d*)(\.\d+)?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//电话区号</span></span><br><span class="line"><span class="string">^0\d&#123;2,3&#125;$</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//腾讯 QQ 号</span></span><br><span class="line"><span class="string">^[1-9]*[1-9][0-9]*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//帐号（字母开头，允许 5-16 字节，允许字母数字下划线）</span></span><br><span class="line"><span class="string">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//中文、英文、数字及下划线</span></span><br><span class="line"><span class="string">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</span></span><br></pre></td></tr></table></figure></p><p>这里推荐一个<a href="http://www1.w3cfuns.com/tools.php?mod=regex" target="_blank" rel="noopener">正则表达式的调试工具</a><br>也可以看看<a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="noopener">正则的基本语法</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一些常用的正则表达式
-    
-    </summary>
-    
-    
-      <category term="正则" scheme="http://wenace.github.io/tags/%E6%AD%A3%E5%88%99/"/>
-    
-  </entry>
-  
-  <entry>
     <title>unity注意点</title>
     <link href="http://wenace.github.io/2018/02/22/unity-%E6%8E%A7%E5%88%B6%E4%BA%BA%E7%89%A9%E8%BF%90%E5%8A%A8%E6%80%BB%E7%BB%93/"/>
     <id>http://wenace.github.io/2018/02/22/unity-控制人物运动总结/</id>
@@ -164,29 +172,6 @@
     
     
       <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo本地搭建心得</title>
-    <link href="http://wenace.github.io/2018/02/22/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
-    <id>http://wenace.github.io/2018/02/22/新的开始/</id>
-    <published>2018-02-22T04:19:43.270Z</published>
-    <updated>2017-06-15T13:29:22.121Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p><h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br><a id="more"></a></p><h2 id="hexo搭建"><a href="#hexo搭建" class="headerlink" title="hexo搭建"></a>hexo搭建</h2><p>通过npm安装hexo，具体代码在git bash中如下，采用全局安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cil -g</span><br></pre></td></tr></table></figure><p>如果安装不成功，大家可以使用淘宝的<em>CNPM</em>进行安装，毕竟有时我们和这个世界不在一个维度上。</p><h4 id="CNPM上的安装方式"><a href="#CNPM上的安装方式" class="headerlink" title="CNPM上的安装方式"></a>CNPM上的安装方式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install hexo</span><br></pre></td></tr></table></figure><p>安装成功后，我们需要建立新的文件夹，大家可以自己选个位置，然后git bash。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init yourfolderName</span><br></pre></td></tr></table></figure><p>当初始化成功之后，可以见到这么如下所示信息<br><em>INFO Start blogging with Hexo!</em></p><p>因为hexo 3.0后server分开成独立模块，所以这个时候，我们需要先进行server的安装，在你博客文件夹下git bash，键入命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo server</span><br></pre></td></tr></table></figure><p>激动人心的时刻到了，安装完后，输入以下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>或者</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure><p>我们将会获得如下信息提示。<br><em>INFO  Start processing<br>INFO  Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>. Press Ctrl+C to stop.</em></p><p>可能有朋友会没有反应，原因可能是端口冲突了，你只需要在文件下的<em>node_modules</em>中的<em>hexo-server</em>的<em>index.js</em>修改port的值即可。</p><p>待续。。。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。&lt;/p&gt;
-&lt;h2 id=&quot;安装Node&quot;&gt;&lt;a href=&quot;#安装Node&quot; class=&quot;headerlink&quot; title=&quot;安装Node&quot;&gt;&lt;/a&gt;安装Node&lt;/h2&gt;&lt;p&gt;大家可以自行在&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Node&lt;/a&gt;的官网上进行下载.&lt;br&gt;当安装完Node之后，自然会安装NPM，即包管理器。&lt;br&gt;之后我们就可以开始安装hexo。&lt;br&gt;这里希望大家安装&lt;em&gt;git&lt;/em&gt;，并且学会使用&lt;em&gt;git&lt;/em&gt;，对以后的工作都有很大的帮助。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="hexo" scheme="http://wenace.github.io/tags/hexo/"/>
-    
-      <category term="本地搭建" scheme="http://wenace.github.io/tags/%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
@@ -217,25 +202,90 @@
   </entry>
   
   <entry>
-    <title>原生JavaScript编写ajax</title>
-    <link href="http://wenace.github.io/2018/02/22/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
-    <id>http://wenace.github.io/2018/02/22/ajax学习总结/</id>
-    <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-15T12:24:31.968Z</updated>
+    <title>常用正则收集</title>
+    <link href="http://wenace.github.io/2018/02/22/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://wenace.github.io/2018/02/22/常用正则表达式/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-15T12:24:31.919Z</updated>
     
-    <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p><p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">createXMLDoc</span></span>()&#123;</span><br><span class="line">var xmlhttp;</span><br><span class="line"><span class="keyword">if</span>(window.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">xmlhttp=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">xmlhttp=new ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.onreadystatechange=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line"><span class="keyword">if</span>(xmlhttp.states==200&amp;&amp;xmlhttp.readyState==4)</span><br><span class="line">&#123;</span><br><span class="line">document.getElementById(<span class="string">"myDic"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>):</span><br><span class="line">xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="open-和send-的方法"><a href="#open-和send-的方法" class="headerlink" title="open()和send()的方法"></a>open()和send()的方法</h3><p>open方法中有三个参数，从左往右分别是</p><ul><li>method：请求类型：GET或者POST</li><li>url：文件在服务器上的位置</li><li>async: true()（异步）或false()（同步）<br><em>url中文件可以使任何类型的文件</em></li></ul><p>send()方法中的参数仅用于POST请求。</p><h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><p>GET：<br>1.一般用于信息获取<br>2.使用URL传递参数<br>3.对所发送信息的数量有限制，一般在2000个字符<br>4.传送数据量小，处理效率高。<br>5.安全性低，会被缓存。</p><p>POST：<br>1.用于修改服务器上的资源。<br>2.对所发送信息的数量无限制。<br>3.安全性高。可靠性高。</p><h2 id="AJAX的服务器响应"><a href="#AJAX的服务器响应" class="headerlink" title="AJAX的服务器响应"></a>AJAX的服务器响应</h2><ul><li>responseTest 获得字符串响应数据</li><li>responseXML  或的XML形式响应数据</li></ul><p>##AJAX的readyState和status</p><p>readyState：</p><blockquote><p>0：请求未初始化<br>1：服务器连接已建立<br>2：请求已接收<br>3：请求处理中<br>4：请求已经完成，且响应已就绪</p></blockquote><p>Status：</p><blockquote><p>200：ok<br>404：未找到页面</p></blockquote><h4 id="HTTP请求中常用的状态码"><a href="#HTTP请求中常用的状态码" class="headerlink" title="HTTP请求中常用的状态码"></a>HTTP请求中常用的状态码</h4><blockquote><p>301,302 重定向，后跟location头指明跳转位置<br>304 从浏览器缓存加载<br>403 权限不够，拒绝访问<br>404 资源未找到<br>500 服务器内部错误，通常为后端错误</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<p>一些常用的正则表达式<a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">//正整数</span><br><span class="line">/^[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//负整数</span><br><span class="line">/^-[0-9]*[1-9][0-9]*$/;</span><br><span class="line"></span><br><span class="line">//正浮点数</span><br><span class="line">/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;</span><br><span class="line"></span><br><span class="line">//负浮点数</span><br><span class="line">/^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;  </span><br><span class="line"></span><br><span class="line">//浮点数</span><br><span class="line">/^(-?\d+)(\.\d+)?$/;</span><br><span class="line"></span><br><span class="line">//email地址</span><br><span class="line">/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;</span><br><span class="line"></span><br><span class="line">//url地址</span><br><span class="line">/^[a-zA-z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\S*)?$/;</span><br><span class="line">或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\<span class="string">':+!]*([^&lt;&gt;\"\"])*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//年/月/日（年-月-日、年.月.日）</span></span><br><span class="line"><span class="string">/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中文字符</span></span><br><span class="line"><span class="string">/[\u4e00-\u9fa5]/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配账号是否合法(字母开头，允许5-10字节，允许字母数字下划线)</span></span><br><span class="line"><span class="string">/^[a-zA-Z][a-zA-Z0-9_]&#123;4,9&#125;$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配空白行的正则表达式</span></span><br><span class="line"><span class="string">/\n\s*\r/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配中国邮政编码</span></span><br><span class="line"><span class="string">/[1-9]\d&#123;5&#125;(?!\d)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配身份证</span></span><br><span class="line"><span class="string">/\d&#123;15&#125;|\d&#123;18&#125;/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配国内电话号码</span></span><br><span class="line"><span class="string">/(\d&#123;3&#125;-|\d&#123;4&#125;-)?(\d&#123;8&#125;|\d&#123;7&#125;)?/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配IP地址</span></span><br><span class="line"><span class="string">/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配首尾空白字符</span></span><br><span class="line"><span class="string">/^\s*|\s*$/;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//匹配HTML标记</span></span><br><span class="line"><span class="string">&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的网络链接</span></span><br><span class="line"><span class="string">(h|H)(r|R)(e|E)(f|F) *=*('</span>|<span class="string">")?(\w|\\|\/|\.)+('|"</span>| *|&gt;)?</span><br><span class="line"></span><br><span class="line">//提取信息中的邮件地址</span><br><span class="line">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* </span><br><span class="line"></span><br><span class="line">//提取信息中的图片链接</span><br><span class="line">(s|S)(r|R)(c|C) *= *(<span class="string">'|")?(\w|\\|\/|\.)+('</span>|<span class="string">"| *|&gt;)? </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的 IP 地址</span></span><br><span class="line"><span class="string">(\d+)\.(\d+)\.(\d+)\.(\d+)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//取信息中的中国手机号码</span></span><br><span class="line"><span class="string">(86)*0*13\d&#123;9&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的中国邮政编码</span></span><br><span class="line"><span class="string">[1-9]&#123;1&#125;(\d+)&#123;5&#125; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的浮点数（即小数）</span></span><br><span class="line"><span class="string">(-?\d*)\.?\d+ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//提取信息中的任何数字</span></span><br><span class="line"><span class="string">(-?\d*)(\.\d+)?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//电话区号</span></span><br><span class="line"><span class="string">^0\d&#123;2,3&#125;$</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//腾讯 QQ 号</span></span><br><span class="line"><span class="string">^[1-9]*[1-9][0-9]*$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//帐号（字母开头，允许 5-16 字节，允许字母数字下划线）</span></span><br><span class="line"><span class="string">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//中文、英文、数字及下划线</span></span><br><span class="line"><span class="string">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</span></span><br></pre></td></tr></table></figure></p><p>这里推荐一个<a href="http://www1.w3cfuns.com/tools.php?mod=regex" target="_blank" rel="noopener">正则表达式的调试工具</a><br>也可以看看<a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="noopener">正则的基本语法</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性&lt;/p&gt;
-&lt;p&gt;ajax是一种用于创建快速动态网页的技术&lt;br&gt;&lt;em&gt;AJAX应用程序与浏览器和平台无关&lt;/em&gt;&lt;br&gt;
+      &lt;p&gt;一些常用的正则表达式
     
     </summary>
     
     
-      <category term="ajax" scheme="http://wenace.github.io/tags/ajax/"/>
+      <category term="正则" scheme="http://wenace.github.io/tags/%E6%AD%A3%E5%88%99/"/>
     
-      <category term="前端" scheme="http://wenace.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+  </entry>
+  
+  <entry>
+    <title>unity控制运动</title>
+    <link href="http://wenace.github.io/2018/02/22/unity%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
+    <id>http://wenace.github.io/2018/02/22/unity注意点/</id>
+    <published>2018-02-22T04:19:43.270Z</published>
+    <updated>2017-06-24T15:02:51.648Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li></ol><a id="more"></a><p>2.1 Transform.Translate<br>       该方法可以将物体从当前位置，移动到指定位置，并且可以选择参照的坐标系。 当需要进行坐标系转换时，可以考虑使用该方法以省去转换坐标系的步骤。</p><pre><code>public function Translate(translation: Vector3, relativeTo: Space = Space.Self): void;</code></pre><p>2.2 Vector3.Lerp, Vector3.Slerp, Vector3.MoveTowards<br>      Vector3 既可以表示三维空间中的一个点，也可以表示一个向量。这三个方法均为插值方法， Lerp为线性插值，Slerp为球形插值， MoveTowards在Lerp的基础上增加了限制最大速度功能。 当需要从指定A点移动到B点时,可以考虑时候这些方法。</p><p>2.3 Vector3.SmoothDamp<br>      该方法是可以平滑的从A逐渐移动到B点，并且可以控制速度，最常见的用法是相机跟随目标。</p><p>2.4 Transform.position<br>       有时重新赋值position能更快实现我们的目标。</p><ol><li><p>通过Rigidbody组件移动物体<br> Rigidbody组件用于模拟物体的物理状态，比如物体受重力影响，物体被碰撞后的击飞等等。</p><p> 注意：关于Rigidbody的调用均应放在FixedUpdate方法中，该方法会在每一次执行物理模拟前被调用。</p></li></ol><p>3.1 Rigidbody.velocity<br>     设置刚体速度可以让物体运动并且忽略静摩擦力，这会让物体快速从静止状态进入运动状态。</p><p>3.2 Rigidbody.AddForce<br>      给刚体添加一个方向的力，这种方式适合模拟物体在外力的作用下的运动状态。</p><p>3.3 Rigidbody.MovePosition<br>      刚体受到物理约束的情况下，移动到指定点。</p><ol><li>通过CharacterController组件移动物体<br>  CharacterController用于控制第一人称或第三人称角色的运动，使用这种方式可以模拟人的一些行为，比如限制角色爬坡的最大斜度,步伐的高度等。</li></ol><p>4.1 CharacterController.SimpleMove<br>     用于模拟简单运动，并且自动应用重力，返回值表示角色当前是否着地。</p><p>4.2 CharacterController.Move<br>     模拟更复杂的运动,重力需要通过代码实现，返回值表示角色与周围的碰撞信息。</p><p>通常我们都需要if语句进行input.GetKey判断。根据不同的2d形式，采用unity的动画系统，动画系统中需要注意</p><p>1.获取的为Aminator，需要先声明，后获取，与rigidbody相似。</p><p>2.当方向较多的时候，我们使用blend tree进行各个位置的定位，因为sprite有方向，所以我们需要对Vector3.x或者y下进行1或者-1的赋值，一般在动画系统中设置parameter有moveX，moveY的bool值。在代码过程中国对aminator进行setbool方法的调用。</p><p>3.在transiton(过渡)中设置conditions,状态机形式。通过getAxis来获取水平方向，键盘输入将得到1到-1范围内. transform.Translate 通过位移方式进行移动。</p><p>4.transform.position得到的值是一个坐标值，也就是说，移动的sprite是通过不断刷新坐标值，从而实现移动</p><p>5.放在Update()函数中的代码是以帧来执行的.如果我们需要物体的移动以秒来执行.我们需要将物体移动的值乘以Time.deltaTime。</p><p>6.2d中我们需要设置player为rigidbody和box collision2d或者其他方式，还有一个就是play所站立的地方为box collision2d或其他方式。</p><p>7.对钢体施加力也可形成移动，rd.addForce() Mathf.Clamp()控制速度最大和最小值，其实就是左右方向的最大值，避免速度过大，冲出场景</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;通过Transform组件移动物体&lt;br&gt; Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="unity" scheme="http://wenace.github.io/tags/unity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>位运算总结</title>
+    <link href="http://wenace.github.io/2018/02/22/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
+    <id>http://wenace.github.io/2018/02/22/CodeFight经典问题/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-15T12:18:24.910Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p><p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;位运算形式&quot;&gt;&lt;a href=&quot;#位运算形式&quot; class=&quot;headerlink&quot; title=&quot;位运算形式&quot;&gt;&lt;/a&gt;位运算形式&lt;/h2&gt;&lt;p&gt;1.与，或，非，异或运算特点&lt;br&gt;非（~）：1变0,0变1.&lt;br&gt;与（&amp;amp;）：有0则为0，均为1返回1.
+    
+    </summary>
+    
+    
+      <category term="位运算" scheme="http://wenace.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>http相关缓存头</title>
+    <link href="http://wenace.github.io/2018/02/22/http%E7%9B%B8%E5%85%B3%E7%BC%93%E5%AD%98%E5%A4%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    <id>http://wenace.github.io/2018/02/22/http相关缓存头信息收集/</id>
+    <published>2018-02-22T04:19:43.260Z</published>
+    <updated>2017-06-15T12:24:32.027Z</updated>
+    
+    <content type="html"><![CDATA[<p>http中分请求头和响应头两种。</p><blockquote><p>请求头是浏览器向服务器发送请求的数据和资源.<br>响应头是服务器向浏览器响应的数据。</p></blockquote><p>##常见的请求头：<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Accept: text/html,image/*                                        浏览器可以接收的类型 </span><br><span class="line">Accept-Charset: ISO-8859-1                                    浏览器可以接收的编码类型</span><br><span class="line">Accept-Encoding: gzip,compress                                浏览器可以接收压缩编码类型 </span><br><span class="line">Accept-Language: en-us,zh-cn                                  浏览器可以接收的语言和国家类型</span><br><span class="line">Host: www.lks.cn:80                                           浏览器请求的主机和端口</span><br><span class="line">If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT     某个页面缓存时间 </span><br><span class="line">Referer: http://www.lks.cn/index.html                         请求来自于哪个页面</span><br><span class="line">User-Agent: Mozilla/4.0 compatible; MSIE 5.5; Windows NT 5.0    浏览器相关信息</span><br><span class="line">Cookie：                                                         浏览器暂存服务器发送的信息</span><br><span class="line">Connection: close1.0/Keep-Alive1.1                               HTTP请求的版本的特点</span><br><span class="line">Date: Tue, 11 Jul 2000 18:23:51GMT                               请求网站的时间</span><br><span class="line">Allow:GET                                                        请求的方法 GET 常见的还有POST</span><br><span class="line">Keep-Alive：5                                                    连接的时间；5</span><br><span class="line">Connection：keep-alive                                           是否是长连接</span><br><span class="line">Cache-Control：max-age=300                                       缓存的最长时间 300s</span><br></pre></td></tr></table></figure></p><p>##常见的响应头</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Location: http://www.lks.cn/index.html                           控制浏览器显示哪个页面 </span><br><span class="line">Server:apache nginx                                              服务器的类型 </span><br><span class="line">Content-Encoding: gzip                                           服务器发送的压缩编码方式 </span><br><span class="line">Content-Length: 80                                               服务器发送显示的字节码长度 </span><br><span class="line">Content-Language: zh-cn                                          服务器发送内容的语言和国家名 </span><br><span class="line">Content-Type: image/jpeg; charset=UTF-8                  服务器发送内容的类型和编码类型 </span><br><span class="line">Last-Modified: Tue, 11 Jul 2000 18:23:51GMT            服务器最后一次修改的时间 </span><br><span class="line">Refresh: 1;url=http://www.lks.cn                                 控制浏览器1秒钟后转发URL所指向的页面 </span><br><span class="line">Content-Disposition: attachment; filename=lks.jpg       服务器控制浏览器发下载方式打开文件 </span><br><span class="line">Transfer-Encoding: chunked                                       服务器分块传递数据到客户端  </span><br><span class="line">Set-Cookie:SS=Q0=5Lb_nQ; path=/search                  服务器发送Cookie相关的信息 </span><br><span class="line">Expires: -1                                               资源的过期时间，提供给浏览器缓存数据,-1永远过期 </span><br><span class="line">Cache-Control: no-cache                                   告诉浏览器,定要回服务器校验,不管有没有缓存数据。 </span><br><span class="line">Pragma: no-cache                                          服务器控制浏览器不要缓存网页   </span><br><span class="line">Connection: close/Keep-AliveHTTP                          请求的版本的特点   </span><br><span class="line">Date: Tue, 11 Jul 2000 18:23:51 GMT                       响应网站的时间 </span><br><span class="line">ETag：“ihfdgkdgnp98hdfg”                                  资源实体的标识(唯一标识，类似md5值，文件有修改md5就不一样)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;http中分请求头和响应头两种。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请求头是浏览器向服务器发送请求的数据和资源.&lt;br&gt;响应头是服务器向浏览器响应的数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;##常见的请求头：&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="网络相关" scheme="http://wenace.github.io/tags/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="http" scheme="http://wenace.github.io/tags/http/"/>
     
   </entry>
   
@@ -260,28 +310,6 @@
       <category term="2017gamejam" scheme="http://wenace.github.io/tags/2017gamejam/"/>
     
       <category term="游戏开发" scheme="http://wenace.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>javascript原型链方面总结</title>
-    <link href="http://wenace.github.io/2018/02/22/javascript%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%96%B9%E9%9D%A2%E6%80%BB%E7%BB%93/"/>
-    <id>http://wenace.github.io/2018/02/22/javascript原型链方面总结/</id>
-    <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-27T15:04:56.823Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br><a id="more"></a><br>如图</p><p><img src="http://ormm8jbub.bkt.clouddn.com/typeof%E5%88%A4%E6%96%AD.png" alt="javcscript"></p><p>2.== 会进行强制的转换，===则不会.<br>一般来说工作==可以用来简单书写某些代码，达到简洁的方式<br>如if(b==null)即是if(b===null || b===undefined)</p><p>3.引用类型都可进行扩展，引用类型即typeof所不能识别。<br>如对象，函数，var a=[],JSON其实也是JS的一种对象</p><p><img src="http://ormm8jbub.bkt.clouddn.com/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E9%9A%8F%E6%84%8F%E6%89%A9%E5%B1%95.png" alt="yingyongleixing"></p><p>4.所有引用类型都还有隐式类型<em>proto</em>.而函数都含有prototype类型</p><p>关于原型链，var f=new Foo(),那么对象f上有隐式<em>proto</em>指向Foo.prototype,<br>所有当f在自身没找到属性，将向上寻找，即在Foo.prototype.当还是没有的时候，将<br>继续向上，而Foo.protype也存在一个隐式属性<em>proto</em>指向Object.protype.这个Object为<br>JS自身存在的native code。总结起来，可以用下图表示</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototypeline.png" alt="prototype"></p><p>在chrome 控制台进行测试，如图<br>可以很好的解释上图所说的原型链。通过foo.prototype.<em>proto</em>===Object.protype<br>为true，确实按照原型链所说不停往上。</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototype.png" alt="chrome"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1.JS中有boolen，string，undefined，number，object，function，null基本类型&lt;br&gt;typeof可识别值类型，即boolen，object，number，string，undefined，function&lt;br&gt;object. 如null,var b=[];var b={};只会判断为object。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
-    
-      <category term="原型链" scheme="http://wenace.github.io/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
     
   </entry>
   
@@ -331,48 +359,47 @@
   </entry>
   
   <entry>
-    <title>位运算总结</title>
-    <link href="http://wenace.github.io/2018/02/22/CodeFight%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
-    <id>http://wenace.github.io/2018/02/22/CodeFight经典问题/</id>
+    <title>原生JavaScript编写ajax</title>
+    <link href="http://wenace.github.io/2018/02/22/ajax%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/ajax学习总结/</id>
     <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-15T12:18:24.910Z</updated>
+    <updated>2017-06-15T12:24:31.968Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="位运算形式"><a href="#位运算形式" class="headerlink" title="位运算形式"></a>位运算形式</h2><p>1.与，或，非，异或运算特点<br>非（~）：1变0,0变1.<br>与（&amp;）：有0则为0，均为1返回1.<a id="more"></a><br>或（|）：均为0返回0，有1为1.<br>异或（^）：均为1或者0，均返回0.只有一个1返回1.  (x^y)&gt;=0 true为相同符号，false为不同符号</p><p>2.左移和右移<br>左（&lt;&lt;）: n&lt;<1 表示n乘以2，="" x+y="">&gt;1 两数相加平均数<br>右（&gt;&gt;）：n&gt;&gt;1 表示n除以2</1></p>]]></content>
+    <content type="html"><![CDATA[<p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p><p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br><a id="more"></a><br>下面是一个JavaScript原生ajax创建对象方法</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">createXMLDoc</span></span>()&#123;</span><br><span class="line">var xmlhttp;</span><br><span class="line"><span class="keyword">if</span>(window.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">xmlhttp=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">xmlhttp=new ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.onreadystatechange=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line"><span class="keyword">if</span>(xmlhttp.states==200&amp;&amp;xmlhttp.readyState==4)</span><br><span class="line">&#123;</span><br><span class="line">document.getElementById(<span class="string">"myDic"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>):</span><br><span class="line">xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><h3 id="open-和send-的方法"><a href="#open-和send-的方法" class="headerlink" title="open()和send()的方法"></a>open()和send()的方法</h3><p>open方法中有三个参数，从左往右分别是</p><ul><li>method：请求类型：GET或者POST</li><li>url：文件在服务器上的位置</li><li>async: true()（异步）或false()（同步）<br><em>url中文件可以使任何类型的文件</em></li></ul><p>send()方法中的参数仅用于POST请求。</p><h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><p>GET：<br>1.一般用于信息获取<br>2.使用URL传递参数<br>3.对所发送信息的数量有限制，一般在2000个字符<br>4.传送数据量小，处理效率高。<br>5.安全性低，会被缓存。</p><p>POST：<br>1.用于修改服务器上的资源。<br>2.对所发送信息的数量无限制。<br>3.安全性高。可靠性高。</p><h2 id="AJAX的服务器响应"><a href="#AJAX的服务器响应" class="headerlink" title="AJAX的服务器响应"></a>AJAX的服务器响应</h2><ul><li>responseTest 获得字符串响应数据</li><li>responseXML  或的XML形式响应数据</li></ul><p>##AJAX的readyState和status</p><p>readyState：</p><blockquote><p>0：请求未初始化<br>1：服务器连接已建立<br>2：请求已接收<br>3：请求处理中<br>4：请求已经完成，且响应已就绪</p></blockquote><p>Status：</p><blockquote><p>200：ok<br>404：未找到页面</p></blockquote><h4 id="HTTP请求中常用的状态码"><a href="#HTTP请求中常用的状态码" class="headerlink" title="HTTP请求中常用的状态码"></a>HTTP请求中常用的状态码</h4><blockquote><p>301,302 重定向，后跟location头指明跳转位置<br>304 从浏览器缓存加载<br>403 权限不够，拒绝访问<br>404 资源未找到<br>500 服务器内部错误，通常为后端错误</p></blockquote>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;位运算形式&quot;&gt;&lt;a href=&quot;#位运算形式&quot; class=&quot;headerlink&quot; title=&quot;位运算形式&quot;&gt;&lt;/a&gt;位运算形式&lt;/h2&gt;&lt;p&gt;1.与，或，非，异或运算特点&lt;br&gt;非（~）：1变0,0变1.&lt;br&gt;与（&amp;amp;）：有0则为0，均为1返回1.
+      &lt;p&gt;ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性&lt;/p&gt;
+&lt;p&gt;ajax是一种用于创建快速动态网页的技术&lt;br&gt;&lt;em&gt;AJAX应用程序与浏览器和平台无关&lt;/em&gt;&lt;br&gt;
     
     </summary>
     
     
-      <category term="位运算" scheme="http://wenace.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+      <category term="ajax" scheme="http://wenace.github.io/tags/ajax/"/>
+    
+      <category term="前端" scheme="http://wenace.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
   <entry>
-    <title>http相关缓存头</title>
-    <link href="http://wenace.github.io/2018/02/22/http%E7%9B%B8%E5%85%B3%E7%BC%93%E5%AD%98%E5%A4%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
-    <id>http://wenace.github.io/2018/02/22/http相关缓存头信息收集/</id>
+    <title>javascript原型链方面总结</title>
+    <link href="http://wenace.github.io/2018/02/22/javascript%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%96%B9%E9%9D%A2%E6%80%BB%E7%BB%93/"/>
+    <id>http://wenace.github.io/2018/02/22/javascript原型链方面总结/</id>
     <published>2018-02-22T04:19:43.260Z</published>
-    <updated>2017-06-15T12:24:32.027Z</updated>
+    <updated>2017-06-27T15:04:56.823Z</updated>
     
-    <content type="html"><![CDATA[<p>http中分请求头和响应头两种。</p><blockquote><p>请求头是浏览器向服务器发送请求的数据和资源.<br>响应头是服务器向浏览器响应的数据。</p></blockquote><p>##常见的请求头：<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Accept: text/html,image/*                                        浏览器可以接收的类型 </span><br><span class="line">Accept-Charset: ISO-8859-1                                    浏览器可以接收的编码类型</span><br><span class="line">Accept-Encoding: gzip,compress                                浏览器可以接收压缩编码类型 </span><br><span class="line">Accept-Language: en-us,zh-cn                                  浏览器可以接收的语言和国家类型</span><br><span class="line">Host: www.lks.cn:80                                           浏览器请求的主机和端口</span><br><span class="line">If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT     某个页面缓存时间 </span><br><span class="line">Referer: http://www.lks.cn/index.html                         请求来自于哪个页面</span><br><span class="line">User-Agent: Mozilla/4.0 compatible; MSIE 5.5; Windows NT 5.0    浏览器相关信息</span><br><span class="line">Cookie：                                                         浏览器暂存服务器发送的信息</span><br><span class="line">Connection: close1.0/Keep-Alive1.1                               HTTP请求的版本的特点</span><br><span class="line">Date: Tue, 11 Jul 2000 18:23:51GMT                               请求网站的时间</span><br><span class="line">Allow:GET                                                        请求的方法 GET 常见的还有POST</span><br><span class="line">Keep-Alive：5                                                    连接的时间；5</span><br><span class="line">Connection：keep-alive                                           是否是长连接</span><br><span class="line">Cache-Control：max-age=300                                       缓存的最长时间 300s</span><br></pre></td></tr></table></figure></p><p>##常见的响应头</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Location: http://www.lks.cn/index.html                           控制浏览器显示哪个页面 </span><br><span class="line">Server:apache nginx                                              服务器的类型 </span><br><span class="line">Content-Encoding: gzip                                           服务器发送的压缩编码方式 </span><br><span class="line">Content-Length: 80                                               服务器发送显示的字节码长度 </span><br><span class="line">Content-Language: zh-cn                                          服务器发送内容的语言和国家名 </span><br><span class="line">Content-Type: image/jpeg; charset=UTF-8                  服务器发送内容的类型和编码类型 </span><br><span class="line">Last-Modified: Tue, 11 Jul 2000 18:23:51GMT            服务器最后一次修改的时间 </span><br><span class="line">Refresh: 1;url=http://www.lks.cn                                 控制浏览器1秒钟后转发URL所指向的页面 </span><br><span class="line">Content-Disposition: attachment; filename=lks.jpg       服务器控制浏览器发下载方式打开文件 </span><br><span class="line">Transfer-Encoding: chunked                                       服务器分块传递数据到客户端  </span><br><span class="line">Set-Cookie:SS=Q0=5Lb_nQ; path=/search                  服务器发送Cookie相关的信息 </span><br><span class="line">Expires: -1                                               资源的过期时间，提供给浏览器缓存数据,-1永远过期 </span><br><span class="line">Cache-Control: no-cache                                   告诉浏览器,定要回服务器校验,不管有没有缓存数据。 </span><br><span class="line">Pragma: no-cache                                          服务器控制浏览器不要缓存网页   </span><br><span class="line">Connection: close/Keep-AliveHTTP                          请求的版本的特点   </span><br><span class="line">Date: Tue, 11 Jul 2000 18:23:51 GMT                       响应网站的时间 </span><br><span class="line">ETag：“ihfdgkdgnp98hdfg”                                  资源实体的标识(唯一标识，类似md5值，文件有修改md5就不一样)</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br><a id="more"></a><br>如图</p><p><img src="http://ormm8jbub.bkt.clouddn.com/typeof%E5%88%A4%E6%96%AD.png" alt="javcscript"></p><p>2.== 会进行强制的转换，===则不会.<br>一般来说工作==可以用来简单书写某些代码，达到简洁的方式<br>如if(b==null)即是if(b===null || b===undefined)</p><p>3.引用类型都可进行扩展，引用类型即typeof所不能识别。<br>如对象，函数，var a=[],JSON其实也是JS的一种对象</p><p><img src="http://ormm8jbub.bkt.clouddn.com/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E9%9A%8F%E6%84%8F%E6%89%A9%E5%B1%95.png" alt="yingyongleixing"></p><p>4.所有引用类型都还有隐式类型<em>proto</em>.而函数都含有prototype类型</p><p>关于原型链，var f=new Foo(),那么对象f上有隐式<em>proto</em>指向Foo.prototype,<br>所有当f在自身没找到属性，将向上寻找，即在Foo.prototype.当还是没有的时候，将<br>继续向上，而Foo.protype也存在一个隐式属性<em>proto</em>指向Object.protype.这个Object为<br>JS自身存在的native code。总结起来，可以用下图表示</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototypeline.png" alt="prototype"></p><p>在chrome 控制台进行测试，如图<br>可以很好的解释上图所说的原型链。通过foo.prototype.<em>proto</em>===Object.protype<br>为true，确实按照原型链所说不停往上。</p><p><img src="http://ormm8jbub.bkt.clouddn.com/prototype.png" alt="chrome"></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;http中分请求头和响应头两种。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请求头是浏览器向服务器发送请求的数据和资源.&lt;br&gt;响应头是服务器向浏览器响应的数据。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;##常见的请求头：&lt;br&gt;
+      &lt;p&gt;1.JS中有boolen，string，undefined，number，object，function，null基本类型&lt;br&gt;typeof可识别值类型，即boolen，object，number，string，undefined，function&lt;br&gt;object. 如null,var b=[];var b={};只会判断为object。&lt;br&gt;
     
     </summary>
     
     
-      <category term="网络相关" scheme="http://wenace.github.io/tags/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
+      <category term="JavaScript" scheme="http://wenace.github.io/tags/JavaScript/"/>
     
-      <category term="http" scheme="http://wenace.github.io/tags/http/"/>
+      <category term="原型链" scheme="http://wenace.github.io/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
     
   </entry>
   

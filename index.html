@@ -177,7 +177,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/UnityShader-图形学/" style="font-size: 10px;">-- UnityShader -- 图形学</a> <a href="/tags/算法-排序/" style="font-size: 10px;">-- 算法 -- 排序</a> <a href="/tags/2017gamejam/" style="font-size: 10px;">2017gamejam</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/gamejam/" style="font-size: 10px;">gamejam</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/unity/" style="font-size: 15px;">unity</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/本地搭建/" style="font-size: 10px;">本地搭建</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浮动/" style="font-size: 10px;">浮动</a> <a href="/tags/游戏开发/" style="font-size: 10px;">游戏开发</a> <a href="/tags/网络相关/" style="font-size: 10px;">网络相关</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试常见/" style="font-size: 10px;">面试常见</a>
+                        <a href="/tags/UnityShader-图形学/" style="font-size: 15px;">-- UnityShader -- 图形学</a> <a href="/tags/算法-排序/" style="font-size: 10px;">-- 算法 -- 排序</a> <a href="/tags/2017gamejam/" style="font-size: 10px;">2017gamejam</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/gamejam/" style="font-size: 10px;">gamejam</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/unity/" style="font-size: 15px;">unity</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/本地搭建/" style="font-size: 10px;">本地搭建</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浮动/" style="font-size: 10px;">浮动</a> <a href="/tags/游戏开发/" style="font-size: 10px;">游戏开发</a> <a href="/tags/网络相关/" style="font-size: 10px;">网络相关</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试常见/" style="font-size: 10px;">面试常见</a>
                     </div>
                 </section>
                 
@@ -237,6 +237,85 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Untiyshader基础概念" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/02/24/Untiyshader基础概念/" class="article-date">
+      <time datetime="2018-02-24T05:36:51.000Z" itemprop="datePublished">2018-02-24</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/02/24/Untiyshader基础概念/">Untiyshader基础概念</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>1.渲染流水线<br>应用阶段-&gt;几何阶段-&gt;光栅化阶段</p>
+<p>应用阶段输出渲染所需几何信息-&gt;渲染图元（点线三角面等）</p>
+<p>几何阶段在GPU上进行</p>
+<p>光栅化阶段对上一阶段得到的逐顶点数据进行插值</p>
+<p>起点为CPU,在应用阶段把数据加载到显存中，设置渲染状态，调用DrawCall</p>
+<p>DrawCall即为一个命令，从CPU发起，到GPU接收。此命令仅仅指向一个需要被渲染的图元列表，不包含任何材质信息。</p>
+<p>调用DrawCall命令GPU进行渲染，DrawCall过多会影响帧率，原因是会造成CPU过载，而GPU的渲染速度是超过CPU提交命令能力。</p>
+<p>减少DrawCall:避免使用大量很小的网格，不可避免时考虑合并形成图集。避免使用过多材质，尽量在不同的网格之间共用同一个材质。</p>
+<p>LOD（Level of detail）多层次细节 LOD技术可有效减少计算的复杂度</p>
+<p>HDR（Hight Dynamic Range）高动态范围，相对的为LDR，采用HDR不会丢失高亮度区域的颜色值，提供了更真实的光照效果，并为屏幕后处理提供更多的控制能力。缺点就是使用浮点缓冲存储高精度图像，耗费更大的显存空间且渲染速度变慢，一些硬件也不支持HDR。</p>
+<p>PBS（Pyhsically Based Shading）基于物理着色</p>
+<p>2.GPU渲染流水线<br>从几何阶段到光栅化阶段分为更小的部分</p>
+<p>  三角形设置，三角形遍历，片元着色器，逐片元操作<br>                                          |<br>顶点数据-&gt;几何阶段-&gt;光栅化阶段-&gt;屏幕图像<br>                     |<br> 顶点着色器，曲面细分着色器，几何着色器，裁剪</p>
+<p>3标准光照模型<br>环境光-自发光-漫反射-高光反射-逐像素or逐顶点</p>
+<p>渲染顺序很重要，在透明度混合技术中，需关闭深度写入，不关闭深度写入会导致本来需要看到的表面被剔除，破坏了深度缓冲的工作机制</p>
+<p>光源属性常有位置，方向，颜色，强度，衰减</p>
+<p>4基础纹理<br>   高度纹理，法线纹理<br>              |<br>单张纹理-凹凸映射-渐变纹理-遮罩纹理</p>
+<p>5渲染路径<br>分为前向，延迟（新代替旧），顶点照明（已被unity抛弃）</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UnityShader-图形学/">-- UnityShader -- 图形学</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-UnityShader-1-基础结构" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -353,6 +432,73 @@
       
         <p class="article-more-link">
           <a   href="/2018/02/22/选择，插入，归并，快速排序总结/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-新的开始" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/02/22/新的开始/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
+<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/本地搭建/">本地搭建</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2018/02/22/新的开始/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -505,140 +651,6 @@
 
 
   
-    <article id="post-unity注意点" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/02/22/unity注意点/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/unity注意点/">unity控制运动</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <ol>
-<li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
-</ol>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/02/22/unity注意点/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-常用正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/02/22/常用正则表达式/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/常用正则表达式/">常用正则收集</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>一些常用的正则表达式
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/02/22/常用正则表达式/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-unity-控制人物运动总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -687,73 +699,6 @@
       
         <p class="article-more-link">
           <a   href="/2018/02/22/unity-控制人物运动总结/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-新的开始" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/02/22/新的开始/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
-<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/本地搭建/">本地搭建</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/02/22/新的开始/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -842,11 +787,11 @@
 
 
   
-    <article id="post-ajax学习总结" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-常用正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/ajax学习总结/" class="article-date">
-      <time datetime="2018-02-22T04:19:43.260Z" itemprop="datePublished">2018-02-22</time>
+      <a  href="/2018/02/22/常用正则表达式/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
     </div>
@@ -860,7 +805,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/ajax学习总结/">原生JavaScript编写ajax</a>
+      <a  class="article-title" href="/2018/02/22/常用正则表达式/">常用正则收集</a>
     </h1>
   
 
@@ -871,8 +816,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>ajax全程是异步的JavaScript和xml，作用为可局部刷新网页，无需重新加载整个网页，大大的提升了用户的交互性</p>
-<p>ajax是一种用于创建快速动态网页的技术<br><em>AJAX应用程序与浏览器和平台无关</em><br>
+              <p>一些常用的正则表达式
           
       
     </div>
@@ -883,12 +827,80 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/ajax学习总结/#more">查看更多 >></a>
+          <a   href="/2018/02/22/常用正则表达式/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-unity注意点" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/02/22/unity注意点/" class="article-date">
+      <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/02/22/unity注意点/">unity控制运动</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <ol>
+<li>通过Transform组件移动物体<br> Transform 组件用于描述物体在空间中的状态，它包括 位置(position)， 旋转(rotation)和 缩放(scale)。 其实所有的移动都会导致position的改变，这里所说的通过Transform组件来移动物体，指的是直接操作Transform来控制物体的位置(position)。</li>
+</ol>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2018/02/22/unity注意点/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
