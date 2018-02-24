@@ -21,7 +21,10 @@
 <meta property="og:image" content="http://ormm8jbub.bkt.clouddn.com/biaoqian.png">
 <meta property="og:image" content="http://ormm8jbub.bkt.clouddn.com/%E6%B8%B2%E6%9F%93%E7%8A%B6%E6%80%81%E8%AE%BE%E7%BD%AE.png">
 <meta property="og:image" content="http://ormm8jbub.bkt.clouddn.com/Pass%E6%A0%87%E7%AD%BE.png">
-<meta property="og:updated_time" content="2018-02-24T04:04:14.094Z">
+<meta property="og:image" content="http://ormm8jbub.bkt.clouddn.com/yuyi1.png">
+<meta property="og:image" content="http://ormm8jbub.bkt.clouddn.com/yuyi2.png">
+<meta property="og:image" content="http://ormm8jbub.bkt.clouddn.com/yuyi3.png">
+<meta property="og:updated_time" content="2018-02-24T04:14:13.434Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UnityShader(1)-基础结构">
 <meta name="twitter:description" content="shader基础结构 123456789101112131415161718192021222324252627282930313233343536373839404142Shader &amp;quot;MyShaderName&amp;quot; &amp;#123;	Properties&amp;#123;	    //属性 Name通常需要下划线开始 display name是显然在材质面板上的名字，properytyp">
@@ -291,6 +294,7 @@
 <h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/biaoqian.png" alt="image"></p>
 <h2 id="渲染状态设置"><a href="#渲染状态设置" class="headerlink" title="渲染状态设置"></a>渲染状态设置</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/%E6%B8%B2%E6%9F%93%E7%8A%B6%E6%80%81%E8%AE%BE%E7%BD%AE.png" alt="image"></p>
 <h2 id="Pass标签"><a href="#Pass标签" class="headerlink" title="Pass标签"></a>Pass标签</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/Pass%E6%A0%87%E7%AD%BE.png" alt="image"></p>
+<h2 id="相关着色器的语义"><a href="#相关着色器的语义" class="headerlink" title="相关着色器的语义"></a>相关着色器的语义</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/yuyi1.png" alt="image"><br><img src="http://ormm8jbub.bkt.clouddn.com/yuyi2.png" alt="image"><br><img src="http://ormm8jbub.bkt.clouddn.com/yuyi3.png" alt="image"></p>
 <p>UnityShader也支持特殊的Pass，如UsePass和GrabPass，GrabPass负责抓取屏幕并将结果存储在一张纹理中，便于后续Pass处理。</p>
 <ol>
 <li>表面着色器无需写在Pass语义快中，表面着色器无需关心有多少个Pass2</li>
@@ -313,7 +317,7 @@
         <p><span>本文标题:</span><a  href="/2018/02/24/UnityShader-1-基础结构/">UnityShader(1)-基础结构</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 AceS1992 的个人博客">AceS1992</a></p>
         <p><span>发布时间:</span>2018年02月24日 - 12时01分</p>
-        <p><span>最后更新:</span>2018年02月24日 - 12时04分</p>
+        <p><span>最后更新:</span>2018年02月24日 - 12时14分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/02/24/UnityShader-1-基础结构/" title="UnityShader(1)-基础结构">http://wenace.github.io/2018/02/24/UnityShader-1-基础结构/</a>
             <span class="copy-path" data-clipboard-text="原文: http://wenace.github.io/2018/02/24/UnityShader-1-基础结构/　　作者: AceS1992" title=""></span>
@@ -341,7 +345,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#属性类型"><span class="toc-number">1.</span> <span class="toc-text">属性类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签"><span class="toc-number">2.</span> <span class="toc-text">标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#渲染状态设置"><span class="toc-number">3.</span> <span class="toc-text">渲染状态设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass标签"><span class="toc-number">4.</span> <span class="toc-text">Pass标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择哪种shader形式"><span class="toc-number">5.</span> <span class="toc-text">选择哪种shader形式</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#属性类型"><span class="toc-number">1.</span> <span class="toc-text">属性类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签"><span class="toc-number">2.</span> <span class="toc-text">标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#渲染状态设置"><span class="toc-number">3.</span> <span class="toc-text">渲染状态设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass标签"><span class="toc-number">4.</span> <span class="toc-text">Pass标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关着色器的语义"><span class="toc-number">5.</span> <span class="toc-text">相关着色器的语义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择哪种shader形式"><span class="toc-number">6.</span> <span class="toc-text">选择哪种shader形式</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -421,7 +425,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/24/UnityShader-1-基础结构/">UnityShader(1)-基础结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/选择，插入，归并，快速排序总结/">选择，插入，归并，快速排序总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/常用正则表达式/">常用正则收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript的遍历方式/">常见的JavaScript遍历方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity-控制人物运动总结/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity注意点/">unity控制运动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/前端总结/">前端开发总结(持续更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/hexo建站-部署到github/">hexo部署到github</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/javascript原型链方面总结/">javascript原型链方面总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2017gamejam01/">2017gamejam记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/ajax学习总结/">原生JavaScript编写ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/http相关缓存头信息收集/">http相关缓存头</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/CodeFight经典问题/">位运算总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/gamejam总结/">gamejam总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/24/UnityShader-1-基础结构/">UnityShader(1)-基础结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/选择，插入，归并，快速排序总结/">选择，插入，归并，快速排序总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/常用正则表达式/">常用正则收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript知识点2/">JavaScript作用域等小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/JavaScript的遍历方式/">常见的JavaScript遍历方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity注意点/">unity控制运动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/前端总结/">前端开发总结(持续更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/unity-控制人物运动总结/">unity注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2017gamejam01/">2017gamejam记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/javascript原型链方面总结/">javascript原型链方面总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/gamejam总结/">gamejam总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/hexo建站-部署到github/">hexo部署到github</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/CodeFight经典问题/">位运算总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/ajax学习总结/">原生JavaScript编写ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/http相关缓存头信息收集/">http相关缓存头</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/hexo重新部署的注意点/">hexo重新部署的注意点</a></li></ul>
     <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
