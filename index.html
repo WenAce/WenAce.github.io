@@ -267,25 +267,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>shader基础结构</p>
+              <p>shader基础结构</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;MyShaderName&quot; &#123;</span><br><span class="line">	Properties&#123;</span><br><span class="line">	    //属性 Name通常需要下划线开始 display name是显然在材质面板上的名字，properytype是其类型 ，最后需要赋一个默认值</span><br><span class="line">	    Name (&quot;display name&quot;,PropertyType)=DefaultValue</span><br><span class="line">	&#125;</span><br><span class="line">		SubShader&#123;</span><br><span class="line">		   //针对显卡A的SubShader SubShader可有多个，但最少需要一个</span><br><span class="line">		   //真正意义上的Shader代码会出现在这里</span><br><span class="line">		   //表面着色器(Surface shader) or 顶点/片元着色器(Vertex/Fragment shader) or 固定函数着色器(Fixed Function shader)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		   //可选</span><br><span class="line">		   [Tags]         //标签 为键值对</span><br><span class="line">		   Tags&#123;&quot;TagName1&quot;=&quot;Value1&quot; &quot;TagName2&quot;=&quot;Value2&quot;&#125;</span><br><span class="line">		   [RenderSetup] //状态</span><br><span class="line"></span><br><span class="line">		Pass&#123;</span><br><span class="line">		   //设置渲染状态和标签 Pass数目应尽量少，多会造成渲染性能下降  </span><br><span class="line">		    [Name]    //设置该Pass名称 可使用ShaderLab的UsePass命令直接使用其他Shader中的Pass ，提高了复用性</span><br><span class="line">		    [Tags]     //不同于subshader中的标签</span><br><span class="line">		    [RenderSetup]</span><br><span class="line"></span><br><span class="line">		CGPROGRAM  //开始CG代码片段</span><br><span class="line"></span><br><span class="line">        #pragma vertex vert   //编译指令，某函数包含哪类着色器</span><br><span class="line">        #pragma fragment frag</span><br><span class="line"></span><br><span class="line">        //整体CG代码写在这里</span><br><span class="line"></span><br><span class="line">		ENDCG</span><br><span class="line">		//其他设置</span><br><span class="line">	&#125;</span><br><span class="line">	    //其他需要的Pass</span><br><span class="line">	&#125;</span><br><span class="line">	    SubShader&#123;</span><br><span class="line">	        //针对显卡B</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	    Fallback &quot;VertexLit&quot;   //用于告诉Unity，上述SubShader在该显卡上都不支持，使用最低级Shader</span><br><span class="line">	    //Fallback &quot;Name&quot; or Fallback off（关闭fallback）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/ShaderProperties.png" alt="image"></p>
-<p>从上图看出对于Int，Float，Range类型，默认值是一个单独数字，Color和Vector是四维的向量，2d，cube，3d是通过一个字符串后跟一个花括号，字符串要么是空的要么就是内置的纹理名称。</p>
-<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/biaoqian.png" alt="image"></p>
-<h2 id="渲染状态设置"><a href="#渲染状态设置" class="headerlink" title="渲染状态设置"></a>渲染状态设置</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/%E6%B8%B2%E6%9F%93%E7%8A%B6%E6%80%81%E8%AE%BE%E7%BD%AE.png" alt="image"></p>
-<h2 id="Pass标签"><a href="#Pass标签" class="headerlink" title="Pass标签"></a>Pass标签</h2><p><img src="http://ormm8jbub.bkt.clouddn.com/Pass%E6%A0%87%E7%AD%BE.png" alt="image"></p>
-<p>UnityShader也支持特殊的Pass，如UsePass和GrabPass，GrabPass负责抓取屏幕并将结果存储在一张纹理中，便于后续Pass处理。</p>
-<ol>
-<li>表面着色器无需写在Pass语义快中，表面着色器无需关心有多少个Pass2</li>
-<li>顶点/片元着色器是写在Pass中，我们需要自己定义Pass中的shader代码，灵活性更高，控制渲染的实现细节。</li>
-<li>都在CGPROGRAM到ENDCG之间写，但是区别在一个在subshader中，一个在pass中。</li>
-</ol>
-<h2 id="选择哪种shader形式"><a href="#选择哪种shader形式" class="headerlink" title="选择哪种shader形式"></a>选择哪种shader形式</h2><ol>
-<li>如果需求中有明确表示对旧设备进行支持，需要使用固定函数着色器，否则使用可编程管线着色器</li>
-<li>如果和各种光源打交道，采用表面着色器，但要注意移动平台性能表现</li>
-<li>如果光照数目非常少，有很多自定义渲染效果， 那么使用顶点/片元着色器</li>
-</ol>
-
+          
       
     </div>
     
@@ -298,6 +282,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UnityShader-图形学/">-- UnityShader -- 图形学</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a   href="/2018/02/24/UnityShader-1-基础结构/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -385,10 +373,10 @@
 
 
   
-    <article id="post-新的开始" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-常用正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/新的开始/" class="article-date">
+      <a  href="/2018/02/22/常用正则表达式/" class="article-date">
       <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
@@ -403,7 +391,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a>
+      <a  class="article-title" href="/2018/02/22/常用正则表达式/">常用正则收集</a>
     </h1>
   
 
@@ -414,8 +402,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
-<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br>
+              <p>一些常用的正则表达式
           
       
     </div>
@@ -426,12 +413,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/本地搭建/">本地搭建</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/新的开始/#more">查看更多 >></a>
+          <a   href="/2018/02/22/常用正则表达式/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -788,10 +775,10 @@
 
 
   
-    <article id="post-常用正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-新的开始" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/常用正则表达式/" class="article-date">
+      <a  href="/2018/02/22/新的开始/" class="article-date">
       <time datetime="2018-02-22T04:19:43.270Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
@@ -806,7 +793,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/常用正则表达式/">常用正则收集</a>
+      <a  class="article-title" href="/2018/02/22/新的开始/">Hexo本地搭建心得</a>
     </h1>
   
 
@@ -817,7 +804,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>一些常用的正则表达式
+              <p>今天下定决心弄弄自己的博客了，折腾过WordPress，不过要域名的情况下还是很蛋疼，作为学生党，最后寻找到github是可以进行blog的搭建的，选择了hexo原因在于自己对Node比较熟悉点。废话不多说，看看怎么完成第一步，本地搭建hexo。</p>
+<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>大家可以自行在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a>的官网上进行下载.<br>当安装完Node之后，自然会安装NPM，即包管理器。<br>之后我们就可以开始安装hexo。<br>这里希望大家安装<em>git</em>，并且学会使用<em>git</em>，对以后的工作都有很大的帮助。<br>
           
       
     </div>
@@ -828,12 +816,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/本地搭建/">本地搭建</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/常用正则表达式/#more">查看更多 >></a>
+          <a   href="/2018/02/22/新的开始/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -854,10 +842,10 @@
 
 
   
-    <article id="post-javascript原型链方面总结" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-hexo建站-部署到github" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/02/22/javascript原型链方面总结/" class="article-date">
+      <a  href="/2018/02/22/hexo建站-部署到github/" class="article-date">
       <time datetime="2018-02-22T04:19:43.260Z" itemprop="datePublished">2018-02-22</time>
 </a>
 
@@ -872,7 +860,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/02/22/javascript原型链方面总结/">javascript原型链方面总结</a>
+      <a  class="article-title" href="/2018/02/22/hexo建站-部署到github/">hexo部署到github</a>
     </h1>
   
 
@@ -883,7 +871,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>1.JS中有boolen，string，undefined，number，object，function，null基本类型<br>typeof可识别值类型，即boolen，object，number，string，undefined，function<br>object. 如null,var b=[];var b={};只会判断为object。<br>
+              <p>昨天已经说了在本地搭建一个hexo，今天来总结下怎么把hexo部署到github上</p>
+<h2 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h2><p>当然了，部署到github上，首先你得有个github账号，注册步骤大家可以自行的google下，不难。<br>
           
       
     </div>
@@ -894,12 +883,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型链/">原型链</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a   href="/2018/02/22/javascript原型链方面总结/#more">查看更多 >></a>
+          <a   href="/2018/02/22/hexo建站-部署到github/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
